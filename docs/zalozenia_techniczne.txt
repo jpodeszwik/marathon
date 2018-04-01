@@ -1,0 +1,6 @@
+Założenia techniczne:
+1. Jako bazy spróbujemy użyć firebase'a. Czy jest on wystarczający, żeby zrealizować wymagania?
+2. Aplikacja react native, czy może PWA, czy zwykła stronka? Osobna webowa aplikacja dla rejestracji zawodników?
+3. Repo na githubie open source.
+4. Trzeba zidentyfikować możliwe zagrożenia działania apliakcji i bazy i zastanowić się jak reagować na taką sytuację, np. Telefon nie może dobić się do firebasesa.
+5. Uważać na update'y firebase'a w kontekście zmiany api.

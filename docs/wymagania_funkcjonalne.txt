@@ -1,0 +1,20 @@
+Zawodnik - osoba biorąca udział w maratonie
+Rejestrator - osoba siedząca przy stoliku rejestracyjnym. Zbiera opłaty i oświadczenia i aktywuje konta zawodników.
+Opiekun - osoba chodząca po macie i zapisująca numery walczących w dajen rundzie zawodników
+
+Wymagania funkcjonalne:
+1. strona do rejestracji zawodnika na zwody (Imie, Nazwisko, Klub, Kolor Pasa). Zawodnik sam się rejestruje i dostaje unikalny numer. Konto zawodnika jest nieaktywne.
+2. Zawodnik przychodzi ze swoim numerem do stanowiska rejestracyjnego. Wypełnia oświadczenie, wkłada kasę do słoika i podaje rejestratorowi swój numer, który rejestrator odchacza w systemie jako aktywny.
+3. Zawodnik z aktywnym numerem może walczyć.
+4. Opiekun maty chodzi i zapisuje w telefonie numery walczących zawodników:
+  - interfejs jest na tyle wygodny (duże przyciski z cyframi), żeby był w stanie wpisać numery łatwo i szybko
+  - opiekun może edytować wpisy (poprzednio wpisane numery walczących)
+  - interfejs opiekuna umożliwia wybranie rundy (przedział godzinowy, np: 9:55-10:00). (strzałki do zmiany rundy następna -> poprzednia. gdzieś w interfejsie?)
+5. Zawodnik może na podstawie swojego numeru sprawdzić ile walk zawalczył.
+6. Opiekun maty może z walczących w danej rundzie zawodników wylosować zwycięzcę nagrody.
+7. Opiekun może podglądać statystyki walczących (Kto zawalczył najwięcej walk?, ile walk zawalczył zawodnik z numerem X).
+8. opiekun powinien mieć alert w telefonie, że runda się zmieniła, żeby krzyknąć 'ZMIANA'.
+9. Trzeba wymyślić sensowny sposób na rejestrację opiekunów.
+
+AD 1: Trzeba się zastanowić czy ktoś nie puści jakiegoś skryptu rejestrującego losowych zawodników i nie nabije nam numerów do jakiejś kosmicznej liczby. Głupio byłoby jakby zawodnicy musieli podawać numery typu 109212.
+AD 8: Jeżeli opiekunowie będą mieli więcej niż 1 telefon, to może być problem z synchronizacją czasu pomiędzy telefonami. Trzeba będzie to jakoś rozwiązać.

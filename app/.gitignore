@@ -1,0 +1,31 @@
+*.iml
+target/
+.idea
+*.log
+
+dist/
+node_modules/
+bower_components/
+.tmp/
+target-grunt/
+
+kidos-conversie/kidos-conversie-uploader/dependency-reduced-pom.xml
+kidos-app/src/test/jmeter/jmeter.log
+kidos-doc/kidos-doc.log
+kidos-model/src/main/resources/integratie.properties
+
+# Deze worden gegenereerd
+kidos-offline/src/main/webapp-grunt/offline/styles/global.css
+kidos-offline/src/main/webapp-grunt/offline/scripts/global.js
+kidos-offline/src/main/webapp-grunt/offline/scripts/exam.js
+kidos-offline/src/main/webapp-grunt/offline/views/exam.html
+kidos-offline/src/main/webapp-grunt/offline/styles/images/
+kidos-offline/src/main/webapp-grunt/offline/images/
+
+# HSQL testdatabase
+kidos-model/src/test/hsql/kidos.lobs
+kidos-model/src/test/hsql/kidos.script
+
+# jmeter reports
+kidos-app/jmeter-reports
+

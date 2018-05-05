@@ -1,0 +1,21 @@
+.AppHeader-header {
+  margin: 0;
+  height: 56px;
+  background-color: #35495e;
+  color: #fff;
+}
+
+.AppHeader-center {
+  display: block;
+}
+
+.AppHeader-span {
+  display: block;
+  position: relative;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: .02em;
+  font-weight: 400;
+  box-sizing: border-box;
+  padding-top: 16px;
+}

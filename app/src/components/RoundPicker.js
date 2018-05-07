@@ -7,7 +7,7 @@ import FaAngleRight from 'react-icons/lib/fa/angle-right';
 
 const roundLength = 5;
 
-const roundToRundLength = date => {
+const roundToRundLength = (date) => {
   const copiedDate = new Date(date.getTime());
 
   const minutes = copiedDate.getMinutes();
@@ -28,7 +28,7 @@ class RoundPicker extends Component {
     super(props);
     this.onRoundSelected = props.onRoundSelected;
     const date = roundToRundLength(new Date());
-    this.state = {roundStart: date};
+    this.state = { roundStart: date };
     this.onRoundSelected(date);
   }
 
@@ -37,18 +37,14 @@ class RoundPicker extends Component {
   }
 
   nextRound() {
-    this.setState((prevState) => {
-      return {roundStart: addMinutes(prevState.roundStart, roundLength)};
-    });
+    this.setState(prevState => ({ roundStart: addMinutes(prevState.roundStart, roundLength) }));
   }
 
   previousRound() {
-    this.setState((prevState) => {
-      return {roundStart: addMinutes(prevState.roundStart, -roundLength)};
-    });
+    this.setState(prevState => ({ roundStart: addMinutes(prevState.roundStart, -roundLength) }));
   }
 
-  render(){
+  render() {
     const start = this.state.roundStart;
     const end = addMinutes(this.state.roundStart, roundLength);
 
@@ -65,7 +61,7 @@ class RoundPicker extends Component {
 }
 
 RoundPicker.propTypes = {
-  onRoundSelected: PropTypes.func
+  onRoundSelected: PropTypes.func,
 };
 
 export default RoundPicker;

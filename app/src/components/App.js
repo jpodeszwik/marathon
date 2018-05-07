@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import { Container } from 'reactstrap';
+import moment from 'moment';
 import './App.css';
 import AppHeader from './AppHeader';
 import Keyboard from './Keyboard';
 import RoundPicker from './RoundPicker';
-import { Container } from 'reactstrap';
 import firebase from '../services/firebase';
-import moment from 'moment';
 
 class App extends Component {
   constructor() {

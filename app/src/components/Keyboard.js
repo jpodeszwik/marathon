@@ -5,27 +5,21 @@ import PropTypes from 'prop-types';
 class Keyboard extends Component {
   constructor(props) {
     super(props);
-    this.state = {number: ''};
+    this.state = { number: '' };
     this.onSave = props.onSave;
   }
 
   buttonClicked(num) {
-    this.setState((prevState) => {
-      return {number: prevState.number.concat(num)};
-    });
+    this.setState(prevState => ({ number: prevState.number.concat(num) }));
   }
 
   addClicked() {
     this.onSave(this.state.number);
-    this.setState(() => {
-      return {number: ''};
-    });
+    this.setState(() => ({ number: '' }));
   }
 
   deleteClicked() {
-    this.setState((prevState) => {
-      return {number: prevState.number.slice(0, -1)};
-    });
+    this.setState(prevState => ({ number: prevState.number.slice(0, -1) }));
   }
 
   render() {
@@ -86,7 +80,7 @@ class Keyboard extends Component {
 }
 
 Keyboard.propTypes = {
-  onSave: PropTypes.func
+  onSave: PropTypes.func,
 };
 
 export default Keyboard;

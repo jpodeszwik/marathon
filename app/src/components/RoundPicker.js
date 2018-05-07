@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Moment from 'react-moment';
 import { Row, Col, Button } from 'reactstrap';
 import FaAngleLeft from 'react-icons/lib/fa/angle-left';
@@ -11,6 +12,7 @@ const roundToRundLength = date => {
 
   const minutes = copiedDate.getMinutes();
   copiedDate.setMinutes(minutes - (minutes % roundLength));
+  copiedDate.setSeconds(0);
 
   return copiedDate;
 };
@@ -24,7 +26,14 @@ const addMinutes = (date, minutes) => {
 class RoundPicker extends Component {
   constructor(props) {
     super(props);
-    this.state = {roundStart: roundToRundLength(new Date())};
+    this.onRoundSelected = props.onRoundSelected;
+    const date = roundToRundLength(new Date());
+    this.state = {roundStart: date};
+    this.onRoundSelected(date);
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    this.onRoundSelected(nextState.roundStart);
   }
 
   nextRound() {
@@ -54,5 +63,9 @@ class RoundPicker extends Component {
     );
   }
 }
+
+RoundPicker.propTypes = {
+  onRoundSelected: PropTypes.func
+};
 
 export default RoundPicker;

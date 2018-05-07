@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
+import PropTypes from 'prop-types';
 
 class Keyboard extends Component {
   constructor(props) {
     super(props);
     this.state = {number: ''};
+    this.onSave = props.onSave;
   }
 
   buttonClicked(num) {
@@ -14,6 +16,7 @@ class Keyboard extends Component {
   }
 
   addClicked() {
+    this.onSave(this.state.number);
     this.setState(() => {
       return {number: ''};
     });
@@ -25,7 +28,7 @@ class Keyboard extends Component {
     });
   }
 
-  render(){
+  render() {
     return (
       <Container>
         <Row>
@@ -81,5 +84,9 @@ class Keyboard extends Component {
     );
   }
 }
+
+Keyboard.propTypes = {
+  onSave: PropTypes.func
+};
 
 export default Keyboard;

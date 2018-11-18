@@ -31,8 +31,12 @@ class Keyboard extends Component {
     return (
       <Container>
         <Row>
+          <Col/>
           <Col>
             <h1 className="text-center">{this.state.number || '-'}</h1>
+          </Col>
+          <Col>
+            <Button block={true} color="danger" onClick={this.deleteClicked.bind(this)}>Delete</Button>
           </Col>
         </Row>
         <Row>
@@ -69,9 +73,7 @@ class Keyboard extends Component {
           </Col>
         </Row>
         <Row>
-          <Col style={colStyle}>
-            <Button block={true} color="danger" onClick={this.deleteClicked.bind(this)}>Delete</Button>
-          </Col>
+          <Col style={colStyle}/>
           <Col style={colStyle}>
             <Button block={true} onClick={this.buttonClicked.bind(this, 0)}>0</Button>
           </Col>

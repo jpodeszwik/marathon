@@ -7,7 +7,14 @@ import FaAngleRight from 'react-icons/lib/fa/angle-right';
 
 const roundLength = 5;
 const pickerStyle = {
-  padding: '2px',
+  paddingBottom: '20px',
+  paddingTop: '10px',
+};
+
+const pickerButtonStyle = {
+  display: 'inline-block',
+  paddingLeft: '20px',
+  paddingRight: '20px',
 };
 
 const roundToRoundLength = (date) => {
@@ -59,7 +66,9 @@ class RoundPicker extends Component {
       <Row>
         <Col style={pickerStyle}>
           <Button onClick={this.previousRound.bind(this)}><FaAngleLeft /></Button>
-          <Moment format="DD MMM">{start}</Moment> <Moment format="HH:mm">{start}</Moment> - <Moment format="HH:mm">{end}</Moment>
+          <div style={pickerButtonStyle}>
+            <Moment format="DD MMM">{start}</Moment> <Moment format="HH:mm">{start}</Moment> - <Moment format="HH:mm">{end}</Moment>
+          </div>
           <Button onClick={this.nextRound.bind(this)}><FaAngleRight /></Button>
         </Col>
       </Row>

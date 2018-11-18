@@ -17,13 +17,14 @@ class App extends Component {
     this.state = { numbers: [] };
     this.numberSent = this.numberSent.bind(this);
     this.roundSelected = this.roundSelected.bind(this);
+    this.numberRemoved = this.numberRemoved.bind(this);
   }
 
   numberSent(number) {
     firebase.database().ref(this.round).push(number);
     this.setState((prevState) => {
       const newNumbers = prevState.numbers.slice();
-      newNumbers.push(number);
+      newNumbers.unshift(number);
       return {
         numbers: newNumbers,
       };
@@ -35,6 +36,17 @@ class App extends Component {
     this.setState({ numbers: [] });
   }
 
+  numberRemoved(number) {
+    this.setState((prevState) => {
+      const newNumbers = prevState.numbers.slice()
+        .filter(val => number !== val);
+
+      return {
+        numbers: newNumbers,
+      };
+    });
+  }
+
   render() {
     return (
       <div className="App">
@@ -42,7 +54,7 @@ class App extends Component {
           <AppHeader />
           <RoundPicker onRoundSelected={this.roundSelected} />
           <Keyboard onSave={this.numberSent} />
-          <NumberList numbers={this.state.numbers}/>
+          <NumberList onRemoveNumber={this.numberRemoved} numbers={this.state.numbers}/>
         </Container>
       </div>
     );

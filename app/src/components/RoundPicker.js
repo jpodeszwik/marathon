@@ -6,8 +6,11 @@ import FaAngleLeft from 'react-icons/lib/fa/angle-left';
 import FaAngleRight from 'react-icons/lib/fa/angle-right';
 
 const roundLength = 5;
+const pickerStyle = {
+  padding: '2px',
+};
 
-const roundToRundLength = (date) => {
+const roundToRoundLength = (date) => {
   const copiedDate = new Date(date.getTime());
 
   const minutes = copiedDate.getMinutes();
@@ -27,21 +30,25 @@ class RoundPicker extends Component {
   constructor(props) {
     super(props);
     this.onRoundSelected = props.onRoundSelected;
-    const date = roundToRundLength(new Date());
+    const date = roundToRoundLength(new Date());
     this.state = { roundStart: date };
     this.onRoundSelected(date);
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    this.onRoundSelected(nextState.roundStart);
-  }
-
   nextRound() {
-    this.setState(prevState => ({ roundStart: addMinutes(prevState.roundStart, roundLength) }));
+    this.setState((prevState) => {
+      const newRoundStart = addMinutes(prevState.roundStart, roundLength);
+      this.onRoundSelected(newRoundStart);
+      return { roundStart: newRoundStart };
+    });
   }
 
   previousRound() {
-    this.setState(prevState => ({ roundStart: addMinutes(prevState.roundStart, -roundLength) }));
+    this.setState((prevState) => {
+      const newRoundStart = addMinutes(prevState.roundStart, -roundLength);
+      this.onRoundSelected(newRoundStart);
+      return { roundStart: newRoundStart };
+    });
   }
 
   render() {
@@ -50,7 +57,7 @@ class RoundPicker extends Component {
 
     return (
       <Row>
-        <Col>
+        <Col style={pickerStyle}>
           <Button onClick={this.previousRound.bind(this)}><FaAngleLeft /></Button>
           <Moment format="DD MMM">{start}</Moment> <Moment format="HH:mm">{start}</Moment> - <Moment format="HH:mm">{end}</Moment>
           <Button onClick={this.nextRound.bind(this)}><FaAngleRight /></Button>

@@ -18,6 +18,10 @@ class App extends Component {
   }
 
   numberSent(number) {
+    if (this.state.numbers.includes(number)) {
+      return;
+    }
+
     pushNumber(this.round, number);
     this.setState((prevState) => {
       const newNumbers = prevState.numbers.slice();

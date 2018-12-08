@@ -5,26 +5,38 @@ import firebase from 'firebase/app';
 import 'firebase/database';
 
 class App extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.app = firebase.initializeApp(config);
     this.database = this.app.database().ref().child('rounds');
     this.state = {
       fights: []
     }
+   
   }
 
   componentWillMount(){
     const previousFights = this.state.fights;
+    
 
-    this.database.on('child_added', snap => previousFights.push(snap));
+    this.database.on('child_added', snap => previousFights.push({
+      key: snap.key,
+      content: snap.val(),
+    }));
+    
     this.setState({fights: previousFights})
-    console.log(this.state.fights);
+    
   }
+
+
   render() {
     return (
       <div className="App">
-      aaaa
+        <ul>
+          {console.log(this.state.fights)}
+          {this.state.fights.map((fight)=>{return (<li>{fight.key}</li>)})}
+
+        </ul>
       </div>
     );
   }

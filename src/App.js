@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { config } from './config/config';
+import firebase from 'firebase/app';
+import 'firebase/database';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.app = firebase.initializeApp(config);
+    this.database = this.app.database().ref().child('rounds');
+    this.state = {
+      fights: []
+    }
+  }
+
+  componentWillMount(){
+    const previousFights = this.state.fights;
+
+    this.database.on('child_added', snap => previousFights.push(snap));
+    this.setState({fights: previousFights})
+    console.log(this.state.fights);
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      aaaa
       </div>
     );
   }

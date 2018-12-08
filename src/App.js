@@ -15,26 +15,49 @@ class App extends Component {
    
   }
 
-  componentWillMount(){
-    const previousFights = this.state.fights;
+  // componentWillMount(){
+  //   const previousFights = this.state.fights;
     
 
-    this.database.on('child_added', snap => previousFights.push({
-      key: snap.key,
-      content: snap.val(),
-    }));
+  //   this.database.on('child_added', snap => previousFights.push({
+  //     key: snap.key,
+  //     content: snap.val(),
+  //   }));
     
-    this.setState({fights: previousFights})
+  //   this.setState({fights: previousFights})
     
+  // }
+  componentDidMount(){
+
+    this.database.once('value').then(snapshot => {
+ 
+      const value = snapshot.val();
+ 
+      const fights = Object.keys(value).map(key => ({
+ 
+        key: key,
+ 
+        content: value[key]
+ 
+      }))
+ 
+      return fights
+ 
+    }).then(
+ 
+      fights => this.setState({ fights: fights })
+ 
+    )
+ 
   }
-
 
   render() {
     return (
       <div className="App">
         <ul>
           {console.log(this.state.fights)}
-          {this.state.fights.map((fight)=>{return (<li>{fight.key}</li>)})}
+          {/* {console.log(this.state.fights.length)} */}
+          {this.state.fights.map((fight)=>{return (<li key={fight.key}>{fight.content[0]}</li>)})}
 
         </ul>
       </div>

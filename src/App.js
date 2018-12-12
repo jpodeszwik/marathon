@@ -40,26 +40,34 @@ class App extends Component {
         content: value[key]
  
       }))
- 
+      
       return fights
+
+      
  
     }).then(
  
       fights => this.setState({ fights: fights })
  
     )
- 
+      
+    
   }
 
-  render() {
+  
+
+  render() {  
     return (
       <div className="App">
         <ul>
           {console.log(this.state.fights)}
+          {console.log(Object.keys[this.state.fights.content])}
           {/* {console.log(this.state.fights.length)} */}
-          {this.state.fights.map((fight)=>{return (<li key={fight.key}>{fight.content[0]}</li>)})}
+          {/* {this.state.fights.map((fight)=>{return (<li key={fight.key}>{Object.keys(fight.content).map((k)=>{return(<h4 key={new Date().getTime()}>{k}</h4>)})}</li>)})} */}
+          {<li>{this.state.fights.filter(item => item.content[55] === 1).length}</li>}
+          {<li>{<ol>{this.state.fights.filter(item => item.content[55] === 1).map( i => <li key={i.key}>{i.key}</li>)}</ol>}</li>}
+        </ul>  
 
-        </ul>
       </div>
     );
   }

@@ -3,6 +3,9 @@ import './App.css';
 import { config } from './config/config';
 import firebase from 'firebase/app';
 import 'firebase/database';
+import { BrowserRouter, Route } from 'react-router-dom';
+import home from './components/home';
+import Stats from './components/stats';
 
 class App extends Component {
   constructor(props){
@@ -10,7 +13,8 @@ class App extends Component {
     this.app = firebase.initializeApp(config);
     this.database = this.app.database().ref().child('rounds');
     this.state = {
-      fights: []
+      fights: [],
+      msg: "hello"
     }
    
   }
@@ -58,17 +62,24 @@ class App extends Component {
 
   render() {  
     return (
-      <div className="App">
-        <ul>
-          {console.log(this.state.fights)}
-          {console.log(Object.keys[this.state.fights.content])}
-          {/* {console.log(this.state.fights.length)} */}
-          {/* {this.state.fights.map((fight)=>{return (<li key={fight.key}>{Object.keys(fight.content).map((k)=>{return(<h4 key={new Date().getTime()}>{k}</h4>)})}</li>)})} */}
-          {<li>{this.state.fights.filter(item => item.content[55] === 1).length}</li>}
-          {<li>{<ol>{this.state.fights.filter(item => item.content[55] === 1).map( i => <li key={i.key}>{i.key}</li>)}</ol>}</li>}
-        </ul>  
+      <BrowserRouter>
+        <div>
+          
+          <Route exact path ="/" component={home} />
+          <Route path ="/stats" render={(props) => <Stats {...props} msg={this.state.msg} state={this.state.fights}/>} />
+        </div>
+      </BrowserRouter>
+      // <div className="App">
+      //   <button onClick={()=>window.location.reload()}>X</button>
+      //   <ul>
+      //     {console.log(this.state.fights)}
+      //     {console.log(Object.keys[this.state.fights.content])}
+         
+      //     {<li>{this.state.fights.filter(item => item.content[55] === 1).length}</li>}
+      //     {<li>{<ol>{this.state.fights.filter(item => item.content[55] === 1).map( i => <li key={i.key}>{i.key}</li>)}</ol>}</li>}
+      //   </ul>  
 
-      </div>
+      // </div>
     );
   }
 }

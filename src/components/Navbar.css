@@ -1,0 +1,12 @@
+.nav{
+    margin: 5px;
+    width: 90px;
+    height: 35px;
+    display: inline-block;
+    border-radius: 10px;
+    color: white;
+    background: orange;
+    padding: 10px 5px;
+    text-align: center;
+    text-decoration: none;
+}

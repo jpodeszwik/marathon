@@ -15,8 +15,8 @@ class App extends Component {
     this.app = firebase.initializeApp(config);
     this.database = this.app.database().ref().child('rounds');
     this.state = {
-      fights: [],
-      msg: "hello"
+      fights: []
+      
     }
    
   }

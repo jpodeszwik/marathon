@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Stats.css';
 
 class Stats extends Component{
     constructor(props){
@@ -10,7 +11,7 @@ class Stats extends Component{
     }
 
     handleChange=(event)=>{
-        // event.preventDefault();
+        
         this.setState({userId: event.target.value})
     }
 
@@ -19,7 +20,6 @@ class Stats extends Component{
         this.setState({userNumber: this.state.userId,
         userId: ""});
         event.preventDefault();
-        console.log(this.state.userNumber)
         
     }
     render(){
@@ -30,12 +30,13 @@ class Stats extends Component{
                 <input id="input" value={this.state.userId} onChange={this.handleChange}  />
             </form>
             
-            <ul>
-                {this.props.msg}
+            {<h5>Zawodnik z numerem {this.state.userNumber} stoczyl {this.props.state.filter(item => item.content[this.state.userNumber] === 1).length} walk</h5>}
+            <ul className="fightsList">
+                {/* {this.props.msg} */}
         
              
-               {<li>{this.props.state.filter(item => item.content[this.state.userNumber] === 1).length}</li>}
-              {<li>{<ol>{this.props.state.filter(item => item.content[this.state.userNumber] === 1).map( i => <li key={i.key}>{i.key}</li>)}</ol>}</li>} 
+               
+              {<li>{<ol>{this.props.state.filter(item => item.content[this.state.userNumber] === 1).map( i => <li key={i.key} className="dates">{i.key}</li>)}</ol>}</li>} 
             </ul>  
     
            </div>

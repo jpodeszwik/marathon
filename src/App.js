@@ -4,8 +4,10 @@ import { config } from './config/config';
 import firebase from 'firebase/app';
 import 'firebase/database';
 import { BrowserRouter, Route } from 'react-router-dom';
-import home from './components/home';
+import Home from './components/home';
 import Stats from './components/stats';
+import Navbar from './components/navbar'
+
 
 class App extends Component {
   constructor(props){
@@ -64,8 +66,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          
-          <Route exact path ="/" component={home} />
+          <Navbar />
+          <Route exact path ="/" component={Home} />
           <Route path ="/stats" render={(props) => <Stats {...props} msg={this.state.msg} state={this.state.fights}/>} />
         </div>
       </BrowserRouter>

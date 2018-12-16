@@ -56,7 +56,7 @@ class App extends Component {
         <div>
           <Navbar />
           <Route exact path ="/" component={Home} />
-          <Route path ="/stats" render={(props) => <Stats {...props} msg={this.state.msg} state={this.state.fights}/>} />
+          <Route path ="/stats" render={(props) => <Stats {...props} state={this.state.fights}/>} />
         </div>
       </BrowserRouter>
  

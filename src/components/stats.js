@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Stats.css';
-import { Table } from 'react-bootstrap';
+import { Table, FormControl, Grid, Row, Col } from 'react-bootstrap';
  
 class Stats extends Component{
     constructor(props){
@@ -26,15 +26,33 @@ class Stats extends Component{
     render(){
         return(
         
-            <div>
+            <Grid>
 
-            <form onSubmit={this.handleSubmit}>
-                <input id="input" value={this.state.userId} placeholder="podaj nr zawodnika" onChange={this.handleChange}  />
-            </form>
+                <Row className="nav-row">
+                    <Col sm={10} smOffset={1}>
+                        <form onSubmit={this.handleSubmit}>
+                        <FormControl 
+                            value={this.state.userId}
+                            placeholder="podaj nr zawodnika"
+                            onChange={this.handleChange}
+
+                        />
+                        </form>
+                    </Col>
+                </Row>
             
-            {<h5 className="info-header">Zawodnik z numerem {this.state.userNumber === "" ? "X" : this.state.userNumber} stoczyl {this.props.state.filter(item => item.content[this.state.userNumber] === 1).length} walk</h5>}
-          
-            <Table striped bordered condensed hover>
+                <Row className="nav-row">
+                    <Col sm={10} smOffset={1}>
+                    
+                        {<h5 className="info-header">Zawodnik z numerem {this.state.userNumber === "" ? "X" : this.state.userNumber} stoczyl {this.props.state.filter(item => item.content[this.state.userNumber] === 1).length} walk</h5>}
+                      
+                    </Col>
+                </Row>
+           
+                <Row className="nav-row">
+                    <Col sm={10} smOffset={1}>
+                    
+                    <Table striped bordered condensed hover>
                 <thead>
                     <tr>
                         <th>#</th>
@@ -45,8 +63,12 @@ class Stats extends Component{
                     
                 </thead>
             </Table>
+                      
+                    </Col>
+                </Row>
+            
     
-           </div>
+           </Grid>
         );
     }
     }

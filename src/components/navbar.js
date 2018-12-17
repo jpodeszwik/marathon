@@ -1,15 +1,19 @@
 import React from 'react';
 import './Navbar.css';
-import { ButtonToolbar, Button } from 'react-bootstrap';
+import { ButtonGroup, Button, Grid, Row, Col } from 'react-bootstrap';
 
 const Navbar =()=>{
     return(
-        <div className="navbar" >
-            <ButtonToolbar>
-                <Button href="/">Home</Button>
-                <Button href="/stats">Stats</Button>
-            </ButtonToolbar>
-        </div>
+        <Grid >
+          <Row className="nav-row">
+              <Col xs={10} xsOffset={1}>
+                <ButtonGroup>
+                    <Button href="/">Home</Button>
+                    <Button href="/stats">Stats</Button>
+                </ButtonGroup>
+              </Col>
+          </Row>
+        </Grid>
     );
 }
 

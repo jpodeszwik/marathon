@@ -2,7 +2,6 @@
     
     display: flex;
     justify-content: center;
-    /* align-items: center; */
     list-style-type: none;
     margin-block-start: 0;
     margin-block-end: 0;
@@ -13,4 +12,8 @@
 
 .dates{
     width: 330px;
+}
+
+.nav-row{
+    margin: 10px 0;
 }

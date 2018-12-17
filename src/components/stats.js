@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Stats.css';
-
+import { Table } from 'react-bootstrap';
+ 
 class Stats extends Component{
     constructor(props){
         super(props);
@@ -31,10 +32,19 @@ class Stats extends Component{
                 <input id="input" value={this.state.userId} placeholder="podaj nr zawodnika" onChange={this.handleChange}  />
             </form>
             
-            {<h5>Zawodnik z numerem {this.state.userNumber === "" ? "X" : this.state.userNumber} stoczyl {this.props.state.filter(item => item.content[this.state.userNumber] === 1).length} walk</h5>}
-            <ul className="fightsList">
-                {<li>{<ol>{this.props.state.filter(item => item.content[this.state.userNumber] === 1).map( i => <li key={i.key} className="dates">{i.key}</li>)}</ol>}</li>} 
-            </ul>  
+            {<h5 className="info-header">Zawodnik z numerem {this.state.userNumber === "" ? "X" : this.state.userNumber} stoczyl {this.props.state.filter(item => item.content[this.state.userNumber] === 1).length} walk</h5>}
+          
+            <Table striped bordered condensed hover>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Data i godzina rundy</th>
+                    </tr>
+                    
+                    {this.props.state.filter(item => item.content[this.state.userNumber] === 1).map( (i, index) => <tr key={i.key}><td>{index + 1}</td><td>{i.key}</td></tr>)}
+                    
+                </thead>
+            </Table>
     
            </div>
         );

@@ -1,11 +1,14 @@
 import React from 'react';
 import './Navbar.css';
+import { ButtonToolbar, Button } from 'react-bootstrap';
 
 const Navbar =()=>{
     return(
         <div className="navbar" >
-            <a href="/" id="navHome" className="nav">Home</a>
-            <a href="/stats" id="navStats" className="nav">Statystyki</a>
+            <ButtonToolbar>
+                <Button href="/">Home</Button>
+                <Button href="/stats">Stats</Button>
+            </ButtonToolbar>
         </div>
     );
 }

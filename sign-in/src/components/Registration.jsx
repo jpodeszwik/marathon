@@ -11,7 +11,7 @@ constructor(props){
             city: '',
             bjjGrade: '',
             homeClub: '',
-            adult: false,
+            adult: '',
             sex: '',
 
         
@@ -48,15 +48,32 @@ render(){
                             <FormControl    type="text"  name="homeClub" placeholder="Klub"
                                             value={this.state.homeClub}
                                             onChange={this.handleChange} />
-                            
-      <FormControl componentClass="select" placeholder="Zaznacz kolor pasa bjj" name="bjjGrade" onChange={this.handleChange} value={this.state.bjjGrade}>
-        <option >Biały</option>
-        <option >Niebieski</option>
-        <option >Purpurowy</option>
-        <option >Brązowy</option>
-        <option >Czarny</option>
+                            <ControlLabel>Zaznacz kolor pasa bjj</ControlLabel>
+                            <FormControl componentClass="select"  name="bjjGrade" onChange={this.handleChange} >
+                                            <option ></option>
+                                            <option >Biały</option>
+                                            <option >Niebieski</option>
+                                            <option >Purpurowy</option>
+                                            <option >Brązowy</option>
+                                            <option >Czarny</option>
         
-      </FormControl>                               
+                            </FormControl>
+                            <ControlLabel>Czy osoba jest pelnoletnia?</ControlLabel> 
+                            <FormControl componentClass="select"  name="adult" onChange={this.handleChange} >
+                                            <option ></option>
+                                            <option >Tak</option>
+                                            <option >Nie</option>
+    
+        
+                            </FormControl>  
+                            <ControlLabel>Zaznacz płeć</ControlLabel>       
+                            <FormControl componentClass="select" placeholder="Plec" name="sex" onChange={this.handleChange} >
+                                            <option ></option>
+                                            <option >Kobieta</option>
+                                            <option >Mężczyzna</option>
+
+        
+                            </FormControl>                                      
                         </FormGroup>
                         <Button type="submit">X</Button>
                     </form>

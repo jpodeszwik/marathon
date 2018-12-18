@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Button, FormGroup, FormControl } from 'react-bootstrap';
+import { Grid, Row, Col, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
 
 class Registration extends Component{
 constructor(props){
@@ -48,7 +48,15 @@ render(){
                             <FormControl    type="text"  name="homeClub" placeholder="Klub"
                                             value={this.state.homeClub}
                                             onChange={this.handleChange} />
-                                                           
+                            
+      <FormControl componentClass="select" placeholder="Zaznacz kolor pasa bjj" name="bjjGrade" onChange={this.handleChange} value={this.state.bjjGrade}>
+        <option >Biały</option>
+        <option >Niebieski</option>
+        <option >Purpurowy</option>
+        <option >Brązowy</option>
+        <option >Czarny</option>
+        
+      </FormControl>                               
                         </FormGroup>
                         <Button type="submit">X</Button>
                     </form>

@@ -5,16 +5,16 @@ class Registration extends Component{
 constructor(props){
     super(props);
     this.state=({
-        user: {
+        
             id: '',
             fullName: '',
             city: '',
             bjjGrade: '',
             homeClub: '',
             adult: false,
-            sex: ''
+            sex: '',
 
-        },
+        
         registeredUsers: []
     })
 }
@@ -29,6 +29,7 @@ handleChange =(e)=>{
 
 handleSubmit =(e)=>{
     e.preventDefault();
+    console.log(this.state)
 
 }
 render(){
@@ -39,9 +40,17 @@ render(){
                     <form onSubmit={this.handleSubmit}>
                         <FormGroup >
                             <FormControl    type="text"  name="fullName" placeholder="Imię oraz nazwisko"
-                                            value={this.state.user.fullName}
+                                            value={this.state.fullName}
                                             onChange={this.handleChange} />
+                            <FormControl    type="text"  name="city" placeholder="Miasto"
+                                            value={this.state.city}
+                                            onChange={this.handleChange} />
+                            <FormControl    type="text"  name="homeClub" placeholder="Klub"
+                                            value={this.state.homeClub}
+                                            onChange={this.handleChange} />
+                                                           
                         </FormGroup>
+                        <Button type="submit">X</Button>
                     </form>
                 </Col>
             </Row>

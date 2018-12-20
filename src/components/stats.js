@@ -50,6 +50,7 @@ class Stats extends Component{
     
                             {<h5 className="info-header">Zawodnik z numerem {this.state.userNumber === "" ? "X" : this.state.userNumber} stoczyl {
                                 this.state.userNumber === "" ? "zero" :
+                                this.props.rank.filter(item => item.key === this.state.userNumber).length === 0 ? null :
                                 this.props.rank.filter(item => item.key === this.state.userNumber)[0].content.totalFights
                             } walk</h5>}
       
@@ -70,9 +71,11 @@ class Stats extends Component{
                                     
                                 
                                     {this.state.userNumber === "" ? null : 
+                                    this.props.rounds
+                                        .filter( round => round.key === this.state.userNumber).length === 0 ? null :
                                     Object.keys(this.props.rounds
                                         .filter( round => round.key === this.state.userNumber)[0].content)
-                                        .map((key, index) => <tr><td id={index}>{index + 1}</td><td>{key}</td></tr>)
+                                        .map((key, index) => <tr id={index}><td >{index + 1}</td><td>{key}</td></tr>)
                         }
                                 
                                 </tbody>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Stats.css';
-import { Table, FormControl, Grid, Row, Col } from 'react-bootstrap';
+import { Table, FormControl, Grid, Row, Col, Button } from 'react-bootstrap';
 // import { CSSTransitionGroup } from 'react-transition-group'
  
 class Stats extends Component{
@@ -8,7 +8,8 @@ class Stats extends Component{
         super(props);
         this.state = {
             userId: "",
-            userNumber: ""
+            userNumber: "",
+            champ: ""
         }
     }
 
@@ -27,6 +28,13 @@ class Stats extends Component{
         console.log(this.props.rank.filter(item => item.key === "55")[0].content.totalFights)
         event.preventDefault();
         
+    }
+
+    handleTop=()=>{
+        const winner = this.props.rank.map( item => item.content.totalFights )
+        const nr = Math.max(...winner)
+        const champ = this.props.rank.filter(item => item.content.totalFights === nr).map(item => item.key)
+        this.setState({ champ: champ})
     }
     render(){
         return(
@@ -75,12 +83,14 @@ class Stats extends Component{
                                         .filter( round => round.key === this.state.userNumber).length === 0 ? null :
                                     Object.keys(this.props.rounds
                                         .filter( round => round.key === this.state.userNumber)[0].content)
-                                        .map((key, index) => <tr id={index}><td >{index + 1}</td><td>{key}</td></tr>)
+                                        .map((key, index) => <tr key={index}><td >{index + 1}</td><td>{key}</td></tr>)
                         }
                                 
                                 </tbody>
                                 
                             </Table>  
+                            <Button onClick={this.handleTop}>Top</Button>
+                            {this.state.champ === "" ? null : <h3>{this.state.champ}</h3>}
       
                         </Col>
                     </Row>

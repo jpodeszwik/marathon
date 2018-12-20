@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Stats.css';
 import { Table, FormControl, Grid, Row, Col } from 'react-bootstrap';
-import { CSSTransitionGroup } from 'react-transition-group'
+// import { CSSTransitionGroup } from 'react-transition-group'
  
 class Stats extends Component{
     constructor(props){
@@ -21,18 +21,16 @@ class Stats extends Component{
         
         this.setState({userNumber: this.state.userId,
         userId: ""});
+        console.log(this.state)
+        console.log(this.props.rank)
+        console.log(this.props.rounds.filter(round => round.key === "55")[0].content)
+        console.log(this.props.rank.filter(item => item.key === "55")[0].content.totalFights)
         event.preventDefault();
         
     }
     render(){
         return(
         
-        //    <CSSTransitionGroup 
-        //    transitionName="example"
-        //    transitionAppear={true}
-        //    transitionAppearTimeout={500}
-        //    transitionEnter={false}
-        //    transitionLeave={false}>
                 <Grid>
 
                     <Row className="nav-row">
@@ -50,7 +48,10 @@ class Stats extends Component{
                     <Row className="nav-row">
                         <Col sm={10} smOffset={1}>
     
-                            {<h5 className="info-header">Zawodnik z numerem {this.state.userNumber === "" ? "X" : this.state.userNumber} stoczyl {this.props.state.filter(item => item.content[this.state.userNumber] === 1).length} walk</h5>}
+                            {<h5 className="info-header">Zawodnik z numerem {this.state.userNumber === "" ? "X" : this.state.userNumber} stoczyl {
+                                this.state.userNumber === "" ? "zero" :
+                                this.props.rank.filter(item => item.key === this.state.userNumber)[0].content.totalFights
+                            } walk</h5>}
       
                         </Col>
                     </Row>
@@ -67,7 +68,13 @@ class Stats extends Component{
                                 </thead>
                                 <tbody>
                                     
-                                {this.props.state.filter(item => item.content[this.state.userNumber] === 1).map( (i, index) => <tr key={i.key}><td>{index + 1}</td><td>{i.key}</td></tr>)} 
+                                
+                                    {this.state.userNumber === "" ? null : 
+                                    Object.keys(this.props.rounds
+                                        .filter( round => round.key === this.state.userNumber)[0].content)
+                                        .map((key, index) => <tr><td id={index}>{index + 1}</td><td>{key}</td></tr>)
+                        }
+                                
                                 </tbody>
                                 
                             </Table>  
@@ -77,7 +84,7 @@ class Stats extends Component{
 
 
                 </Grid>
-        //    </CSSTransitionGroup>
+        
         );
     }
     }

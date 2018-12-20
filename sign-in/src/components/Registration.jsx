@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { createUser } from '../services/registration';
 
 class Registration extends Component{
   constructor(props){
@@ -11,12 +12,11 @@ class Registration extends Component{
       bjjGrade: '',
       homeClub: '',
       adult: '',
-      sex: '',
-      registeredUsers: []
+      sex: ''
     });
-  }
-  handleRegisterUser (user) {
-    this.setState({registeredUsers: this.state.registeredUsers.push(user)});
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange (e) {
@@ -26,7 +26,16 @@ class Registration extends Component{
 
   handleSubmit (e) {
     e.preventDefault();
-    console.log(this.state); // eslint-disable-line no-console
+    const state = this.state;
+
+    createUser({
+      fullName: state.fullName,
+      city: state.city,
+      bjjGrade: state.bjjGrade,
+      homeClub: state.homeClub,
+      adult: state.adult,
+      sex: state.sex,
+    });
   }
 
   render() {

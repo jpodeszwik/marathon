@@ -6,7 +6,7 @@ import Keyboard from './Keyboard';
 import RoundPicker from './RoundPicker';
 import NumberList from './NumberList.jsx';
 import UserInfo from './UserInfo.jsx';
-import { pushNumber, readNumbers, removeNumber } from '../services/numbers';
+import { pushFight, removeFight, listFights } from '../services/fights';
 import { onUserChange } from '../services/firebase';
 
 class App extends Component {
@@ -48,7 +48,7 @@ class App extends Component {
       return;
     }
 
-    pushNumber(this.round, number).catch((err) => {
+    pushFight(this.round, number).catch((err) => {
       this.displayAlert(`could not add number: ${err.code ? err.code : err}`);
       this.removeNumber(number);
     });
@@ -57,7 +57,7 @@ class App extends Component {
 
   numberRemoved(number) {
     this.removeNumber(number);
-    removeNumber(this.round, number).catch((err) => {
+    removeFight(this.round, number).catch((err) => {
       this.displayAlert(`could not remove number: ${err.code ? err.code : err}`);
       this.addNumber(number);
     });
@@ -86,7 +86,7 @@ class App extends Component {
 
   roundSelected(date) {
     this.round = date;
-    readNumbers(date).then((numbers) => {
+    listFights(date).then((numbers) => {
       this.setState({ numbers });
     });
   }

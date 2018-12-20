@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
-import { createUser } from '../services/registration';
+import { createUser } from '../services/users';
 
 class Registration extends Component{
   constructor(props){

@@ -28,3 +28,23 @@ export function listUsers() {
     });
   });
 }
+
+export function subscribeForUsers(callback) {
+  const user = firebase.auth().currentUser;
+  return firebase.database().ref(`fighters/${user.uid}`).orderByChild('id').on('value', function (snapshot) {
+    const val = snapshot.val();
+
+    if (val === null) {
+      return [];
+    }
+
+    const users = Object.keys(val)
+      .map(key => val[key]);
+    callback(users.reverse());
+  });
+}
+
+export function unsubscribeForUsers(listener) {
+  const user = firebase.auth().currentUser;
+  firebase.database().ref(`fighters/${user.uid}`).orderByChild('id').off('value', listener);
+}

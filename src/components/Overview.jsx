@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import UserList from './UserList';
 
-import { listUsers } from '../services/users';
+import { subscribeForUsers, unsubscribeForUsers } from '../services/users';
 
 class Overview extends Component {
   constructor(props) {
@@ -13,7 +13,11 @@ class Overview extends Component {
   }
 
   componentDidMount() {
-    listUsers().then(users => this.setState({ users }));
+    this.listener = subscribeForUsers(users => this.setState({ users }));
+  }
+
+  componentWillUnmount() {
+    unsubscribeForUsers(this.listener);
   }
 
   render() {
@@ -22,5 +26,5 @@ class Overview extends Component {
     );
   }
 }
-        
+
 export default Overview;

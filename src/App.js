@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Registration from './components/Registration';
 import { Navbar } from './components/Navbar';
 import LogIn from './components/LogIn';
 import UserInfo from './components/UserInfo';
 import { onUserChange } from './services/firebase';
 import Overview from './components/Overview';
+import MainPage from './components/MainPage';
 
 
 class App extends Component {
@@ -29,7 +29,7 @@ class App extends Component {
             <BrowserRouter>
               <div>
                 <Navbar />
-                <Route path="/Register" component={Registration} />
+                <Route path="/Register" component={MainPage} />
                 <Route exact path="/" component={Overview} />
               </div>
             </BrowserRouter>

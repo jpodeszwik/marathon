@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 function UserList(props) {
   return (<div className='container'>
     <table border='true' className='table'>
-      <th>Full name</th><th>City</th><th>Bjj Grade</th><th>Home club</th><th>Adult</th><th>Sex</th><th>Active</th><th>Fights</th>
+      <th>Numer startowy</th><th>Imię</th><th>Miasto</th><th>Pas BJJ</th><th>Klub</th><th>Dorosły</th><th>Płeć</th><th>Aktywny</th><th>Walki</th>
       {
         props.users.map((user, key) => (
           <tr key={key}>
+            <td>{user.id}</td>
             <td>{user.fullName}</td>
             <td>{user.city}</td>
             <td>{user.bjjGrade}</td>

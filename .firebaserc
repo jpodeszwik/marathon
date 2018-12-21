@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "marathon-835a1"
+  },
+  "targets": {
+    "marathon-835a1": {
+      "hosting": {
+        "app": [
+          "marathon-835a1"
+        ]
+      }
+    }
   }
 }

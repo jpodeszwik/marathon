@@ -6,7 +6,7 @@ function UserList(props) {
     <table border='true' className='table'>
       <thead>
         <tr>
-          <th>Numer startowy</th><th>Imię</th><th>Miasto</th><th>Pas BJJ</th><th>Klub</th><th>Dorosły</th><th>Płeć</th><th>Aktywny</th><th>Walki</th>
+          <th>Numer startowy</th><th>Imię</th><th>Miasto</th><th>Pas BJJ</th><th>Klub</th><th>Dorosły</th><th>Płeć</th>
         </tr>
       </thead>
       <tbody>
@@ -20,8 +20,6 @@ function UserList(props) {
               <td>{user.homeClub}</td>
               <td>{user.adult}</td>
               <td>{user.sex}</td>
-              <td>{user.active ? 'Tak' : 'Nie'}</td>
-              <td>{user.fights ? user.fights : 0}</td>
             </tr>
           ))
         }

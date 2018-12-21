@@ -24,6 +24,12 @@ export function unsubscribeForUsers(listener) {
   firebase.database().ref('fighters').orderByChild('id').off('value', listener);
 }
 
+export const getFighterDetails = id => {
+  return firebase.database().ref(`fighters/${id}`).once('value').then(snapshot => {
+    return snapshot.val();
+  });
+};
+
 const format = date => moment(date).format('DD MMM HH:mm');
 
 export const listFighters = round =>

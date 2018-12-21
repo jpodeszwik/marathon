@@ -1,36 +1,10 @@
 import firebase from './firebase';
 import moment from 'moment';
 import 'firebase/database';
-
-const fighters = {};
-
-firebase.database().ref('fighters').on('value', snapshot => {
-  const val = snapshot.val() || {};
-  Object.keys(val)
-    .forEach(fighterId => fighters[fighterId] = val[fighterId]);
-});
-
-export const getFighterDetails = id => fighters[id];
+import { getParticipant } from './participantRepository';
 
 export function createUser(userData) {
   firebase.database().ref('registrations').push(userData);
-}
-
-export function subscribeForUsers(callback) {
-  return firebase.database().ref('fighters').orderByChild('id').on('value', function (snapshot) {
-    const val = snapshot.val();
-    if (val === null) {
-      return [];
-    }
-
-    const users = Object.keys(val)
-      .map(key => val[key]);
-    callback(users.reverse());
-  });
-}
-
-export function unsubscribeForUsers(listener) {
-  firebase.database().ref('fighters').orderByChild('id').off('value', listener);
 }
 
 const topn = (fighters, n) => {
@@ -49,7 +23,15 @@ export function subscribeForTop(callback) {
     }
 
     const fighters = Object.keys(val)
-      .map(fighterId => ({ id: fighterId, fights: val[fighterId].totalFights, fullName: getFighterDetails(fighterId).fullName, sex: getFighterDetails(fighterId).sex }));
+      .map(fighterId => {
+        const fighter = getParticipant(fighterId);
+        return {
+          id: fighterId,
+          fights: val[fighterId].totalFights,
+          fullName: fighter.fullName,
+          sex: fighter.sex,
+        };
+      });
 
     const top5 = topn(fighters, 5);
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import UserList from './UserList';
 
-import { subscribeForUsers, unsubscribeForUsers } from '../../services/users';
+import { subscribeForParticipants, unsubscribeForParticipants } from '../../services/participantRepository';
 
 class Overview extends Component {
   constructor(props) {
@@ -13,11 +13,11 @@ class Overview extends Component {
   }
 
   componentDidMount() {
-    this.listener = subscribeForUsers(users => this.setState({ users }));
+    this.listener = subscribeForParticipants(users => this.setState({ users }));
   }
 
   componentWillUnmount() {
-    unsubscribeForUsers(this.listener);
+    unsubscribeForParticipants(this.listener);
   }
 
   render() {

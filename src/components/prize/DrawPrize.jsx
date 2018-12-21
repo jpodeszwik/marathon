@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { listFighters, getFighterDetails } from '../../services/users';
+import { listFighters } from '../../services/users';
+import { getParticipant } from '../../services/participantRepository';
 import { Button, Container, Row } from 'reactstrap';
 import RoundPicker from './RoundPicker';
 
@@ -20,7 +21,7 @@ class DrawPrize extends Component {
   doDrawPrize() {
     listFighters(this.state.round)
       .then(fighters => fighters[Math.floor(Math.random() * fighters.length)])
-      .then(winnerId => getFighterDetails(winnerId))
+      .then(winnerId => getParticipant(winnerId))
       .then(details => details && this.setState({ winner: `${details.fullName} (${details.id})` }));
   }
 

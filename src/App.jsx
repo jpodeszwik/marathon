@@ -7,7 +7,7 @@ import UserInfo from './components/auth/UserInfo';
 import { onUserChange } from './services/firebase';
 import DrawPrize from './components/prize/DrawPrize';
 import RegistrationPage from './components/registration/RegistrationPage';
-
+import Results from './components/results/Results';
 
 class App extends Component {
   constructor() {
@@ -29,8 +29,9 @@ class App extends Component {
             <BrowserRouter>
               <div>
                 <Navbar />
-                <Route path="/prize" component={DrawPrize} />
                 <Route exact path="/" component={RegistrationPage} />
+                <Route path="/prize" component={DrawPrize} />
+                <Route path="/results" component={Results} />
               </div>
             </BrowserRouter>
           </div> :

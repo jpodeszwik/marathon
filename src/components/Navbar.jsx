@@ -1,16 +1,20 @@
 import React from 'react';
 import { Container, Row, Col, Button, ButtonGroup } from 'reactstrap';
-import './Navbar.css';
 import { Link } from 'react-router-dom';
+
+const linkStyle = {
+  marginLeft: '5px',
+};
 
 export const Navbar = () => {
   return(
     <Container>
-      <Row className="navBar">
+      <Row style={{margin: '10px 0'}}>
         <Col sm={12}>
           <ButtonGroup>
-            <Link to="/"><Button>Rejestracja</Button></Link>
-            <Link to="/prize"><Button>Losowanie nagrody</Button></Link>
+            <Link style={linkStyle} to="/"><Button>Rejestracja</Button></Link>
+            <Link style={linkStyle} to="/prize"><Button>Losowanie nagrody</Button></Link>
+            <Link style={linkStyle} to="/results"><Button>Wyniki</Button></Link>
           </ButtonGroup>
         </Col>
       </Row>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button } from 'reactstrap';
 import PropTypes from 'prop-types';
 import { logOut } from '../services/firebase';
 

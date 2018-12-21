@@ -1,11 +1,11 @@
 import React from 'react';
-import { Grid, Row, Col, Button, ButtonGroup } from 'react-bootstrap';
+import { Container, Row, Col, Button, ButtonGroup } from 'reactstrap';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
   return(
-    <Grid>
+    <Container>
       <Row className="navBar">
         <Col sm={12}>
           <ButtonGroup>
@@ -14,6 +14,6 @@ export const Navbar = () => {
           </ButtonGroup>
         </Col>
       </Row>
-    </Grid>
+    </Container>
   );
 };

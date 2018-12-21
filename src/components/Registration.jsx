@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Grid, Row, Col, Button, FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { Container, Row, Col, Button, FormGroup, Input, Label } from 'reactstrap';
 import { createUser } from '../services/users';
 
-class Registration extends Component{
-  constructor(props){
+class Registration extends Component {
+  constructor(props) {
     super(props);
-    this.state=({
+    this.state = ({
       id: '',
       fullName: '',
       city: '',
@@ -19,12 +19,12 @@ class Registration extends Component{
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange (e) {
+  handleChange(e) {
     const { target: { name, value } } = e;
     this.setState({ [name]: value });
   }
 
-  handleSubmit (e) {
+  handleSubmit(e) {
     e.preventDefault();
     const state = this.state;
 
@@ -39,50 +39,60 @@ class Registration extends Component{
   }
 
   render() {
-    return(
-      <Grid>
+    return (
+      <Container>
         <Row>
           <Col sm={8} smOffset={2}>
             <form onSubmit={this.handleSubmit}>
-              <FormGroup >
-                <FormControl
+              <FormGroup>
+                <Input
                   type="text" name="fullName" placeholder="Imię oraz nazwisko"
                   value={this.state.fullName}
                   onChange={this.handleChange} />
-                <FormControl
+              </FormGroup>
+              <FormGroup>
+                <Input
                   type="text" name="city" placeholder="Miasto"
                   value={this.state.city}
                   onChange={this.handleChange} />
-                <FormControl type="text" name="homeClub" placeholder="Klub"
+              </FormGroup>
+              <FormGroup>
+                <Input type="text" name="homeClub" placeholder="Klub"
                   value={this.state.homeClub}
                   onChange={this.handleChange} />
-                <ControlLabel>Zaznacz kolor pasa bjj</ControlLabel>
-                <FormControl componentClass="select" name="bjjGrade" onChange={this.handleChange} >
+              </FormGroup>
+              <FormGroup>
+                <Label>Zaznacz kolor pasa bjj</Label>
+                <Input type="select" name="bjjGrade" onChange={this.handleChange} >
                   <option ></option>
                   <option >Biały</option>
                   <option >Niebieski</option>
                   <option >Purpurowy</option>
                   <option >Brązowy</option>
                   <option >Czarny</option>
-                </FormControl>
-                <ControlLabel>Czy osoba jest pelnoletnia?</ControlLabel>
-                <FormControl componentClass="select" name="adult" onChange={this.handleChange} >
+                </Input>
+              </FormGroup>
+              <FormGroup>
+                <Label>Czy osoba jest pelnoletnia?</Label>
+                <Input type="select" name="adult" onChange={this.handleChange} >
                   <option ></option>
                   <option >Tak</option>
                   <option >Nie</option>
-                </FormControl>
-                <ControlLabel>Zaznacz płeć</ControlLabel>
-                <FormControl componentClass="select" placeholder="Plec" name="sex" onChange={this.handleChange} >
+                </Input>
+              </FormGroup>
+              <FormGroup>
+                <Label>Zaznacz płeć</Label>
+                <Input type="select" placeholder="Plec" name="sex" onChange={this.handleChange} >
                   <option ></option>
                   <option >Kobieta</option>
                   <option >Mężczyzna</option>
-                </FormControl>
+                </Input>
               </FormGroup>
               <Button type="submit">X</Button>
             </form>
           </Col>
         </Row>
-      </Grid>
+      </Container>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Row } from 'react-bootstrap';
+import { Button, Row } from 'reactstrap';
 import { logInWithGoogle } from '../services/firebase';
 
 function LogIn() {

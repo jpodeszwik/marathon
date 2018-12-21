@@ -5,8 +5,8 @@ import { Navbar } from './components/Navbar';
 import LogIn from './components/LogIn';
 import UserInfo from './components/UserInfo';
 import { onUserChange } from './services/firebase';
-import Overview from './components/Overview';
 import MainPage from './components/MainPage';
+import Overview from './components/Overview';
 
 
 class App extends Component {

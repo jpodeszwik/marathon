@@ -23,6 +23,11 @@ exports.sumPersonsFight = functions.database.ref('/fights/{personId}').onWrite((
   return admin.database().ref(`/ranking/${personId}/totalFights`).set(totalFights);
 });
 
+function getNextFighterId() {
+  return admin.database().ref('/metadata/lastFighterId').transaction(counter => counter ? counter + 1 : 1)
+    .then(transactionResult => transactionResult.snapshot.val());
+}
+
 /**
  * Copy registered users into other place in the tree to prevent unauthorized modification
  */
@@ -35,5 +40,10 @@ exports.copyRegistrations = functions.database.ref('/registrations/{registrantId
   const fighter = change.after.val();
 
   console.log(`copying fighter: ${fighterId}, registrant: ${registrantId}`);
-  return admin.database().ref(`/fighters/${registrantId}/${fighterId}`).set(fighter);
+
+  return getNextFighterId()
+    .then(id => {
+      fighter.id = id;
+      return admin.database().ref(`/fighters/${registrantId}/${fighterId}`).set(fighter)
+    });
 });

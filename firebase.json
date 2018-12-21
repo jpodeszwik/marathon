@@ -15,8 +15,8 @@
       ]
     },
     {
-      "target": "sign-in-panel",
-      "public": "sign-in-panel/build",
+      "target": "admin",
+      "public": "admin/build",
       "ignore": [
         "firebase.json",
         "**/.*",

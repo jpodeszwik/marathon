@@ -6,13 +6,13 @@ export default function FightersTable(props) {
   return <table border='true' className='table'>
     <thead>
       <tr>
-        <th>Numer startowy</th><th>Imię</th><th>Ilość walk</th>
+        <th>Miejsce</th><th>Numer startowy</th><th>Imię</th><th>Ilość walk</th>
       </tr>
     </thead>
     <tbody>
-      {fighters.map(fighter =>
+      {fighters.map((fighter, index) =>
         <tr key={fighter.id}>
-          <td>{fighter.id}</td><td>{fighter.fullName}</td><td>{fighter.fights}</td>
+          <td>{index + 1}</td><td>{fighter.id}</td><td>{fighter.fullName}</td><td>{fighter.fights}</td>
         </tr>
       )}
     </tbody>

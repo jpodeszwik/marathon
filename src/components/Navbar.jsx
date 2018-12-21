@@ -9,8 +9,8 @@ export const Navbar = () => {
       <Row className="navBar">
         <Col sm={12}>
           <ButtonGroup>
-            <Link to="/Register"><Button>Panel rejestracji</Button></Link>
-            <Link to="/"><Button>Podglad</Button></Link>
+            <Link to="/"><Button>Rejestracja</Button></Link>
+            <Link to="/prize"><Button>Losowanie nagrody</Button></Link>
           </ButtonGroup>
         </Col>
       </Row>

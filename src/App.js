@@ -6,7 +6,7 @@ import LogIn from './components/LogIn';
 import UserInfo from './components/UserInfo';
 import { onUserChange } from './services/firebase';
 import MainPage from './components/MainPage';
-import Overview from './components/Overview';
+import DrawPrize from './components/DrawPrize';
 
 
 class App extends Component {
@@ -29,8 +29,8 @@ class App extends Component {
             <BrowserRouter>
               <div>
                 <Navbar />
-                <Route path="/Register" component={MainPage} />
-                <Route exact path="/" component={Overview} />
+                <Route path="/prize" component={DrawPrize} />
+                <Route exact path="/" component={MainPage} />
               </div>
             </BrowserRouter>
           </div> :

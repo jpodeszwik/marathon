@@ -1,4 +1,5 @@
 import firebase from './firebase';
+import moment from 'moment';
 import 'firebase/database';
 
 export function createUser(userData) {
@@ -22,3 +23,14 @@ export function subscribeForUsers(callback) {
 export function unsubscribeForUsers(listener) {
   firebase.database().ref('fighters').orderByChild('id').off('value', listener);
 }
+
+const format = date => moment(date).format('DD MMM HH:mm');
+
+export const listFighters = round =>
+  firebase.database().ref('fights').once('value').then((snapshot) => {
+    const roundKey = format(round);
+    const val = snapshot.val();
+
+    return Object.keys(val)
+      .filter(key => val[key][roundKey] === true);
+  });

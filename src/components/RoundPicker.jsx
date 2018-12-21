@@ -38,7 +38,10 @@ class RoundPicker extends Component {
     this.onRoundSelected = props.onRoundSelected;
     const date = roundToRoundLength(new Date());
     this.state = { roundStart: date };
-    if (this.onRoundSelected) this.onRoundSelected(date);
+  }
+
+  componentDidMount() {
+    if (this.onRoundSelected) this.onRoundSelected(this.state.roundStart);
   }
 
   nextRound() {

@@ -42,7 +42,7 @@ class Registration extends Component {
     return (
       <Container>
         <Row>
-          <Col sm={8} smOffset={2}>
+          <Col sm={8}>
             <form onSubmit={this.handleSubmit}>
               <FormGroup>
                 <Input

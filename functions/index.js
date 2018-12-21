@@ -31,7 +31,7 @@ function getNextFighterId() {
 /**
  * Copy registered users into other place in the tree to prevent unauthorized modification
  */
-exports.copyRegistrations = functions.database.ref('/registrations/{registrantId}/{fighterId}').onWrite((change, context) => {
+exports.copyRegistrations = functions.database.ref('/registrations/{fighterId}').onWrite((change, context) => {
   if (change.before.exists()) {
     return null;
   }
@@ -44,6 +44,6 @@ exports.copyRegistrations = functions.database.ref('/registrations/{registrantId
   return getNextFighterId()
     .then(id => {
       fighter.id = id;
-      return admin.database().ref(`/fighters/${registrantId}/${fighterId}`).set(fighter)
+      return admin.database().ref(`/fighters/${id}`).set(fighter)
     });
 });

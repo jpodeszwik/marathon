@@ -13,6 +13,15 @@
         "**/.*",
         "**/node_modules/**"
       ]
+    },
+    {
+      "target": "sign-in-panel",
+      "public": "sign-in-panel/build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ]
     }
   ]
 }

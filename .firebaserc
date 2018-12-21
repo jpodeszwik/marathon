@@ -7,6 +7,9 @@
       "hosting": {
         "app": [
           "marathon-835a1"
+        ],
+        "sign-in-panel": [
+          "bjjmarathon"
         ]
       }
     }

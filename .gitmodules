@@ -1,0 +1,3 @@
+[submodule "sign-in-panel"]
+	path = sign-in-panel
+	url = git@github.com:TomaszMoroz/sign-in-panel.git

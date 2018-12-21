@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
-import LogIn from './components/LogIn';
-import UserInfo from './components/UserInfo';
+import LogIn from './components/auth/LogIn';
+import UserInfo from './components/auth/UserInfo';
 import { onUserChange } from './services/firebase';
-import MainPage from './components/MainPage';
-import DrawPrize from './components/DrawPrize';
+import DrawPrize from './components/prize/DrawPrize';
+import RegistrationPage from './components/registration/RegistrationPage';
 
 
 class App extends Component {
@@ -30,7 +30,7 @@ class App extends Component {
               <div>
                 <Navbar />
                 <Route path="/prize" component={DrawPrize} />
-                <Route exact path="/" component={MainPage} />
+                <Route exact path="/" component={RegistrationPage} />
               </div>
             </BrowserRouter>
           </div> :

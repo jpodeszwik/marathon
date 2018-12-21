@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { listFighters, getFighterDetails } from '../services/users';
+import { listFighters, getFighterDetails } from '../../services/users';
 import { Button, Container, Row } from 'reactstrap';
 import RoundPicker from './RoundPicker';
 

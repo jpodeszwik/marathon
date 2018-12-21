@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import UserList from './UserList';
 
-import { subscribeForUsers, unsubscribeForUsers } from '../services/users';
+import { subscribeForUsers, unsubscribeForUsers } from '../../services/users';
 
 class Overview extends Component {
   constructor(props) {

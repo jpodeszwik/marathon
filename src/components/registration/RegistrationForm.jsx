@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, FormGroup, Input, Label } from 'reactstrap';
-import { createUser } from '../services/users';
+import { createUser } from '../../services/users';
 
-class Registration extends Component {
+class RegistrationForm extends Component {
   constructor(props) {
     super(props);
     this.state = ({
@@ -97,4 +97,4 @@ class Registration extends Component {
   }
 }
 
-export default Registration;
+export default RegistrationForm;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Grid, Row, Col, Button, ButtonGroup } from 'react-bootstrap';
 import './Navbar.css';
+import { Link } from 'react-router-dom';
 
 export const Navbar = () => {
   return(
@@ -8,8 +9,8 @@ export const Navbar = () => {
       <Row className="navBar">
         <Col sm={12}>
           <ButtonGroup>
-            <Button href="/Register">Panel rejestracji</Button>
-            <Button href="/">Podglad</Button>
+            <Link to="/Register"><Button>Panel rejestracji</Button></Link>
+            <Link to="/"><Button>Podglad</Button></Link>
           </ButtonGroup>
         </Col>
       </Row>

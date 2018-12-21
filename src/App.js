@@ -26,9 +26,9 @@ class App extends Component {
         {this.state.user ?
           <div>
             <UserInfo user={this.state.user} />
-            <Navbar />
             <BrowserRouter>
               <div>
+                <Navbar />
                 <Route path="/Register" component={Registration} />
                 <Route exact path="/" component={Overview} />
               </div>

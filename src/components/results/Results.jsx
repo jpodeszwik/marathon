@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import { subscribeForTop, unsubscribeForTop } from '../../services/users';
-import FightersTable from './FightersTable';
+import ParticipantsTable from '../ParticipantsTable';
 
 class Results extends Component {
   constructor(props) {
@@ -27,9 +27,9 @@ class Results extends Component {
     return <Container>
       <center>
         <h1>top 5</h1>
-        <FightersTable fighters={this.state.top5} />
+        <ParticipantsTable participants={this.state.top5} />
         <h1>top 3 kobiet</h1>
-        <FightersTable fighters={this.state.top3women} />
+        <ParticipantsTable participants={this.state.top3women} />
       </center>
     </Container>;
   }

@@ -8,6 +8,7 @@ import { onUserChange } from './services/firebase';
 import DrawPrize from './components/prize/DrawPrize';
 import RegistrationPage from './components/registration/RegistrationPage';
 import Results from './components/results/Results';
+import CheckParticipants from './components/checkParticipants/CheckParticipants';
 
 class App extends Component {
   constructor() {
@@ -32,6 +33,7 @@ class App extends Component {
                 <Route exact path="/" component={RegistrationPage} />
                 <Route path="/prize" component={DrawPrize} />
                 <Route path="/results" component={Results} />
+                <Route path="/check-participants" component={CheckParticipants} />
               </div>
             </BrowserRouter>
           </div> :

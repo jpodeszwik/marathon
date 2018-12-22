@@ -15,27 +15,50 @@ const topn = (fighters, n) => {
   return copyFighters.filter(fighter => fighter.fights >= nthValue);
 };
 
-export function subscribeForTop(callback) {
+const calculateResults = (participants) => {
+  const copyParticipants = participants.slice();
+  copyParticipants.sort((a, b) => b.fights - a.fights);
+
+  return copyParticipants.map((participant, index) => {
+    return {
+      id: participant.id,
+      fights: participant.fights,
+      data: participant.data,
+      place: index + 1
+    };
+  });
+};
+
+export function subscribeForParticipantsResults(callback) {
   return firebase.database().ref('ranking').on('value', function (snapshot) {
     const val = snapshot.val();
     if (val === null) {
       return [];
     }
 
-    const fighters = Object.keys(val)
-      .map(fighterId => {
-        const fighter = getParticipant(fighterId);
+    const participants = Object.keys(val)
+      .map(participantId => {
+        const participant = getParticipant(participantId);
         return {
-          id: fighterId,
-          fights: val[fighterId].totalFights,
-          fullName: fighter.fullName,
-          sex: fighter.sex,
+          id: participantId,
+          fights: val[participantId].totalFights,
+          data: participant,
         };
       });
 
-    const top5 = topn(fighters, 5);
+    const participantsWithPlaces = calculateResults(participants);
+    callback(participantsWithPlaces);
+  });
+}
 
-    const women = fighters.filter(fighter => fighter.sex === 'Kobieta');
+export function unsubscribeForParticipantsResults(listener) {
+  firebase.database().ref('ranking').off('value', listener);
+}
+
+export function subscribeForTop(callback) {
+  subscribeForParticipantsResults(function(participants) {
+    const top5 = topn(participants, 5);
+    const women = participants.filter(participant => participant.data.sex === 'Kobieta');
     const top3women = topn(women, 3);
 
     callback({ top5, top3women });
@@ -43,7 +66,7 @@ export function subscribeForTop(callback) {
 }
 
 export function unsubscribeForTop(listener) {
-  firebase.database().ref('ranking').off('value', listener);
+  unsubscribeForParticipantsResults(listener);
 }
 
 const format = date => moment(date).format('DD MMM HH:mm');

@@ -9,7 +9,8 @@ const topn = (participants, n) => {
 };
 
 const calculateTotalFights = participants => {
-  return participants.map(participant => participant.fights).reduce((a, b) => a + b) / 2;
+  const totalFights = participants.map(participant => participant.fights).reduce((a, b) => a + b, 0);
+  return Math.ceil(totalFights / 2);
 };
 
 export const subscribeForResults = callback => {

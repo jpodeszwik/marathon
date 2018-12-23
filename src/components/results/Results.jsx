@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
-import { subscribeForTop, unsubscribeForTop } from '../../services/users';
+import { subscribeForResults, unsubscribeFromResults } from './resultsApi';
 import ParticipantsTable from '../ParticipantsTable';
 
 class Results extends Component {
@@ -9,18 +9,20 @@ class Results extends Component {
     this.state = {
       top5: [],
       top3women: [],
+      totalFights: 0,
+      totalParticipants: 0,
     };
   }
 
   componentDidMount() {
-    this.topListener = subscribeForTop(topResults => {
-      const { top5, top3women } = topResults;
-      this.setState({ top5, top3women });
+    this.topListener = subscribeForResults(topResults => {
+      const { top5, top3women, totalFights, totalParticipants } = topResults;
+      this.setState({ top5, top3women, totalFights, totalParticipants });
     });
   }
 
   componentWillUnmount() {
-    unsubscribeForTop(this.topListener);
+    unsubscribeFromResults(this.topListener);
   }
 
   render() {
@@ -30,6 +32,10 @@ class Results extends Component {
         <ParticipantsTable participants={this.state.top5} />
         <h1>top 3 kobiet</h1>
         <ParticipantsTable participants={this.state.top3women} />
+        <h1>Liczba walk</h1>
+        <h2>{this.state.totalFights}</h2>
+        <h1>Liczba uczestników</h1>
+        <h2>{this.state.totalParticipants}</h2>
       </center>
     </Container>;
   }

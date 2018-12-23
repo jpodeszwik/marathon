@@ -7,14 +7,6 @@ export function createUser(userData) {
   firebase.database().ref('registrations').push(userData);
 }
 
-const topn = (fighters, n) => {
-  const copyFighters = fighters.slice();
-  copyFighters.sort((a, b) => b.fights - a.fights);
-  const nthFighter = copyFighters[n - 1] || {};
-  const nthValue = nthFighter.fights || 0;
-  return copyFighters.filter(fighter => fighter.fights >= nthValue);
-};
-
 const calculateResults = (participants) => {
   const copyParticipants = participants.slice();
   copyParticipants.sort((a, b) => b.fights - a.fights);
@@ -44,7 +36,8 @@ export function subscribeForParticipantsResults(callback) {
           fights: val[participantId].totalFights,
           data: participant,
         };
-      });
+      })
+      .filter(participant => participant.data !== undefined);
 
     const participantsWithPlaces = calculateResults(participants);
     callback(participantsWithPlaces);
@@ -53,20 +46,6 @@ export function subscribeForParticipantsResults(callback) {
 
 export function unsubscribeForParticipantsResults(listener) {
   firebase.database().ref('ranking').off('value', listener);
-}
-
-export function subscribeForTop(callback) {
-  subscribeForParticipantsResults(function(participants) {
-    const top5 = topn(participants, 5);
-    const women = participants.filter(participant => participant.data.sex === 'Kobieta');
-    const top3women = topn(women, 3);
-
-    callback({ top5, top3women });
-  });
-}
-
-export function unsubscribeForTop(listener) {
-  unsubscribeForParticipantsResults(listener);
 }
 
 const format = date => moment(date).format('DD MMM HH:mm');

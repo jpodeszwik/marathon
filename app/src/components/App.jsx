@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Container, Alert } from 'reactstrap';
 import './App.css';
-import AppHeader from './AppHeader';
-import Keyboard from './Keyboard';
-import RoundPicker from './RoundPicker';
+import AppHeader from './AppHeader.jsx';
+import Keyboard from './Keyboard.jsx';
+import RoundPicker from './RoundPicker.jsx';
 import NumberList from './NumberList.jsx';
 import UserInfo from './UserInfo.jsx';
 import { pushFight, removeFight, listFights } from '../services/fights';

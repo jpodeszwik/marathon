@@ -8,6 +8,7 @@ import Home from './components/home';
 import Stats from './components/stats';
 import Navbar from './components/navbar';
 import Trans from './components/transition';
+import General from './components/General'
 
 
 class App extends Component {
@@ -15,10 +16,11 @@ class App extends Component {
     super(props);
     this.app = firebase.initializeApp(config);
     this.rank = this.app.database().ref().child('ranking');
-    this.rounds = this.app.database().ref().child('fights')
+    this.rounds = this.app.database().ref().child('fights');
     this.state = {
       fights: [],
-      rounds: []
+      rounds: [],
+     
         
     }
    
@@ -70,6 +72,28 @@ class App extends Component {
  
     )
     
+    // this.users.once('value').then(snapshot => {
+ 
+    //   const value = snapshot.val();
+ 
+    //   const users = Object.keys(value).map(key => ({
+ 
+    //     key: key,
+ 
+    //     content: value[key]
+ 
+    //   }))
+      
+    //   return users
+
+      
+ 
+    // }).then(
+ 
+    //   users => this.setState({ users: users })
+      
+    // )
+      
   }
 
   
@@ -78,11 +102,16 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="container">
-          <div className="App-logo"></div>
+          
           
           <Route exact path ="/" component={Home} />
           <Route path ="/stats" render={(props) => <Stats {...props}  rank={this.state.fights} rounds={this.state.rounds}/>} />
           <Route path ="/trans" component={Trans} />
+          <Route path ="/general" render={(props) => <General
+            {...props}  
+            rank={this.state.fights} 
+            rounds={this.state.rounds}
+          />} />
         </div>
       </BrowserRouter>
 

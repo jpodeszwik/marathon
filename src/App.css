@@ -3,29 +3,11 @@
   height: 100vh;
   background-image: url('../src/img/Background.png');
   background-size: cover;
-  font-family: Bahn
+  
   
 }
 
-.App-logo {
-  background-image: url('../src/img/MobileLogo.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  animation: App-logo-spin infinite 50s linear;
-  height: 30vh;
-  width: 30vh;
-  margin: 25px auto;
-}
 
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 @font-face{
   font-family: "Bahnschrift";

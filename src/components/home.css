@@ -1,3 +1,7 @@
+.home-box{
+    height: 100vh;
+}
+
 #home-container{
     height: 70vh;
     display: flex;
@@ -21,4 +25,24 @@
     padding-top: 15px;
     position: relative;
 }
+
+.App-logo {
+    background-image: url('../img/MobileLogo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: App-logo-spin infinite 50s linear;
+    height: 30vh;
+    width: 30vh;
+    margin: 25px auto;
+  }
+  
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 

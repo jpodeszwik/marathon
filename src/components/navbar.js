@@ -9,9 +9,6 @@ const Navbar =()=>{
               <Col xs={10} xsOffset={1}>
                 <ButtonGroup>
                     <Button href="/">Home</Button>
-                    <Button href="/stats">Stats</Button>
-                    <Button bsStyle="primary" href="/trans">opcja</Button>
-                    <Button bsStyle="primary">opcja2</Button>
                 </ButtonGroup>
               </Col>
           </Row>

@@ -1,10 +1,14 @@
 import React from 'react';
-import { Table } from 'react-bootstrap';
+import Navbar from './navbar';
+import './general.css';
 
-export const General =()=>{
+const General =(props)=>{
     return(
         <div className="general-container">
-
+        <Navbar />
+            <p>aaaaa</p>
         </div>
     );
 }
+
+export default General;

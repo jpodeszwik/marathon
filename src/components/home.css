@@ -26,6 +26,12 @@
     position: relative;
 }
 
+.home-anchor:visited{
+  text-decoration: none;
+  color: #f4f4f4;
+  text-underline-position: unset;
+}
+
 .App-logo {
     background-image: url('../img/MobileLogo.png');
     background-size: contain;

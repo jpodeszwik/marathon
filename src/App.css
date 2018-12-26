@@ -12,9 +12,9 @@
   background-size: contain;
   background-repeat: no-repeat;
   animation: App-logo-spin infinite 50s linear;
-  height: 180px;
-  width: 180px;
-  margin: 20px auto;
+  height: 30vh;
+  width: 30vh;
+  margin: 25px auto;
 }
 
 

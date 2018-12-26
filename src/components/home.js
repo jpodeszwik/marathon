@@ -4,7 +4,7 @@ import './home.css';
 
 const Home =()=>{
     return(
-        <div className="home-container">
+        <div id="home-container" >
         
                   <a href="/" className="home-anchor">Ranking ogólny</a>
                   <a href="/" className="home-anchor">Top 5 uczestników</a>

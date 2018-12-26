@@ -23,27 +23,29 @@ exports.sumPersonsFight = functions.database.ref('/fights/{personId}').onWrite((
   return admin.database().ref(`/ranking/${personId}/totalFights`).set(totalFights);
 });
 
-function getNextFighterId() {
-  return admin.database().ref('/metadata/lastFighterId').transaction(counter => counter ? counter + 1 : 1)
+function getNextParticipantId() {
+  return admin.database().ref('/metadata/lastParticipantId').transaction(counter => counter ? counter + 1 : 1)
     .then(transactionResult => transactionResult.snapshot.val());
 }
 
 /**
  * Copy registered users into other place in the tree to prevent unauthorized modification
  */
-exports.copyRegistrations = functions.database.ref('/registrations/{fighterId}').onWrite((change, context) => {
+exports.registerParticipants = functions.database.ref('/commands/register/{userId}/{participantId}').onWrite((change, context) => {
   if (change.before.exists()) {
     return null;
   }
 
-  const { fighterId, registrantId } = context.params;
-  const fighter = change.after.val();
+  const { userId, participantId } = context.params;
+  const participant = change.after.val();
+  participant.registeredBy = userId;
 
-  console.log(`copying fighter: ${fighterId}, registrant: ${registrantId}`);
+  console.log(`registering participant: ${participantId}, created by user: ${userId}`);
 
-  return getNextFighterId()
+  return getNextParticipantId()
     .then(id => {
-      fighter.id = id;
-      return admin.database().ref(`/fighters/${id}`).set(fighter)
+      participant.id = id;
+      participant.firstName = participant.fullName.split(' ')[0];
+      return admin.database().ref(`/participants/${participantId}`).set(participant)
     });
 });

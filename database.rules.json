@@ -1,0 +1,28 @@
+{
+  "rules": {
+    "users": {
+      ".read": false,
+      ".write": false
+    },
+    "fights": {
+      ".read": true,
+      ".write": "root.child('users').child(auth.uid).child('registerFights').val() === true"
+    },
+    "ranking": {
+      ".read": true,
+      ".write": false
+    },
+    "commands": {
+      "register": {
+        "$user_id": {
+          ".read": "$user_id === auth.uid",
+          ".write": "$user_id === auth.uid"
+        }
+      }
+    },
+    "participants": {
+      ".write": false,
+      ".read": "root.child('users').child(auth.uid).child('registerUsers').val() === true"
+    }
+  }
+}

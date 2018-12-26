@@ -16,6 +16,7 @@ export const Navbar = () => {
             <Link style={linkStyle} to="/prize"><Button>Losowanie nagrody</Button></Link>
             <Link style={linkStyle} to="/results"><Button>Wyniki</Button></Link>
             <Link style={linkStyle} to="/check-participants"><Button>Sprawdź uczestników</Button></Link>
+            <Link style={linkStyle} to="/manage-users"><Button>Użytkownicy</Button></Link>
           </ButtonGroup>
         </Col>
       </Row>

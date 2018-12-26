@@ -20,6 +20,15 @@ export const registerParticipant = (userData) => {
   });
 };
 
+export const listUsers = () => {
+  return firebase.database().ref('users').once('value').then(snapshot => {
+    const val = snapshot.val();
+    const keys = Object.keys(val);
+
+    return keys.map(key => val[key]);
+  });
+};
+
 const calculateResults = (participants) => {
   const copyParticipants = participants.slice();
   copyParticipants.sort((a, b) => b.fights - a.fights);

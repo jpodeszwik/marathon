@@ -47,7 +47,7 @@ class RegistrationForm extends Component {
       adult: state.adult,
       sex: state.sex,
     }).then(participantId => {
-      this.displayAlert(`Użytkownik dodany z numerem startowym ${participantId}`)
+      this.displayAlert(`Użytkownik dodany z numerem startowym ${participantId}`);
     });
   }
 

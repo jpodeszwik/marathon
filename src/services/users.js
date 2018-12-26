@@ -20,13 +20,17 @@ export const registerParticipant = (userData) => {
   });
 };
 
-export const listUsers = () => {
-  return firebase.database().ref('users').once('value').then(snapshot => {
+export const subscribeForListUsers = callback => {
+  return firebase.database().ref('users').on('value', snapshot => {
     const val = snapshot.val();
     const keys = Object.keys(val);
-
-    return keys.map(key => val[key]);
+    const userList = keys.map(key => ({ id: key, ...val[key] }));
+    callback(userList);
   });
+};
+
+export const unsubscribeFromListUsers = listener => {
+  return firebase.database().ref('users').off('value', listener);
 };
 
 export const getLoggedInUserPermissions = () => {
@@ -34,6 +38,18 @@ export const getLoggedInUserPermissions = () => {
   return firebase.database().ref(`users/${uid}`).once('value').then(snapshot => {
     return snapshot.val();
   });
+};
+
+export const setRegisterFights = (uid, val) => {
+  return firebase.database().ref(`users/${uid}/registerFights`).set(val);
+};
+
+export const setRegisterParticipants = (uid, val) => {
+  return firebase.database().ref(`users/${uid}/registerParticipants`).set(val);
+};
+
+export const setManageUsers = (uid, val) => {
+  return firebase.database().ref(`users/${uid}/manageUsers`).set(val);
 };
 
 const calculateResults = (participants) => {

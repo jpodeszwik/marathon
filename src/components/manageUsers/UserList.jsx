@@ -1,23 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import YesNoButton from './YesNoButton';
+import { setRegisterFights, setRegisterParticipants, setManageUsers } from '../../services/users';
+
+const setUserValueCb = (user, fn) => {
+  return val => fn(user.id, val);
+};
 
 const UserList = props => {
   return (
-    <table border='true' className='table'>
+    <table border='true' className='table' style={{ textAlign: 'center' }}>
       <thead>
         <tr>
           <th>email</th><th>zapis walk</th><th>rejestracja uczestników</th><th>zarządzanie użytkownikami</th>
         </tr>
       </thead>
       <tbody>
-        {props.users.map(user => (<tr key={user.email}>
+        {props.users.map(user => (<tr key={user.id}>
           <td>{user.email}</td>
-          <td>{user.registerFights ? 'TAK' : 'NIE'}</td>
-          <td>{user.registerParticipants ? 'TAK' : 'NIE'}</td>
-          <td>{user.manageUsers ? 'TAK' : 'NIE'}</td>
-        </tr>) )}
+          <td><YesNoButton selected={user.registerFights} onSelect={setUserValueCb(user, setRegisterFights)} /></td>
+          <td><YesNoButton selected={user.registerParticipants} onSelect={setUserValueCb(user, setRegisterParticipants)} /></td>
+          <td><YesNoButton selected={user.manageUsers} onSelect={setUserValueCb(user, setManageUsers)} /></td>
+        </tr>))}
       </tbody>
-    </table>);
+    </table >
+  );
 };
 
 UserList.propTypes = {

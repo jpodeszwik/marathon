@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
-import { listUsers } from '../../services/users';
+import { subscribeForListUsers, unsubscribeFromListUsers } from '../../services/users';
+
 import UserList from './UserList';
 
 class ManageUsers extends Component {
@@ -10,13 +11,17 @@ class ManageUsers extends Component {
   }
 
   componentDidMount() {
-    listUsers().then(users => this.setState({ users }));
+    this.listener = subscribeForListUsers(users => this.setState({ users }));
+  }
+
+  componentWillUnmount() {
+    unsubscribeFromListUsers(this.listener);
   }
 
   render() {
     return (
       <Container>
-        <UserList users = {this.state.users}/>
+        <UserList users={this.state.users} />
       </Container>
     );
   }

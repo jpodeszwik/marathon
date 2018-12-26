@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Button, FormGroup, Input, Label } from 'reactstrap';
+import { Alert, Container, Row, Col, Button, FormGroup, Input, Label } from 'reactstrap';
 import { registerParticipant } from '../../services/users';
 import { BarLoader } from 'react-spinners';
 
@@ -19,11 +19,13 @@ class RegistrationForm extends Component {
       homeClub: '',
       adult: '',
       sex: '',
+      alert: '',
       loading: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.displayAlert = this.displayAlert.bind(this);
   }
 
   handleChange(e) {
@@ -44,14 +46,24 @@ class RegistrationForm extends Component {
       homeClub: state.homeClub,
       adult: state.adult,
       sex: state.sex,
-    }).then(() => {
-      this.setState({ loading: false });
+    }).then(participantId => {
+      this.displayAlert(`Użytkownik dodany z numerem startowym ${participantId}`)
     });
+  }
+
+  displayAlert(alertText) {
+    this.setState({ loading: false, alert: alertText });
+    setTimeout(() => {
+      if (this.state.alert === alertText) {
+        this.setState({ alert: '' });
+      }
+    }, 3000);
   }
 
   render() {
     return (
       <Container>
+        <Alert color="success" isOpen={this.state.alert !== ''} fade={false}>{this.state.alert}</Alert>
         <Row>
           <Col sm={8}>
             <form onSubmit={this.handleSubmit} style={this.state.loading ? disabledStyle : {}}>

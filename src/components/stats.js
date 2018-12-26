@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Stats.css';
 import { Table, FormControl, Grid, Row, Col, Button } from 'react-bootstrap';
-// import { CSSTransitionGroup } from 'react-transition-group'
+
  
 class Stats extends Component{
     constructor(props){

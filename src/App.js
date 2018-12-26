@@ -77,8 +77,9 @@ class App extends Component {
   render() {  
     return (
       <BrowserRouter>
-        <div>
-          <Navbar />
+        <div className="container">
+          <div className="App-logo"></div>
+          
           <Route exact path ="/" component={Home} />
           <Route path ="/stats" render={(props) => <Stats {...props}  rank={this.state.fights} rounds={this.state.rounds}/>} />
           <Route path ="/trans" component={Trans} />

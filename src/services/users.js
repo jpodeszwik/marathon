@@ -29,6 +29,13 @@ export const listUsers = () => {
   });
 };
 
+export const getLoggedInUserPermissions = () => {
+  const uid = firebase.auth().currentUser.uid;
+  return firebase.database().ref(`users/${uid}`).once('value').then(snapshot => {
+    return snapshot.val();
+  });
+};
+
 const calculateResults = (participants) => {
   const copyParticipants = participants.slice();
   copyParticipants.sort((a, b) => b.fights - a.fights);

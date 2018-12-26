@@ -3,15 +3,23 @@ import './App.css';
 import LogIn from './components/auth/LogIn';
 import UserInfo from './components/auth/UserInfo';
 import { onUserChange } from './services/firebase';
+import { getLoggedInUserPermissions } from './services/users';
 import Router from './components/router/Router';
+import { Alert } from 'reactstrap';
 
 class App extends Component {
   constructor() {
     super();
-    this.state = { user: null };
+    this.state = { user: null, permissions: {} };
 
     onUserChange((user) => {
-      this.setState({ user });
+      if (!user) {
+        this.setState({ user, permissions: {} });
+        return;
+      }
+
+      getLoggedInUserPermissions()
+        .then(permissions => this.setState({ user, permissions }));
     });
   }
 
@@ -19,11 +27,14 @@ class App extends Component {
     return (
       <div>
         {this.state.user ?
-          <div>
-            <UserInfo user={this.state.user} />
-            <Router />
-          </div> :
+          <UserInfo user={this.state.user} /> :
           <LogIn />
+        }
+        {this.state.user && !this.state.permissions.registerParticipants &&
+          <Alert color="danger" fade={false}>Brak uprawnień. Skontaktuj się z administratorem</Alert>
+        }
+        {this.state.user && this.state.permissions.registerParticipants &&
+          <Router canManageUsers={this.state.permissions.manageUsers} />
         }
       </div>
     );

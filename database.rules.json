@@ -1,28 +1,29 @@
 {
   "rules": {
     "users": {
-      ".read": false,
-      ".write": false
+      ".read": "root.child('users/' + auth.uid + '/manageUsers').val() === true",
+      "$user_id": {
+        ".read": "$user_id === auth.uid",
+        ".write": "root.child('users/' + auth.uid + '/manageUsers').val() === true"
+      }
     },
     "fights": {
-      ".read": true,
-      ".write": "root.child('users').child(auth.uid).child('registerFights').val() === true"
+      ".read": "root.child('users/' + auth.uid + '/registerFights').val() === true",
+      ".write": "root.child('users/' + auth.uid + '/registerFights').val() === true"
     },
     "ranking": {
-      ".read": true,
-      ".write": false
+      ".read": true
     },
     "commands": {
       "register": {
         "$user_id": {
           ".read": "$user_id === auth.uid",
-          ".write": "$user_id === auth.uid"
+          ".write": "$user_id === auth.uid && root.child('users/' + auth.uid + '/registerParticipants').val() === true"
         }
       }
     },
     "participants": {
-      ".write": false,
-      ".read": "root.child('users').child(auth.uid).child('registerUsers').val() === true"
+      ".read": "root.child('users/' + auth.uid + '/registerParticipants').val() === true"
     }
   }
 }

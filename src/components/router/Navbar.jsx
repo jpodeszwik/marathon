@@ -6,7 +6,7 @@ const linkStyle = {
   marginLeft: '5px',
 };
 
-export const Navbar = () => {
+const Navbar = () => {
   return(
     <Container>
       <Row style={{margin: '10px 0'}}>
@@ -23,3 +23,5 @@ export const Navbar = () => {
     </Container>
   );
 };
+
+export default Navbar;

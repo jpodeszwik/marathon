@@ -1,7 +1,7 @@
 import firebase from './firebase';
 
 const participants = {};
-const sortedParticipantsRef = firebase.database().ref('fighters').orderByChild('id');
+const sortedParticipantsRef = firebase.database().ref('participants').orderByChild('id');
 
 export const subscribeForParticipants = callback =>
   sortedParticipantsRef.on('value', function (snapshot) {

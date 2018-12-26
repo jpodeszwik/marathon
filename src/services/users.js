@@ -3,9 +3,22 @@ import moment from 'moment';
 import 'firebase/database';
 import { getParticipant } from './participantRepository';
 
-export function createUser(userData) {
-  firebase.database().ref('registrations').push(userData);
-}
+export const registerParticipant = (userData) => {
+  const uid = firebase.auth().currentUser.uid;
+  const registrationRef = firebase.database().ref(`commands/register/${uid}`);
+  const key = registrationRef.push(userData).key;
+  const participantRef = firebase.database().ref(`participants/${key}/id`);
+  return new Promise(resolve => {
+    participantRef.on('value', function (snapshot) {
+      if (!snapshot.exists()) {
+        return;
+      }
+
+      resolve(snapshot.val());
+      participantRef.off('value', this);
+    });
+  });
+};
 
 const calculateResults = (participants) => {
   const copyParticipants = participants.slice();

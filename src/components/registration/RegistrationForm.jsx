@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, FormGroup, Input, Label } from 'reactstrap';
-import { createUser } from '../../services/users';
+import { registerParticipant } from '../../services/users';
+import { BarLoader } from 'react-spinners';
+
+const disabledStyle = {
+  pointerEvents: 'none',
+  opacity: 0.4,
+};
 
 class RegistrationForm extends Component {
   constructor(props) {
     super(props);
-    this.state = ({
+    this.state = {
       id: '',
       fullName: '',
       city: '',
       bjjGrade: '',
       homeClub: '',
       adult: '',
-      sex: ''
-    });
+      sex: '',
+      loading: false,
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,13 +35,17 @@ class RegistrationForm extends Component {
     e.preventDefault();
     const state = this.state;
 
-    createUser({
+    this.setState({ loading: true });
+
+    registerParticipant({
       fullName: state.fullName,
       city: state.city,
       bjjGrade: state.bjjGrade,
       homeClub: state.homeClub,
       adult: state.adult,
       sex: state.sex,
+    }).then(() => {
+      this.setState({ loading: false });
     });
   }
 
@@ -43,7 +54,7 @@ class RegistrationForm extends Component {
       <Container>
         <Row>
           <Col sm={8}>
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit} style={this.state.loading ? disabledStyle : {}}>
               <FormGroup>
                 <Input
                   type="text" name="fullName" placeholder="Imię oraz nazwisko"
@@ -88,8 +99,14 @@ class RegistrationForm extends Component {
                   <option >Mężczyzna</option>
                 </Input>
               </FormGroup>
-              <Button type="submit">X</Button>
+              <Button type="submit">Dodaj zawodnika</Button>
             </form>
+            <BarLoader
+              sizeUnit={'px'}
+              size={150}
+              color={'#123abc'}
+              loading={this.state.loading}
+            />
           </Col>
         </Row>
       </Container>

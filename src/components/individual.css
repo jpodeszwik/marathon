@@ -44,6 +44,8 @@ h5{
       background: #212121;
       position: relative;
       padding-top: 5px;
+      display: flex;
+      justify-content: center;
       
   }
 
@@ -65,5 +67,14 @@ h5{
 
   .score::after{
     right: -25px;
+}
+
+.score input{
+    background: #212121;
+    border: none;
+}
+
+.score input:focus{
+    outline: none;
 }
 

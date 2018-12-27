@@ -12,7 +12,7 @@ const Individual =()=>{
         <div id="ind-container" >
         
 
-        <div className="score"></div>
+        <div className="score"><input /></div>
         <h5>Wpisz swój nr ID</h5>
 
         <div className="score"><h5>Sprawdź</h5></div>

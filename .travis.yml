@@ -6,6 +6,8 @@ script:
 - yarn --cwd app build
 - yarn --cwd admin install
 - yarn --cwd admin build
+- npm --prefix userapp install
+- npm --prefix userapp run-script build
 deploy:
   provider: firebase
   skip_cleanup: true

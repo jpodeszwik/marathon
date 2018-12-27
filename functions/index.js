@@ -8,7 +8,7 @@ exports.processSignUp = functions.auth.user().onCreate(user => {
     return null;
   }
 
-  console.log(`registering user: ${user.email}`);
+  console.log(`registering user: ${user.uid}, with email: ${user.email}`);
   return admin.database().ref('users').child(user.uid).set({
     email: user.email,
   });
@@ -16,10 +16,10 @@ exports.processSignUp = functions.auth.user().onCreate(user => {
 
 exports.sumPersonsFight = functions.database.ref('/fights/{participantId}').onWrite((change, context) => {
   const participantId = context.params.participantId;
-  const fights = change.after.val();
+  const fights = change.after.val() || {};
   const totalFights = Object.keys(fights).filter(fight => fights[fight] === true).length;
 
-  console.log(`person: ${participantId}, totalFights: ${totalFights}`);
+  console.log(`seting persons: ${participantId} fights to: ${totalFights}`);
   return admin.database().ref(`/ranking/${participantId}/totalFights`).set(totalFights);
 });
 
@@ -51,9 +51,9 @@ exports.registerParticipants = functions.database.ref('/commands/register/{userI
       participant.id = id;
       participant.registeredBy = userId;
 
-      return Promise.all(
+      return Promise.all([
         admin.database().ref(`/participants/${participantId}`).set(participant),
         admin.database().ref(`/ranking/${id}/firstName`).set(firstName)
-      );
+      ]);
     });
 });

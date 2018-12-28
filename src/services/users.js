@@ -78,7 +78,7 @@ export function subscribeForParticipantsResults(callback) {
         const participant = getParticipant(participantId);
         return {
           id: participantId,
-          fights: val[participantId].totalFights,
+          fights: val[participantId].totalFights || 0,
           data: participant,
         };
       })

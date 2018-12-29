@@ -17,7 +17,7 @@ class App extends Component {
     this.rounds = this.app.database().ref().child('fights');
     this.state = {
       fights: [],
-      rounds: [],
+      rank: []
      
         
     }
@@ -47,12 +47,11 @@ class App extends Component {
       fights => this.setState({ fights: fights })
  
     )
-   
-    this.rounds.once('value').then(snapshot => {
+    this.rank.once('value').then(snapshot => {
  
       const value = snapshot.val();
  
-      const rounds = Object.keys(value).map(key => ({
+      const rank = Object.keys(value).map(key => ({
  
         key: key,
  
@@ -60,37 +59,17 @@ class App extends Component {
  
       }))
       
-      return rounds
+      return rank
 
       
  
     }).then(
  
-      rounds => this.setState({ rounds: rounds })
+      rank => this.setState({ rank })
  
-    )
+    ) 
     
-    // this.users.once('value').then(snapshot => {
- 
-    //   const value = snapshot.val();
- 
-    //   const users = Object.keys(value).map(key => ({
- 
-    //     key: key,
- 
-    //     content: value[key]
- 
-    //   }))
-      
-    //   return users
-
-      
- 
-    // }).then(
- 
-    //   users => this.setState({ users: users })
-      
-    // )
+    
       
   }
 
@@ -112,7 +91,7 @@ class App extends Component {
 
           <Route path ="/individual" render={(props) => <Individual 
              {...props}  
-             rank={this.state.fights} 
+             rank={this.state.rank} 
           />}/>
         </div>
       </BrowserRouter>

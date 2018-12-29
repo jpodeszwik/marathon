@@ -1,6 +1,7 @@
 .ind-box{
     height: 100vh;
     position: relative;
+    font-family: 'Bahnschrift';
 }
 
 #ind-container{
@@ -25,6 +26,14 @@ h5{
     
 }
 
+button{
+    border: none;
+}
+
+button:focus{
+    outline: none;
+}
+
 
 
 .App-logo-ind {
@@ -39,7 +48,7 @@ h5{
   
   .score{
       width: 30%;
-      min-width: 110px;
+      min-width: 160px;
       height: 50px;
       background: #212121;
       position: relative;
@@ -72,9 +81,16 @@ h5{
 .score input{
     background: #212121;
     border: none;
+    color: white;
+    text-align: center;
 }
 
 .score input:focus{
     outline: none;
 }
 
+
+
+#checkScore{
+
+}

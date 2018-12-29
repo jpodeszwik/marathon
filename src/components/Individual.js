@@ -1,33 +1,58 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './individual.css';
 import Navbar from './navbar'
 
-
-const Individual =(props)=>{
-  const checkScore = () => {
-    let val = document.getElementById('input').value;
-    console.log(val)
-    val = "";
-    console.log(props.rank[8].content.firstName)
+class individual extends Component{
+  constructor(){
+    super();
+    this.state = {
+      userId: "",
+      rank: ""
+    }
   }
+
+  handleInput = (e) => {
+    this.setState({
+      userId: e.target.value
+    })
+    
+  }
+
+  handleSubmit =(e)=> {
+    this.setState({
+      rank: this.state.userId,
+      userId: ""
+    })
+    e.preventDefault();
+    console.log(this.state.userId)
+  }
+
+
+
+  render(){
     return(
       <div className="ind-box">
-        <Navbar />
-        <div className="App-logo-ind"></div>
-        <h4>SPRAWDŹ SWÓJ WYNIK</h4>
-        
-        <div id="ind-container" >
-        
+      <Navbar />
+      <div className="App-logo-ind"></div>
+      <h4>SPRAWDŹ SWÓJ WYNIK</h4>
+      {this.state.rank === "" ? null : <p>`jestes ktorys w rankingu`</p>}
+      <div id="ind-container" >
+      
 
-        <div className="score"><input autoComplete="off" name="input" id="input"/></div>
-        <h5>Wpisz swój nr ID</h5>
-
-        <button onClick={checkScore} className="score" type="submit" htmlFor="input" id="checkScore"><h5>Sprawdź</h5></button>
-        
-                  
-        </div>
+      <div className="score">
+       
+          <input onChange={this.handleInput} value={this.state.userId} autoComplete="off" name="input" id="input"/> 
+       
       </div>
+      <h5>Wpisz swój nr ID</h5>
+
+      <button className="score" onClick={this.handleSubmit}  type="submit" htmlFor="input" id="checkScore"><h5>Sprawdź</h5></button>
+      
+                
+      </div>
+    </div>
     );
+  }
 }
 
-export default Individual;
+export default individual;

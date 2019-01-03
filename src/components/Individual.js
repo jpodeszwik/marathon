@@ -3,11 +3,11 @@ import './individual.css';
 import Navbar from './navbar'
 
 class individual extends Component{
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       userId: "",
-      rank: ""
+      userRank: ""
     }
   }
 
@@ -20,22 +20,25 @@ class individual extends Component{
 
   handleSubmit =(e)=> {
     this.setState({
-      rank: this.state.userId,
+      userRank: this.state.userId,
       userId: ""
     })
     e.preventDefault();
-    console.log(this.state.userId)
   }
 
 
 
   render(){
+    const sortedRank = this.props.rank.sort((a, b) =>{return a.content.totalFights < b.content.totalFights ? 1 : a.content.totalFights > b.content.totalFights ? -1 : 0})
+    
+    const currentUserPosition = this.state.userRank === "" ? null : sortedRank.findIndex(item => item.key === this.state.userRank.toString());
+    
     return(
       <div className="ind-box">
       <Navbar />
       <div className="App-logo-ind"></div>
       <h4>SPRAWDŹ SWÓJ WYNIK</h4>
-      {this.state.rank === "" ? null : <p>`jestes ktorys w rankingu`</p>}
+      {this.state.userRank === "" ? null : <h5>Jestes {currentUserPosition + 1}  w rankingu</h5>}
       <div id="ind-container" >
       
 

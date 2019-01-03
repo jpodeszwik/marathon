@@ -22,7 +22,8 @@ class individual extends Component{
     this.setState({
       userRank: this.state.userId,
       userId: ""
-    })
+    });
+    document.getElementById('score-board').classList.remove('hidden');
     e.preventDefault();
   }
 
@@ -38,9 +39,10 @@ class individual extends Component{
       <Navbar />
       <div className="App-logo-ind"></div>
       <h4>SPRAWDŹ SWÓJ WYNIK</h4>
-      {this.state.userRank === "" ? null : <h5>Jestes {currentUserPosition + 1}  w rankingu</h5>}
+     
       <div id="ind-container" >
       
+     
 
       <div className="score">
        
@@ -51,7 +53,11 @@ class individual extends Component{
 
       <button className="score" onClick={this.handleSubmit}  type="submit" htmlFor="input" id="checkScore"><h5>Sprawdź</h5></button>
       
-                
+      </div>
+      <div className="score hidden" id="score-board">
+        {this.state.userRank === "" ? null : currentUserPosition === -1 ? 
+         <h5>Brak danych</h5> :
+        <h5>{currentUserPosition + 1}  w rankingu</h5>}
       </div>
     </div>
     );

@@ -85,8 +85,7 @@ class App extends Component {
 
           <Route path ="/general" render={(props) => <General
             {...props}  
-            rank={this.state.fights} 
-            rounds={this.state.rounds}
+            rank={this.state.rank} 
           />} />
 
           <Route path ="/individual" render={(props) => <Individual 

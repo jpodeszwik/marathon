@@ -14,7 +14,7 @@
 .home-anchor{
     text-decoration: none;
     display: inline-block;
-    
+    font-family: 'Bahnschrift';
     min-width: 150px;
     width: 80%;
     height: 50px;
@@ -24,6 +24,10 @@
     text-align: center;
     padding-top: 15px;
     position: relative;
+}
+
+.home-anchor:hover{
+  text-decoration: none;
 }
 
 .home-anchor::before, .home-anchor::after{

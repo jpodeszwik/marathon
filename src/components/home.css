@@ -26,6 +26,25 @@
     position: relative;
 }
 
+.home-anchor::before, .home-anchor::after{
+  position: absolute;
+  top:0;
+  content: "";
+  background: #212121;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  
+
+}
+
+.home-anchor::before{
+    left: -25px;
+}
+
+.home-anchor::after{
+  right: -25px;
+}
 .home-anchor:visited{
   text-decoration: none;
   color: #f4f4f4;

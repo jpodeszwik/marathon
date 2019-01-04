@@ -20,8 +20,13 @@ h4{
 h5{
     color: white;
     text-align: center;
-    margin-bottom: 10px;
+    margin: 15px 0;
+    z-index: 100;
     
+}
+
+.user-data{
+    color: #fcee21;
 }
 
 button{
@@ -91,6 +96,6 @@ button:focus{
     visibility: hidden; 
 }
 
-#score-board{
+#score-board, #fights-count{
     margin: 30px auto; 
 }

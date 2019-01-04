@@ -24,6 +24,9 @@ class individual extends Component{
       userId: ""
     });
     document.getElementById('score-board').classList.remove('hidden');
+    
+      document.getElementById('fights-count').classList.remove('hidden')
+      
     e.preventDefault();
   }
 
@@ -33,6 +36,10 @@ class individual extends Component{
     const sortedRank = this.props.rank.sort((a, b) =>{return a.content.totalFights < b.content.totalFights ? 1 : a.content.totalFights > b.content.totalFights ? -1 : 0})
     
     const currentUserPosition = this.state.userRank === "" ? null : sortedRank.findIndex(item => item.key === this.state.userRank.toString());
+   
+    let userCheck = this.state.userRank === "" ? false : this.props.rank.filter(item => item.key === this.state.userRank.toString()).length === 0 ? false : true;
+
+    const currentRoundsCount = userCheck === false ? null : this.props.rank.filter(item => item.key === this.state.userRank.toString())[0].content.totalFights;
     
     return(
       <div className="ind-box">
@@ -56,8 +63,12 @@ class individual extends Component{
       </div>
       <div className="score hidden" id="score-board">
         {this.state.userRank === "" ? null : currentUserPosition === -1 ? 
-         <h5>Brak danych</h5> :
-        <h5>{currentUserPosition + 1}  w rankingu</h5>}
+         <h5 className="user-data">Ranking: brak danych</h5> :
+        <h5 className="user-data">Nr {currentUserPosition + 1}  w rankingu </h5>} 
+      </div>
+      <div className="score hidden" id="fights-count">
+        {userCheck ? <h5 className="user-data">Stoczone rundy: {currentRoundsCount}</h5> : 
+                      <h5 className="user-data">Rundy: brak danych</h5>}
       </div>
     </div>
     );

@@ -6,7 +6,9 @@ import 'firebase/database';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './components/home';
 import Individual from './components/Individual';
-import General from './components/General'
+import General from './components/General';
+import TopFive from './components/TopFive';
+import TopWoman from './components/TopWoman';
 
 
 class App extends Component {
@@ -92,6 +94,16 @@ class App extends Component {
              {...props}  
              rank={this.state.rank} 
           />}/>
+
+          <Route path ="/topfive" render={(props) => <TopFive 
+             {...props}  
+             rank={this.state.rank} 
+          />}/> 
+
+          <Route path ="/topwoman" render={(props) => <TopWoman 
+             {...props}  
+             rank={this.state.rank} 
+          />}/> 
         </div>
       </BrowserRouter>
 

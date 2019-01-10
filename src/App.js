@@ -10,6 +10,7 @@ import General from './components/General';
 import TopFive from './components/TopFive';
 import TopWoman from './components/TopWoman';
 import Schedule from './components/Schedule';
+import Info from './components/Info';
 
 
 class App extends Component {
@@ -107,6 +108,8 @@ class App extends Component {
           />}/> 
 
           <Route path ="/schedule" component={Schedule}/> 
+
+          <Route path ="/info" component={Info}/> 
         </div>
       </BrowserRouter>
 

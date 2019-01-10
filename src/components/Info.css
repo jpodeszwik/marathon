@@ -1,0 +1,13 @@
+.info-list{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-items: center;
+    list-style-type: none;
+    padding: 0;
+}
+
+.info-list > li{
+    margin: 15px 5px;
+    color: white;
+}

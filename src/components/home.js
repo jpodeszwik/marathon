@@ -14,7 +14,7 @@ const Home =()=>{
             <a href="/topwoman" className="home-anchor">Top 3 kobiety</a>
             <a href="/individual" className="home-anchor">Sprawdź swój wynik</a>
             <a href="/schedule" className="home-anchor">Harmonogram</a>
-            <a href="/" className="home-anchor">Regulamin</a>       
+            <a href="/info" className="home-anchor">Regulamin</a>       
         </div>
       </div>
     );

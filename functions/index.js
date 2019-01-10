@@ -43,6 +43,7 @@ exports.registerParticipants = functions.database.ref('/commands/register/{userI
   const fullName = participant.fullName || 'unknown';
   const firstName = fullName.split(' ')[0] || 'unknown';
   const homeClub = participant.homeClub || 'unknown';
+  const sex = participant.sex || 'unknown';
 
   console.log(`registering participant: ${participantId}, created by user: ${userId}`);
 
@@ -55,7 +56,8 @@ exports.registerParticipants = functions.database.ref('/commands/register/{userI
       return Promise.all([
         admin.database().ref(`/participants/${participantId}`).set(participant),
         admin.database().ref(`/ranking/${id}/firstName`).set(firstName),
-        admin.database().ref(`/ranking/${id}/homeClub`).set(homeClub)
+        admin.database().ref(`/ranking/${id}/homeClub`).set(homeClub),
+        admin.database().ref(`/ranking/${id}/sex`).set(sex)
       ]);
     });
 });

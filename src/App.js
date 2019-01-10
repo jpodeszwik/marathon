@@ -9,6 +9,7 @@ import Individual from './components/Individual';
 import General from './components/General';
 import TopFive from './components/TopFive';
 import TopWoman from './components/TopWoman';
+import Schedule from './components/Schedule';
 
 
 class App extends Component {
@@ -104,6 +105,8 @@ class App extends Component {
              {...props}  
              rank={this.state.rank} 
           />}/> 
+
+          <Route path ="/schedule" component={Schedule}/> 
         </div>
       </BrowserRouter>
 

@@ -86,6 +86,7 @@ button:focus{
     border: none;
     color: white;
     text-align: center;
+    width: 80%;
 }
 
 .score input:focus{

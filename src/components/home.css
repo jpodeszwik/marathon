@@ -21,7 +21,7 @@
     height: 50px;
     background: #212121;
     margin: 5px 0;
-    color: #f4f4f4;
+    color: #d8d8d8;
     text-align: center;
     padding-top: 15px;
     position: relative;
@@ -79,5 +79,6 @@
   @media only screen and (min-width: 600px) {
     .home-anchor{
       width: 40%;
+      padding-top: 0;
     }
   }

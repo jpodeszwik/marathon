@@ -34,6 +34,13 @@ body{
     font-size: 2em;
   }
 
+  .container{
+    background-size: cover;
+    background-position: center;
+    background-position-y: 50%;
+    
+  }
+
  
 }
 

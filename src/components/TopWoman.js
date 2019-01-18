@@ -4,8 +4,9 @@ import './general.css';
 import { Table } from 'react-bootstrap';
 
 const TopWoman =(props)=>{
-    let results = props.rank.filter(item => item.content.sex === "Kobieta").sort((a, b) =>{return a.content.totalFights < b.content.totalFights ? 1 : a.content.totalFights > b.content.totalFights ? -1 : 0}).map(item => item.content.totalFights)
+    let results = props.rank.filter(item => item.content.sex === "Kobieta").sort((a, b) =>{return a.content.totalFights < b.content.totalFights ? 1 : a.content.totalFights > b.content.totalFights ? -1 : 0})
     console.log(results)
+    let place = results.map(item => item.content.totalFights)
     
     return(
         <div className="general-container">
@@ -25,9 +26,11 @@ const TopWoman =(props)=>{
                 </tr>
             </thead>
             <tbody>
-            {results.rank.map(item => <tr key={item.key} style={{border: 'none'}}>
-                                        <td>{results.indexOf(item.content.totalFights)+1}</td><td>{item.content.firstName}</td>
-                                        <td>{item.content.homeClub}</td><td>{item.content.totalFights}</td>
+            {results.map(item => <tr key={item.key} style={{border: 'none'}}>
+                                        <td>{place.indexOf(item.content.totalFights)+1}</td>
+                                        <td>{item.content.firstName}</td>
+                                        <td>{item.content.homeClub}</td>
+                                        <td>{item.content.totalFights}</td>
                                         <td>{item.key}</td>
                                     </tr> ).slice(0, 3)}
             </tbody>

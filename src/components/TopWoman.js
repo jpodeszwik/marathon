@@ -4,7 +4,8 @@ import './general.css';
 import { Table } from 'react-bootstrap';
 
 const TopWoman =(props)=>{
-    let results = props.rank.filter(item => item.content.sex === "Kobieta").sort((a, b) =>{return a.content.totalFights < b.content.totalFights ? 1 : a.content.totalFights > b.content.totalFights ? -1 : 0})
+    let results = props.rank.length > 1 ? props.rank.filter(item => item.content.sex === "Kobieta").sort((a, b) =>{return a.content.totalFights < b.content.totalFights ? 1 : a.content.totalFights > b.content.totalFights ? -1 : 0}) :
+    [{key: "0" , content: { firstName: "BRAK DANYCH", homeClub: "BRAK DANYCH", totalFights: "BRAK DANYCH"}}]
     console.log(results)
     let place = results.map(item => item.content.totalFights)
     

@@ -4,9 +4,11 @@ import './general.css';
 import { Table } from 'react-bootstrap';
 
 const General =(props)=>{
-    let results = props.rank.sort((a, b) =>{return parseInt(a.key) > parseInt(b.key) ? 1 : parseInt(a.key) < parseInt(b.key) ? -1 : 0})
-    console.log(results)
-    let place = results.map(item => item.content.totalFights).sort((a, b) =>{return a < b ? 1 : a > b ? -1 : 0})
+    let results = props.rank.length > 1 ? props.rank.sort((a, b) =>{return parseInt(a.key) > parseInt(b.key) ? 1 : parseInt(a.key) < parseInt(b.key) ? -1 : 0}) :
+                [{key: "0" , content: { firstName: "BRAK DANYCH", homeClub: "BRAK DANYCH", totalFights: "BRAK DANYCH"}}]
+    
+    let place = props.rank.length > 1 ? results.map(item => item.content.totalFights).sort((a, b) =>{return a < b ? 1 : a > b ? -1 : 0}) :
+    [0]
     
     return(
         <div className="general-container">

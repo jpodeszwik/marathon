@@ -34,7 +34,7 @@ class App extends Component {
  
       const value = snapshot.val();
  
-      const fights = Object.keys(value).map(key => ({
+      const fights = value === null ? {"A": "BRAK DANYCH" } : Object.keys(value).map(key => ({
  
         key: key,
  
@@ -55,7 +55,7 @@ class App extends Component {
  
       const value = snapshot.val();
  
-      const rank = Object.keys(value).map(key => ({
+      const rank = value === null ? {"A": "BRAK DANYCH" } :  Object.keys(value).map(key => ({
  
         key: key,
  

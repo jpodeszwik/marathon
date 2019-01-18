@@ -4,8 +4,9 @@ import './general.css';
 import { Table } from 'react-bootstrap';
 
 const General =(props)=>{
-    let results = props.rank.sort((a, b) =>{return a.content.totalFights < b.content.totalFights ? 1 : a.content.totalFights > b.content.totalFights ? -1 : 0}).map(item => item.content.totalFights)
+    let results = props.rank.sort((a, b) =>{return parseInt(a.key) > parseInt(b.key) ? 1 : parseInt(a.key) < parseInt(b.key) ? -1 : 0})
     console.log(results)
+    let place = results.map(item => item.content.totalFights).sort((a, b) =>{return a < b ? 1 : a > b ? -1 : 0})
     
     return(
         <div className="general-container">
@@ -16,18 +17,21 @@ const General =(props)=>{
             <Table striped >
                 <thead>
                     <tr>
-                        <th>MIEJSCE</th>
+                        <th>ID</th>
                         <th>IMIĘ</th>
                         <th>NAZWA KLUBU</th>
                         <th>ILOŚĆ WALK</th>
-                        <th>ID</th>
+                        <th>MIEJSCE</th>
                     </tr>
                 </thead>
                 <tbody>
-                {props.rank.map(item => <tr key={item.key} style={{border: 'none'}}>
-                                            <td>{results.indexOf(item.content.totalFights)+1}</td><td>{item.content.firstName}</td>
-                                            <td>{item.content.homeClub}</td><td>{item.content.totalFights}</td>
+                {results.map(item => <tr key={item.key} style={{border: 'none'}}>
                                             <td>{item.key}</td>
+                                            <td>{item.content.firstName}</td>
+                                            <td>{item.content.homeClub}</td>
+                                            <td>{item.content.totalFights}</td>
+                                            <td>{place.indexOf(item.content.totalFights)+1}</td>
+                                            
                                         </tr> )}
                 </tbody>
             </Table>

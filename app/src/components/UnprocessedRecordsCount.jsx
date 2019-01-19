@@ -11,7 +11,11 @@ class UnprocessedRecordsCount extends Component {
   }
 
   componentDidMount() {
-    setInterval(this.updateUnprocessed, 1000);
+    this.interval = setInterval(this.updateUnprocessed, 1000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   updateUnprocessed() {

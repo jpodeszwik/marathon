@@ -22,7 +22,7 @@ class UnprocessedRecordsCount extends Component {
 
   render() {
     return (
-      <span>Unprocessed records: {this.state.unprocessedRecords }</span>
+      <span>Niewysłane walki: {this.state.unprocessedRecords }</span>
     );
   }
 }

@@ -9,10 +9,10 @@ function UserInfo(props) {
       <Container>
         {props.user ?
           <div>
-            <span style={{ float: 'left' }}>Logged in as <b>{props.user.email}</b></span>
-            <Button style={{ float: 'right' }} color="primary" onClick={logOut}>Log out</Button>
+            <span style={{ float: 'left' }}>Zalogowany jako <b>{props.user.email}</b></span>
+            <Button style={{ float: 'right' }} color="primary" onClick={logOut}>Wyloguj</Button>
           </div> :
-          <Button color="primary" onClick={logIn}>Log in</Button>
+          <Button color="primary" onClick={logIn}>Zaloguj</Button>
         }
       </Container>
     </Row>

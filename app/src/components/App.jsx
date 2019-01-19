@@ -11,8 +11,8 @@ import { onUserChange } from '../services/firebase';
 import UnprocessedRecordsCount from './UnprocessedRecordsCount.jsx';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.round = new Date();
     this.state = {
       numbers: [], user: null, alerts: [],
@@ -89,6 +89,7 @@ class App extends Component {
 
   roundSelected(date) {
     this.round = date;
+    this.setState({ numbers: [] });
     listFights(date).then((numbers) => {
       this.setState({ numbers });
     });

@@ -13,13 +13,11 @@ class App extends Component {
     this.state = { user: null, permissions: {} };
 
     onUserChange((user) => {
-      if (!user) {
-        this.setState({ user, permissions: {} });
-        return;
+      this.setState({ user, permissions: {} });
+      if(user) {
+        getLoggedInUserPermissions()
+          .then(permissions => this.setState({ permissions }));
       }
-
-      getLoggedInUserPermissions()
-        .then(permissions => this.setState({ user, permissions }));
     });
   }
 

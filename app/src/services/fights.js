@@ -4,8 +4,7 @@ import firebase from './firebase';
 
 const dbPromise = openDb('marathon-app-db', 1, (db) => {
   if (!db.objectStoreNames.contains('fight-commands')) {
-    const fightCommands = db.createObjectStore('fight-commands', { autoIncrement: true });
-    fightCommands.createIndex('processed', 'processed');
+    db.createObjectStore('fight-commands', { autoIncrement: true });
   }
 });
 
@@ -17,7 +16,7 @@ const pushFight = async (round, personId) => {
   const db = await dbPromise;
   const tx = db.transaction('fight-commands', 'readwrite');
   return tx.objectStore('fight-commands').put({
-    processed: 'false', operation: 'add', round, personId,
+    operation: 'add', round, personId,
   });
 };
 
@@ -25,7 +24,7 @@ const removeFight = async (round, personId) => {
   const db = await dbPromise;
   const tx = db.transaction('fight-commands', 'readwrite');
   tx.objectStore('fight-commands').put({
-    processed: 'false', operation: 'remove', round, personId,
+    operation: 'remove', round, personId,
   });
   return tx.complete;
 };
@@ -43,7 +42,7 @@ const getFirstUnprocessedRecord = async () => {
   const db = await dbPromise;
   const tx = db.transaction('fight-commands', 'readonly');
   const store = tx.objectStore('fight-commands');
-  const cursor = await store.index('processed').openCursor(IDBKeyRange.only('false'));
+  const cursor = await store.openCursor();
 
   return cursor ? { primaryKey: cursor.primaryKey, ...cursor.value } : null;
 };
@@ -61,7 +60,7 @@ const performOperation = (record) => {
 const getUnprocessedCount = async () => {
   const db = await dbPromise;
   const tx = db.transaction('fight-commands', 'readwrite');
-  return tx.objectStore('fight-commands').index('processed').count(IDBKeyRange.only('false'));
+  return tx.objectStore('fight-commands').count();
 };
 
 const persistFights = async () => {
@@ -73,7 +72,7 @@ const persistFights = async () => {
   performOperation(record).then(async () => {
     const db = await dbPromise;
     const tx = db.transaction('fight-commands', 'readwrite');
-    return tx.objectStore('fight-commands').put({ processed: 'true' }, record.primaryKey);
+    return tx.objectStore('fight-commands').delete(record.primaryKey);
   });
 };
 

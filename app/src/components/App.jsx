@@ -16,11 +16,10 @@ class App extends Component {
 
     this.displayAlert = this.displayAlert.bind(this);
     onUserChange((user) => {
-      if (user === null) {
-        this.setState({ user: null, hasPermissionToRegisterFights: false });
-      } else {
+      this.setState({ user, hasPermissionToRegisterFights: false });
+      if (user !== null) {
         checkPermissionToRegisterFights(user).then((hasPermissionToRegisterFights) => {
-          this.setState({ user, hasPermissionToRegisterFights });
+          this.setState({ hasPermissionToRegisterFights });
         });
       }
     });

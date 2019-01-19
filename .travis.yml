@@ -13,6 +13,8 @@ deploy:
   skip_cleanup: true
   token:
     secure: "$FIREBASE_SECURE_TOKEN"
+  on:
+    branch: master
 env:
   global:
     secure: ZMeYHz+lhj546HfRfReXJtVKQ3xYLbXJk6ShJsy+AfZxvNrBokM0S6cx4JYNs3BeMYXMutFb2brjV4TsSWWEuUVTiI9ibSftPcBcvay5bgI3kSra+WRjNfiyyonkvOxyl+/fXKrEdBWo5PZZbwlvp9TNZHsKp4E3QVM2cqsWOOHmoYkJIjezFi6mVPC9dx938HFL53XPpJEX0rSGt/N6MeDSeFKpoIV6+bikPXkObCJNtTkSesgRSLvFhz8n37gXCMkfUF/pPdbsOXwWMQhVsBDdolLPFL4+kBS3NecOIrLmXdXDqSO+GXudd1LXnFid6YVSXxv4CEBZiKlK04x7i0tQOtnTMnFkDOgEga1wtSzDoc4Odo6MOKLPofgv8DT0xjfHqgzZMtTDyk8tDMINIeaLvOXa6dUMbH40s5tJm2F1nR3Agwb4pntqz8CINtZ+Khz+eq0VQhePyri7rZsxW//EjNlZErzxqKSdffYJUO2CcBjuWqDbHoWpeGMTelAWk7VZ54698Q0cT0LL+NfDyzGflxuIUu3XZO42+s1mgbRs2PLTgFXx8NNU1SLI1sycHSCnu0j01+FkaEnKzDJo6kGSH/LqHKZ9PDPJ0L83It5Kb+gcjJhVAA292TUV42s3t6n8PI5+SEqtgTGvSkgfvUfSu3xY7Qkq8rBhvduHIe0=

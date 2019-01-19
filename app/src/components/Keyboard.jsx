@@ -19,6 +19,10 @@ class Keyboard extends Component {
   }
 
   addClicked() {
+    if (this.state.number === '') {
+      return;
+    }
+
     this.onSave(this.state.number);
     this.setState(() => ({ number: '' }));
   }

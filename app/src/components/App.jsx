@@ -8,12 +8,15 @@ import NumberList from './NumberList.jsx';
 import UserInfo from './UserInfo.jsx';
 import { pushFight, removeFight, listFights } from '../services/fights';
 import { onUserChange } from '../services/firebase';
+import UnprocessedRecordsCount from './UnprocessedRecordsCount.jsx';
 
 class App extends Component {
   constructor() {
     super();
     this.round = new Date();
-    this.state = { numbers: [], user: null, alerts: [] };
+    this.state = {
+      numbers: [], user: null, alerts: [],
+    };
     this.numberSent = this.numberSent.bind(this);
     this.roundSelected = this.roundSelected.bind(this);
     this.numberRemoved = this.numberRemoved.bind(this);
@@ -102,6 +105,7 @@ class App extends Component {
             </Alert>
           ))}
           <UserInfo user={this.state.user} />
+          <UnprocessedRecordsCount/>
           {this.state.user &&
             <div>
               <RoundPicker onRoundSelected={this.roundSelected} />

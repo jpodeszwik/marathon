@@ -58,6 +58,12 @@ const performOperation = (record) => {
   return fightRef(round, personId).set(false);
 };
 
+const getUnprocessedCount = async () => {
+  const db = await dbPromise;
+  const tx = db.transaction('fight-commands', 'readwrite');
+  return tx.objectStore('fight-commands').index('processed').count(IDBKeyRange.only('false'));
+};
+
 const persistFights = async () => {
   const record = await getFirstUnprocessedRecord();
   if (!record) {
@@ -74,4 +80,4 @@ const persistFights = async () => {
 setInterval(persistFights, 1000);
 
 
-export { pushFight, removeFight, listFights };
+export { pushFight, removeFight, listFights, getUnprocessedCount };

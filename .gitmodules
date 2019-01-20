@@ -1,6 +1,3 @@
-[submodule "sign-in-panel"]
-	path = admin
-	url = https://github.com/TomaszMoroz/sign-in-panel.git
 [submodule "userapp"]
 	path = userapp
 	url = https://github.com/TomaszMoroz/maratonapp.git

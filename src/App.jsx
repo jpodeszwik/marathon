@@ -6,17 +6,20 @@ import { onUserChange } from './services/firebase';
 import { getLoggedInUserPermissions } from './services/users';
 import Router from './components/router/Router';
 import { Alert } from 'reactstrap';
+import {FadeLoader} from 'react-spinners';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = { user: null, permissions: {} };
+  constructor(props) {
+    super(props);
+    this.state = { user: null, permissions: {}, loading: false };
 
     onUserChange((user) => {
       this.setState({ user, permissions: {} });
       if(user) {
+        this.setState({loading: true});
         getLoggedInUserPermissions()
-          .then(permissions => this.setState({ permissions }));
+          .then(permissions => this.setState({ permissions }))
+          .finally(() => this.setState({loading: false}));
       }
     });
   }
@@ -28,7 +31,10 @@ class App extends Component {
           <UserInfo user={this.state.user} /> :
           <LogIn />
         }
-        {this.state.user && !this.state.permissions.registerParticipants &&
+        <div style ={{ width: '50px', margin: 'auto' }}>
+          <FadeLoader loading={this.state.loading}/>
+        </div>
+        {this.state.user && !this.state.permissions.registerParticipants && !this.state.loading &&
           <Alert color="danger" fade={false}>Brak uprawnień. Skontaktuj się z administratorem</Alert>
         }
         {this.state.user && this.state.permissions.registerParticipants &&

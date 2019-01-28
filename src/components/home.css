@@ -14,8 +14,8 @@
 .home-anchor{
     text-decoration: none;
     display: inline-block;
-    font-family: 'Bahnschrift';
-    font-size: 1.8em;
+    font-size: 1.6em;
+    font-weight: 200;
     min-width: 150px;
     width: 80%;
     height: 50px;

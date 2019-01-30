@@ -23,7 +23,7 @@ const Info =(props)=>{
                 1. Popularyzacja sportów walki - brazylijskiego jiu-jitsu i dobra zabawa. <br />
                 2. Promocja zdrowego stylu życia. <br />
                 3. Promocja Klubu Sportowego Złomiarz Team <br />
-                4. Zbiórka pięniędzy na pomoc w leczeniu Nikodema.
+                4. Zbiórka pięniędzy na pomoc w leczeniu Nikodema Reszki.
                 </li>
                 <li>
                     <p className="list-title">TERMIN I MIEJSCE</p> <br />
@@ -39,7 +39,7 @@ const Info =(props)=>{
                 2. Wpisowe uprawniające do nadania numeru startowego wynosi 30zł. Dzieci 10 zł. <br />
                 3. Warunkiem dopuszczenia do uczestnictwa w imprezie jest złożenie przed startem przez uczestnika (w przypadku osób niepełnoletnich - przez opiekuna prawnego/rodzica) pisemnego oświadczenia o stanie zdrowia pozwalającym na uczestnictwo w imprezie sportowej (druk do pobrania w biurze imprezy lub do pobrania ze strony wydarzenia w portalu Facebook). <br />
                 4. Osoby poniżej 18 roku życia muszą posiadać pisemną zgodę rodziców na udział w 
-imprezie (druk do pobrania w biurze zawodów lub na stronie wydarzenia w portalu Facebook).<br />
+imprezie (druk do pobrania na miejscu wydarzenia).<br />
                 5. Każdy uczestnik otrzyma numer startowy. Na jego podstawie kolejne walki zaliczane będą do rankingu. Numer startowy posłuży również podczas losowania nagród. <br />
                 6. Uczestnik imprezy wyraża zgodę na przetwarzanie swoich danych osobowych oraz 
 wizerunku i zdjęć dla potrzeb związanych z organizacją i promocją imprezy. <br />
@@ -53,7 +53,7 @@ wizerunku i zdjęć dla potrzeb związanych z organizacją i promocją imprezy. 
                 <li>
                 <p className="list-title">ZGŁOSZENIA</p> <br />
                 1. Zgłoszenia będą przyjmowane w dniu imprezy od godziny 9.00. <br />
-                2. Zgłoszenia można dokonać w dowolnej chwili trwania imprezy. Rozpoczęcie rejestracji 2 lutego 2019 9.00. Zakończenie rejestracji 3 lutego o godzinie 9.35.
+                2. Zgłoszenia można dokonać w dowolnej chwili trwania imprezy. Rozpoczęcie rejestracji 2 lutego 2019 9.35. Zakończenie rejestracji 3 lutego o godzinie 9.35.
                 </li>
                 <li>
                 <p className="list-title">POSTANOWIENIA KOŃCOWE</p><br />

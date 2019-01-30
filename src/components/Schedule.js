@@ -25,8 +25,24 @@ const Schedule =()=>{
                         <td className="gold">10:00</td><td>Start Maratonu</td>
                     </tr>
                     <tr>
-                        <td className="gold">12:00</td><td>Trening dzieci BJJ & Judo wraz z Sekcją Sport</td>
+                        <td className="gold">12:00 - 15:00</td><td>Fizjolab - fizjoterapia</td>
                     </tr>
+                    <tr>
+                        <td className="gold">12:00 - 12:45</td><td>Judo i BJJ, dzieci w wieku 4-6 lat</td>
+                    </tr>
+                    <tr>
+                        <td className="gold">12:45 - 13:30</td><td>Judo i BJJ dzieci w wieku 7 lat +</td>
+                    </tr>
+                    <tr>
+                        <td className="gold">14:00</td><td>Wizyta RedBull, rozdanie napojów</td>
+                    </tr>
+                    <tr>
+                        <td className="gold">14:00</td><td>Wizyta RedBull, rozdanie napojów</td>
+                    </tr>
+                    <tr>
+                        <td className="gold">16:00</td><td> Trening Animal Flow</td>
+                    </tr>
+                    
                     <tr>
                         <td className="gold">19:00</td><td>Seminarium No-gi z Mateuszem Szczecińskim</td>
                     </tr>

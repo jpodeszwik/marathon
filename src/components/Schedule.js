@@ -37,9 +37,6 @@ const Schedule =()=>{
                         <td className="gold">14:00</td><td>Wizyta RedBull, rozdanie napojów</td>
                     </tr>
                     <tr>
-                        <td className="gold">14:00</td><td>Wizyta RedBull, rozdanie napojów</td>
-                    </tr>
-                    <tr>
                         <td className="gold">16:00</td><td> Trening Animal Flow</td>
                     </tr>
                     

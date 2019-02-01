@@ -17,10 +17,20 @@ exports.processSignUp = functions.auth.user().onCreate(user => {
 exports.sumPersonsFight = functions.database.ref('/fights/{participantId}').onWrite((change, context) => {
   const participantId = context.params.participantId;
   const fights = change.after.val() || {};
-  const totalFights = Object.keys(fights).filter(fight => fights[fight] === true).length;
 
-  console.log(`seting persons: ${participantId} fights to: ${totalFights}`);
-  return admin.database().ref(`/ranking/${participantId}/totalFights`).set(totalFights);
+  return admin.database().ref('/metadata/boundaries').once('value')
+      .then(snapshot => snapshot.val())
+      .then(boundaries => {
+        const {start, end } = boundaries;
+        const totalFights = Object.keys(fights)
+            .filter(fight => fights[fight] === true)
+            .filter(fight => fight.localeCompare(start) >= 0)
+            .filter(fight => fight.localeCompare(end) < 0)
+            .length;
+
+        console.log(`seting persons: ${participantId} fights to: ${totalFights}`);
+        return admin.database().ref(`/ranking/${participantId}/totalFights`).set(totalFights);
+      });
 });
 
 function getNextParticipantId() {

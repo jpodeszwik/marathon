@@ -16,14 +16,18 @@
     "commands": {
       "register": {
         "$user_id": {
-          ".read": "$user_id === auth.uid",
-          ".write": "$user_id === auth.uid && root.child('users/' + auth.uid + '/registerParticipants').val() === true"
+          "$command_id": {
+            ".read": "$user_id === auth.uid",
+            ".write": "$user_id === auth.uid && root.child('users/' + auth.uid + '/registerParticipants').val() === true && !data.exists()"
+          }
         }
       },
       "changeFight": {
         "$user_id": {
-          ".read": "$user_id === auth.uid",
-          ".write": "$user_id === auth.uid && root.child('users/' + auth.uid + '/registerFights').val() === true"
+          "$command_id": {
+            ".read": "$user_id === auth.uid",
+            ".write": "$user_id === auth.uid && root.child('users/' + auth.uid + '/registerFights').val() === true && !data.exists()"
+          }
         }
       }
     },

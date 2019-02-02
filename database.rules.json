@@ -8,8 +8,7 @@
       }
     },
     "fights": {
-      ".read": "root.child('users/' + auth.uid + '/registerFights').val() === true",
-      ".write": "root.child('users/' + auth.uid + '/registerFights').val() === true"
+      ".read": "root.child('users/' + auth.uid + '/registerFights').val() === true"
     },
     "ranking": {
       ".read": true
@@ -19,6 +18,12 @@
         "$user_id": {
           ".read": "$user_id === auth.uid",
           ".write": "$user_id === auth.uid && root.child('users/' + auth.uid + '/registerParticipants').val() === true"
+        }
+      },
+      "changeFight": {
+        "$user_id": {
+          ".read": "$user_id === auth.uid",
+          ".write": "$user_id === auth.uid && root.child('users/' + auth.uid + '/registerFights').val() === true"
         }
       }
     },

@@ -71,3 +71,16 @@ exports.registerParticipants = functions.database.ref('/commands/register/{userI
       ]);
     });
 });
+
+exports.changeFights = functions.database.ref('/commands/changeFight/{userId}/{commandId}').onWrite((change, context) => {
+  if (change.before.exists()) {
+    return null;
+  }
+
+  const { userId } = context.params;
+  const { operation, participantId, round } = change.after.val();
+
+  console.log(`registering participant: ${participantId} round: ${round} operation: ${operation}, created by user: ${userId}`);
+
+  return admin.database().ref(`/fights/${participantId}/${round}`).set(operation === 'add');
+});

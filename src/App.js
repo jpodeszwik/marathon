@@ -79,7 +79,8 @@ class App extends Component {
 
   
 
-  render() {  
+
+  render() {
     return (
       <BrowserRouter>
         <div className="container">
@@ -88,24 +89,24 @@ class App extends Component {
           <Route exact path ="/" component={Home} />
 
           <Route path ="/general" render={(props) => <General
-            {...props}  
-            rank={this.state.rank} 
+            {...props}
+            rank={this.state.rank.slice()}
           />} />
 
-          <Route path ="/individual" render={(props) => <Individual 
-             {...props}  
-             rank={this.state.rank} 
+          <Route path ="/individual" render={(props) => <Individual
+             {...props}
+             rank={this.state.rank.slice()}
           />}/>
 
-          <Route path ="/topfive" render={(props) => <TopFive 
-             {...props}  
-             rank={this.state.rank} 
-          />}/> 
+          <Route path ="/topfive" render={(props) => <TopFive
+             {...props}
+             rank={this.state.rank.slice()}
+          />}/>
 
-          <Route path ="/topwoman" render={(props) => <TopWoman 
-             {...props}  
-             rank={this.state.rank} 
-          />}/> 
+          <Route path ="/topwoman" render={(props) => <TopWoman
+             {...props}
+             rank={this.state.rank.slice()}
+          />}/>
 
           <Route path ="/schedule" component={Schedule}/> 
 

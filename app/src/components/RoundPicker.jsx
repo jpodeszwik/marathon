@@ -76,4 +76,4 @@ RoundPicker.propTypes = {
   onRoundSelected: PropTypes.func,
 };
 
-export default RoundPicker;
+export default React.memo(RoundPicker);

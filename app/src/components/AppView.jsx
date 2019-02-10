@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import './App.css';
 import Keyboard from './Keyboard.jsx';
@@ -41,21 +41,18 @@ const AppView = props => {
     });
   };
 
-  const roundSelected = date => {
+  const roundSelected = useCallback(date => {
     round.current = date;
     setNumbers([]);
     listFights(date).then(val => {
       setNumbers(val);
     });
-  };
-
-  const unprocessedRecordsCount = useMemo(() => <UnprocessedRecordsCount />, []);
-  const roundPicker = useMemo(() => <RoundPicker onRoundSelected={roundSelected} />, []);
+  }, []);
 
   return (
     <div>
-      {unprocessedRecordsCount}
-      {roundPicker}
+      <UnprocessedRecordsCount />
+      <RoundPicker onRoundSelected={roundSelected} />
       <Keyboard onSave={numberSent} />
       <NumberList onRemoveNumber={numberRemoved} numbers={numbers} />
     </div>

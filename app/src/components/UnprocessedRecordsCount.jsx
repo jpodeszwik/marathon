@@ -18,4 +18,4 @@ const UnprocessedRecordsCount = () => {
   return <span>Niewysłane walki: {unprocessedRecords}</span>;
 };
 
-export default UnprocessedRecordsCount;
+export default React.memo(UnprocessedRecordsCount);

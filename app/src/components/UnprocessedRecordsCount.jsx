@@ -1,32 +1,21 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getUnprocessedCount } from '../services/fights';
 
-class UnprocessedRecordsCount extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      unprocessedRecords: 0,
+const UnprocessedRecordsCount = () => {
+  const [unprocessedRecords, setUnprocessedRecords] = useState(0);
+
+  const updateUnprocessed = () => {
+    getUnprocessedCount().then(setUnprocessedRecords);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(updateUnprocessed, 1000);
+    return () => {
+      clearInterval(interval);
     };
-    this.updateUnprocessed = this.updateUnprocessed.bind(this);
-  }
+  }, []);
 
-  componentDidMount() {
-    this.interval = setInterval(this.updateUnprocessed, 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  updateUnprocessed() {
-    getUnprocessedCount().then(count => {
-      this.setState({ unprocessedRecords: count });
-    });
-  }
-
-  render() {
-    return <span>Niewysłane walki: {this.state.unprocessedRecords}</span>;
-  }
-}
+  return <span>Niewysłane walki: {unprocessedRecords}</span>;
+};
 
 export default UnprocessedRecordsCount;

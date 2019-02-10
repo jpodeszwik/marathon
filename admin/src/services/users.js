@@ -99,6 +99,9 @@ export const listFighters = round =>
   firebase.database().ref('fights').once('value').then((snapshot) => {
     const roundKey = format(round);
     const val = snapshot.val();
+    if (val === null) {
+      return [];
+    }
 
     return Object.keys(val)
       .filter(key => val[key][roundKey] === true);

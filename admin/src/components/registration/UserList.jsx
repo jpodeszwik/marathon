@@ -2,16 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function UserList(props) {
-  return (<div className='container'>
-    <table border='true' className='table'>
-      <thead>
-        <tr>
-          <th>Numer startowy</th><th>Imię</th><th>Miasto</th><th>Pas BJJ</th><th>Klub</th><th>Dorosły</th><th>Płeć</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          props.users.map((user, key) => (
+  return (
+    <div className="container">
+      <table border="true" className="table">
+        <thead>
+          <tr>
+            <th>Numer startowy</th>
+            <th>Imię</th>
+            <th>Miasto</th>
+            <th>Pas BJJ</th>
+            <th>Klub</th>
+            <th>Dorosły</th>
+            <th>Płeć</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.users.map((user, key) => (
             <tr key={key}>
               <td>{user.id}</td>
               <td>{user.fullName}</td>
@@ -21,11 +27,11 @@ function UserList(props) {
               <td>{user.adult}</td>
               <td>{user.sex}</td>
             </tr>
-          ))
-        }
-      </tbody>
-    </table>
-  </div>);
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 UserList.propTypes = {

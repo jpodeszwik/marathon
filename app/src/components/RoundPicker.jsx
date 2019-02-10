@@ -17,7 +17,7 @@ const pickerButtonStyle = {
   paddingRight: '20px',
 };
 
-const roundToRoundLength = (date) => {
+const roundToRoundLength = date => {
   const copiedDate = new Date(date.getTime());
 
   const minutes = copiedDate.getMinutes();
@@ -43,7 +43,7 @@ class RoundPicker extends Component {
   }
 
   nextRound() {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       const newRoundStart = addMinutes(prevState.roundStart, roundLength);
       this.onRoundSelected(newRoundStart);
       return { roundStart: newRoundStart };
@@ -51,7 +51,7 @@ class RoundPicker extends Component {
   }
 
   previousRound() {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       const newRoundStart = addMinutes(prevState.roundStart, -roundLength);
       this.onRoundSelected(newRoundStart);
       return { roundStart: newRoundStart };
@@ -65,11 +65,15 @@ class RoundPicker extends Component {
     return (
       <Row>
         <Col style={pickerStyle}>
-          <Button onClick={this.previousRound.bind(this)}><FaAngleLeft /></Button>
+          <Button onClick={this.previousRound.bind(this)}>
+            <FaAngleLeft />
+          </Button>
           <div style={pickerButtonStyle}>
             <Moment format="DD MMM">{start}</Moment> <Moment format="HH:mm">{start}</Moment> - <Moment format="HH:mm">{end}</Moment>
           </div>
-          <Button onClick={this.nextRound.bind(this)}><FaAngleRight /></Button>
+          <Button onClick={this.nextRound.bind(this)}>
+            <FaAngleRight />
+          </Button>
         </Col>
       </Row>
     );

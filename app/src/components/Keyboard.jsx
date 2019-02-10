@@ -35,54 +35,78 @@ class Keyboard extends Component {
     return (
       <Container>
         <Row>
-          <Col/>
+          <Col />
           <Col>
             <h1 className="text-center">{this.state.number || '-'}</h1>
           </Col>
           <Col>
-            <Button block={true} color="danger" onClick={this.deleteClicked.bind(this)}>Popraw</Button>
+            <Button block={true} color="danger" onClick={this.deleteClicked.bind(this)}>
+              Popraw
+            </Button>
           </Col>
         </Row>
         <Row>
           <Col style={colStyle}>
-            <Button block={true} onClick={this.buttonClicked.bind(this, 1)}>1</Button>
+            <Button block={true} onClick={this.buttonClicked.bind(this, 1)}>
+              1
+            </Button>
           </Col>
           <Col style={colStyle}>
-            <Button block={true} onClick={this.buttonClicked.bind(this, 2)}>2</Button>
+            <Button block={true} onClick={this.buttonClicked.bind(this, 2)}>
+              2
+            </Button>
           </Col>
           <Col style={colStyle}>
-            <Button block={true} onClick={this.buttonClicked.bind(this, 3)}>3</Button>
-          </Col>
-        </Row>
-        <Row>
-          <Col style={colStyle}>
-            <Button block={true} onClick={this.buttonClicked.bind(this, 4)}>4</Button>
-          </Col>
-          <Col style={colStyle}>
-            <Button block={true} onClick={this.buttonClicked.bind(this, 5)}>5</Button>
-          </Col>
-          <Col style={colStyle}>
-            <Button block={true} onClick={this.buttonClicked.bind(this, 6)}>6</Button>
+            <Button block={true} onClick={this.buttonClicked.bind(this, 3)}>
+              3
+            </Button>
           </Col>
         </Row>
         <Row>
           <Col style={colStyle}>
-            <Button block={true} onClick={this.buttonClicked.bind(this, 7)}>7</Button>
+            <Button block={true} onClick={this.buttonClicked.bind(this, 4)}>
+              4
+            </Button>
           </Col>
           <Col style={colStyle}>
-            <Button block={true} onClick={this.buttonClicked.bind(this, 8)}>8</Button>
+            <Button block={true} onClick={this.buttonClicked.bind(this, 5)}>
+              5
+            </Button>
           </Col>
           <Col style={colStyle}>
-            <Button block={true} onClick={this.buttonClicked.bind(this, 9)}>9</Button>
+            <Button block={true} onClick={this.buttonClicked.bind(this, 6)}>
+              6
+            </Button>
           </Col>
         </Row>
         <Row>
-          <Col style={colStyle}/>
           <Col style={colStyle}>
-            <Button block={true} onClick={this.buttonClicked.bind(this, 0)}>0</Button>
+            <Button block={true} onClick={this.buttonClicked.bind(this, 7)}>
+              7
+            </Button>
           </Col>
           <Col style={colStyle}>
-            <Button block={true} color="success" onClick={this.addClicked.bind(this)}>Dodaj</Button>
+            <Button block={true} onClick={this.buttonClicked.bind(this, 8)}>
+              8
+            </Button>
+          </Col>
+          <Col style={colStyle}>
+            <Button block={true} onClick={this.buttonClicked.bind(this, 9)}>
+              9
+            </Button>
+          </Col>
+        </Row>
+        <Row>
+          <Col style={colStyle} />
+          <Col style={colStyle}>
+            <Button block={true} onClick={this.buttonClicked.bind(this, 0)}>
+              0
+            </Button>
+          </Col>
+          <Col style={colStyle}>
+            <Button block={true} color="success" onClick={this.addClicked.bind(this)}>
+              Dodaj
+            </Button>
           </Col>
         </Row>
       </Container>

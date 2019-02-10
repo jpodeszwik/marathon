@@ -5,9 +5,7 @@ function AppHeader() {
   return (
     <header className="AppHeader-header">
       <center className="AppHeader-center">
-        <span className="AppHeader-span">
-          Marathon
-        </span>
+        <span className="AppHeader-span">Marathon</span>
       </center>
     </header>
   );

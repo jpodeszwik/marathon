@@ -2,7 +2,7 @@ import moment from 'moment';
 import { openDb } from 'idb';
 import firebase from './firebase';
 
-const dbPromise = openDb('marathon-app-db', 1, (db) => {
+const dbPromise = openDb('marathon-app-db', 1, db => {
   if (!db.objectStoreNames.contains('fight-commands')) {
     db.createObjectStore('fight-commands', { autoIncrement: true });
   }
@@ -14,7 +14,9 @@ const pushFight = async (round, personId) => {
   const db = await dbPromise;
   const tx = db.transaction('fight-commands', 'readwrite');
   return tx.objectStore('fight-commands').put({
-    operation: 'add', round, personId,
+    operation: 'add',
+    round,
+    personId,
   });
 };
 
@@ -22,22 +24,27 @@ const removeFight = async (round, personId) => {
   const db = await dbPromise;
   const tx = db.transaction('fight-commands', 'readwrite');
   tx.objectStore('fight-commands').put({
-    operation: 'remove', round, personId,
+    operation: 'remove',
+    round,
+    personId,
   });
   return tx.complete;
 };
 
 const listFights = round =>
-  firebase.database().ref('fights').once('value').then((snapshot) => {
-    const roundKey = format(round);
-    const val = snapshot.val();
-    if(val === null) {
-      return [];
-    }
+  firebase
+    .database()
+    .ref('fights')
+    .once('value')
+    .then(snapshot => {
+      const roundKey = format(round);
+      const val = snapshot.val();
+      if (val === null) {
+        return [];
+      }
 
-    return Object.keys(val)
-      .filter(key => val[key][roundKey] === true);
-  });
+      return Object.keys(val).filter(key => val[key][roundKey] === true);
+    });
 
 const getFirstUnprocessedRecord = async () => {
   const db = await dbPromise;
@@ -48,19 +55,19 @@ const getFirstUnprocessedRecord = async () => {
   return cursor ? { primaryKey: cursor.primaryKey, ...cursor.value } : null;
 };
 
-const performOperation = (record) => {
+const performOperation = record => {
   const uid = firebase.auth().currentUser.uid;
 
-  const {
-    operation, round, personId,
-  } = record;
+  const { operation, round, personId } = record;
 
-  return firebase.database().ref(`commands/changeFight/${uid}`)
-      .push({
-         operation,
-         participantId: personId,
-         round: format(round),
-      });
+  return firebase
+    .database()
+    .ref(`commands/changeFight/${uid}`)
+    .push({
+      operation,
+      participantId: personId,
+      round: format(round),
+    });
 };
 
 const getUnprocessedCount = async () => {
@@ -83,6 +90,5 @@ const persistFights = async () => {
 };
 
 setInterval(persistFights, 1000);
-
 
 export { pushFight, removeFight, listFights, getUnprocessedCount };

@@ -20,8 +20,11 @@ export const logIn = () => auth.signInWithPopup(provider);
 export const logOut = () => auth.signOut();
 export const onUserChange = cb => auth.onAuthStateChanged(user => cb(user));
 
-export const checkPermissionToRegisterFights = user => firebase.database().ref(`users/${user.uid}/registerFights`)
-  .once('value')
-  .then(snapshot => snapshot.val());
+export const checkPermissionToRegisterFights = user =>
+  firebase
+    .database()
+    .ref(`users/${user.uid}/registerFights`)
+    .once('value')
+    .then(snapshot => snapshot.val());
 
 export default firebase;

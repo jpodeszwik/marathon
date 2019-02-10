@@ -19,21 +19,23 @@ class App extends Component {
     };
 
     this.displayAlert = this.displayAlert.bind(this);
-    onUserChange((user) => {
+    onUserChange(user => {
       this.setState({ user, hasPermissionToRegisterFights: false });
       if (user !== null) {
         this.setState({ loading: true });
-        checkPermissionToRegisterFights(user).then((hasPermissionToRegisterFights) => {
-          this.setState({ hasPermissionToRegisterFights });
-        }).finally(() => {
-          this.setState({ loading: false });
-        });
+        checkPermissionToRegisterFights(user)
+          .then(hasPermissionToRegisterFights => {
+            this.setState({ hasPermissionToRegisterFights });
+          })
+          .finally(() => {
+            this.setState({ loading: false });
+          });
       }
     });
   }
 
   displayAlert(alert) {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       const newAlerts = prevState.alerts.slice();
       newAlerts.unshift(alert);
       return {
@@ -41,13 +43,17 @@ class App extends Component {
       };
     });
 
-    setTimeout(() => this.setState((prevState) => {
-      const newAlerts = prevState.alerts.slice();
-      newAlerts.splice(0, 1);
-      return {
-        alerts: newAlerts,
-      };
-    }), 3000);
+    setTimeout(
+      () =>
+        this.setState(prevState => {
+          const newAlerts = prevState.alerts.slice();
+          newAlerts.splice(0, 1);
+          return {
+            alerts: newAlerts,
+          };
+        }),
+      3000,
+    );
   }
 
   render() {
@@ -61,16 +67,14 @@ class App extends Component {
             </Alert>
           ))}
           <UserInfo user={this.state.user} />
-          <div style ={{ width: '50px', margin: 'auto' }}>
-            <FadeLoader loading={this.state.loading}/>
+          <div style={{ width: '50px', margin: 'auto' }}>
+            <FadeLoader loading={this.state.loading} />
           </div>
 
-          {this.state.user && this.state.hasPermissionToRegisterFights &&
-            <AppView displayAlert={this.displayAlert}/>
-          }
-          { this.state.user && !this.state.hasPermissionToRegisterFights && !this.state.loading &&
+          {this.state.user && this.state.hasPermissionToRegisterFights && <AppView displayAlert={this.displayAlert} />}
+          {this.state.user && !this.state.hasPermissionToRegisterFights && !this.state.loading && (
             <span style={{ color: 'red' }}>Brak uprawnień. Skontaktuj się z administratorem.</span>
-          }
+          )}
         </Container>
       </div>
     );

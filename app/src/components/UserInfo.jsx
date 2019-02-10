@@ -7,13 +7,20 @@ function UserInfo(props) {
   return (
     <Row style={{ marginTop: '2px' }}>
       <Container>
-        {props.user ?
+        {props.user ? (
           <div>
-            <span style={{ float: 'left' }}>Zalogowany jako <b>{props.user.email}</b></span>
-            <Button style={{ float: 'right' }} color="primary" onClick={logOut}>Wyloguj</Button>
-          </div> :
-          <Button color="primary" onClick={logIn}>Zaloguj</Button>
-        }
+            <span style={{ float: 'left' }}>
+              Zalogowany jako <b>{props.user.email}</b>
+            </span>
+            <Button style={{ float: 'right' }} color="primary" onClick={logOut}>
+              Wyloguj
+            </Button>
+          </div>
+        ) : (
+          <Button color="primary" onClick={logIn}>
+            Zaloguj
+          </Button>
+        )}
       </Container>
     </Row>
   );

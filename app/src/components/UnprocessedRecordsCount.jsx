@@ -19,15 +19,13 @@ class UnprocessedRecordsCount extends Component {
   }
 
   updateUnprocessed() {
-    getUnprocessedCount().then((count) => {
+    getUnprocessedCount().then(count => {
       this.setState({ unprocessedRecords: count });
     });
   }
 
   render() {
-    return (
-      <span>Niewysłane walki: {this.state.unprocessedRecords }</span>
-    );
+    return <span>Niewysłane walki: {this.state.unprocessedRecords}</span>;
   }
 }
 

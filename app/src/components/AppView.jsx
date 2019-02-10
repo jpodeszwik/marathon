@@ -26,7 +26,7 @@ class AppView extends Component {
       return;
     }
 
-    pushFight(this.round, number).catch((err) => {
+    pushFight(this.round, number).catch(err => {
       this.props.displayAlert(`could not add number: ${err.code ? err.code : err}`);
       this.removeNumber(number);
     });
@@ -35,14 +35,14 @@ class AppView extends Component {
 
   numberRemoved(number) {
     this.removeNumber(number);
-    removeFight(this.round, number).catch((err) => {
+    removeFight(this.round, number).catch(err => {
       this.props.displayAlert(`could not remove number: ${err.code ? err.code : err}`);
       this.addNumber(number);
     });
   }
 
   addNumber(number) {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       const newNumbers = prevState.numbers.slice();
       newNumbers.unshift(number);
       return {
@@ -52,9 +52,8 @@ class AppView extends Component {
   }
 
   removeNumber(number) {
-    this.setState((prevState) => {
-      const newNumbers = prevState.numbers.slice()
-        .filter(val => number !== val);
+    this.setState(prevState => {
+      const newNumbers = prevState.numbers.slice().filter(val => number !== val);
 
       return {
         numbers: newNumbers,
@@ -65,7 +64,7 @@ class AppView extends Component {
   roundSelected(date) {
     this.round = date;
     this.setState({ numbers: [] });
-    listFights(date).then((numbers) => {
+    listFights(date).then(numbers => {
       this.setState({ numbers });
     });
   }
@@ -73,10 +72,10 @@ class AppView extends Component {
   render() {
     return (
       <div>
-        <UnprocessedRecordsCount/>
+        <UnprocessedRecordsCount />
         <RoundPicker onRoundSelected={this.roundSelected} />
         <Keyboard onSave={this.numberSent} />
-        <NumberList onRemoveNumber={this.numberRemoved} numbers={this.state.numbers}/>
+        <NumberList onRemoveNumber={this.numberRemoved} numbers={this.state.numbers} />
       </div>
     );
   }

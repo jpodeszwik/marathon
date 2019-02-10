@@ -1,44 +1,42 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from 'reactstrap';
 import { subscribeForResults, unsubscribeFromResults } from './resultsApi';
 import ParticipantsTable from '../ParticipantsTable';
 
-class Results extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      top5: [],
-      top3women: [],
-      totalFights: 0,
-      totalParticipants: 0,
-    };
-  }
+const Results = () => {
+  const [top5, setTop5] = useState([]);
+  const [top3women, setTop3Women] = useState([]);
+  const [totalFights, setTotalFights] = useState(0);
+  const [totalParticipants, setTotalParticipants] = useState(0);
 
-  componentDidMount() {
-    this.topListener = subscribeForResults(topResults => {
+  useEffect(() => {
+    const listener = subscribeForResults(topResults => {
       const { top5, top3women, totalFights, totalParticipants } = topResults;
-      this.setState({ top5, top3women, totalFights, totalParticipants });
+      setTop5(top5);
+      setTop3Women(top3women);
+      setTotalFights(totalFights);
+      setTotalParticipants(totalParticipants);
     });
-  }
 
-  componentWillUnmount() {
-    unsubscribeFromResults(this.topListener);
-  }
+    return () => {
+      unsubscribeFromResults(listener);
+    };
+  }, []);
 
-  render() {
-    return <Container>
+  return (
+    <Container>
       <center>
         <h1>top 5</h1>
-        <ParticipantsTable participants={this.state.top5} />
+        <ParticipantsTable participants={top5} />
         <h1>top 3 kobiet</h1>
-        <ParticipantsTable participants={this.state.top3women} />
+        <ParticipantsTable participants={top3women} />
         <h1>Liczba walk</h1>
-        <h2>{this.state.totalFights}</h2>
+        <h2>{totalFights}</h2>
         <h1>Liczba uczestników</h1>
-        <h2>{this.state.totalParticipants}</h2>
+        <h2>{totalParticipants}</h2>
       </center>
-    </Container>;
-  }
-}
+    </Container>
+  );
+};
 
 export default Results;

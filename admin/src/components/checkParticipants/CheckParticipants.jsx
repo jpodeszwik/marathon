@@ -1,46 +1,30 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from 'reactstrap';
 import { subscribeForParticipantsResults, unsubscribeForParticipantsResults } from '../../services/users';
 import ParticipantsTable from '../ParticipantsTable';
 import ParticipantsFilter from './ParticipantsFilter';
 
-export default class CheckParticipants extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      participants: [],
-      filteredNumbers: [],
+const CheckParticipants = () => {
+  const [participants, setParticipants] = useState([]);
+  const [filteredNumbers, setFilteredNumbers] = useState([]);
+
+  const displayableParticipants = () => participants.filter(participant => filteredNumbers.includes(participant.id));
+
+  useEffect(() => {
+    const listener = subscribeForParticipantsResults(setParticipants);
+    return () => {
+      unsubscribeForParticipantsResults(listener);
     };
+  }, []);
 
-    this.displayableParticipants = this.displayableParticipants.bind(this);
-    this.filterChanged = this.filterChanged.bind(this);
-  }
-  componentDidMount() {
-    this.participantListener = subscribeForParticipantsResults(participants => {
-      this.setState({ participants });
-    });
-  }
+  return (
+    <Container>
+      <center>
+        <ParticipantsFilter onFilterChange={setFilteredNumbers} />
+        <ParticipantsTable participants={displayableParticipants()} />
+      </center>
+    </Container>
+  );
+};
 
-  componentWillUnmount() {
-    unsubscribeForParticipantsResults(this.participantListener);
-  }
-
-  displayableParticipants() {
-    return this.state.participants.filter(participant => this.state.filteredNumbers.includes(participant.id));
-  }
-
-  filterChanged(filteredNumbers) {
-    this.setState({ filteredNumbers });
-  }
-
-  render() {
-    return (
-      <Container>
-        <center>
-          <ParticipantsFilter onFilterChange={this.filterChanged} />
-          <ParticipantsTable participants={this.displayableParticipants()} />
-        </center>
-      </Container>
-    );
-  }
-}
+export default CheckParticipants;

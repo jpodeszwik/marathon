@@ -1,57 +1,52 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Button, Container, Input, InputGroup, ListGroup, ListGroupItem } from 'reactstrap';
 import PropTypes from 'prop-types';
 
-export default class ParticipantsFilter extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { filteredNumbers: [], number: '' };
-    this.onFilterChange = props.onFilterChange;
+const ParticipantsFilter = props => {
+  const [filteredNumbers, setFilteredNumbers] = useState([]);
+  const [number, setNumber] = useState('');
 
-    this.setNumber = this.setNumber.bind(this);
-    this.addFilter = this.addFilter.bind(this);
-    this.removeFromFilter = this.removeFromFilter.bind(this);
-  }
+  const removeFromFilter = index => {
+    const filteredNumbersCopy = filteredNumbers.slice();
+    filteredNumbersCopy.splice(index, 1);
+    setFilteredNumbers(filteredNumbersCopy);
+    props.onFilterChange(filteredNumbersCopy);
+  };
 
-  setNumber(ev) {
-    this.setState({ number: ev.target.value });
-  }
-
-  removeFromFilter(index) {
-    const filteredNumbers = this.state.filteredNumbers.slice();
-    filteredNumbers.splice(index, 1);
-    this.setState({ filteredNumbers });
-    this.onFilterChange(filteredNumbers);
-  }
-
-  addFilter() {
-    const number = this.state.number;
-    const filteredNumbers = this.state.filteredNumbers.slice();
-    if (!filteredNumbers.includes(number)) {
-      filteredNumbers.push(this.state.number);
+  const addFilter = () => {
+    const filteredNumbersCopy = filteredNumbers.slice();
+    if (!filteredNumbersCopy.includes(number)) {
+      filteredNumbersCopy.push(number);
     }
-    this.setState({ filteredNumbers, number: '' });
-    this.onFilterChange(filteredNumbers);
-  }
 
-  render() {
-    return (
-      <Container>
-        <InputGroup>
-          <Input placeholder="numer" onChange={this.setNumber} value={this.state.number} />
-          <Button onClick={this.addFilter}>Dodaj do obserwowanych</Button>
-        </InputGroup>
-        <br />
-        <ListGroup>
-          {this.state.filteredNumbers.map((number, index) =>
-            <ListGroupItem key={number}>{number} <Button color="danger" onClick={() => this.removeFromFilter(index)}>X</Button></ListGroupItem>
-          )}
-        </ListGroup>
-      </Container>
-    );
-  }
-}
+    setFilteredNumbers(filteredNumbersCopy);
+    setNumber('');
+    props.onFilterChange(filteredNumbersCopy);
+  };
+
+  return (
+    <Container>
+      <InputGroup>
+        <Input placeholder="numer" onChange={ev => setNumber(ev.target.value)} value={number} />
+        <Button onClick={addFilter}>Dodaj do obserwowanych</Button>
+      </InputGroup>
+      <br />
+      <ListGroup>
+        {filteredNumbers.map((number, index) => (
+          <ListGroupItem key={number}>
+            {number}{' '}
+            <Button color="danger" onClick={() => removeFromFilter(index)}>
+              X
+            </Button>
+          </ListGroupItem>
+        ))}
+      </ListGroup>
+    </Container>
+  );
+};
 
 ParticipantsFilter.propTypes = {
   onFilterChange: PropTypes.func,
 };
+
+export default ParticipantsFilter;

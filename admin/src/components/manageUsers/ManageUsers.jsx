@@ -1,30 +1,24 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from 'reactstrap';
 import { subscribeForListUsers, unsubscribeFromListUsers } from '../../services/users';
 
 import UserList from './UserList';
 
-class ManageUsers extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { users: [] };
-  }
+const ManageUsers = () => {
+  const [users, setUsers] = useState([]);
 
-  componentDidMount() {
-    this.listener = subscribeForListUsers(users => this.setState({ users }));
-  }
+  useEffect(() => {
+    const listener = subscribeForListUsers(setUsers);
+    return () => {
+      unsubscribeFromListUsers(listener);
+    };
+  }, []);
 
-  componentWillUnmount() {
-    unsubscribeFromListUsers(this.listener);
-  }
-
-  render() {
-    return (
-      <Container>
-        <UserList users={this.state.users} />
-      </Container>
-    );
-  }
-}
+  return (
+    <Container>
+      <UserList users={users} />
+    </Container>
+  );
+};
 
 export default ManageUsers;

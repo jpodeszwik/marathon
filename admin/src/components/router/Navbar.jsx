@@ -13,11 +13,26 @@ const Navbar = props => {
       <Row style={{ margin: '10px 0' }}>
         <Col sm={12}>
           <ButtonGroup>
-            <Link style={linkStyle} to="/"><Button>Rejestracja</Button></Link>
-            <Link style={linkStyle} to="/prize"><Button>Losowanie nagrody</Button></Link>
-            <Link style={linkStyle} to="/results"><Button>Wyniki</Button></Link>
-            <Link style={linkStyle} to="/check-participants"><Button>Sprawdź uczestników</Button></Link>
-            {props.canManageUsers && <Link style={linkStyle} to="/manage-users"><Button>Użytkownicy</Button></Link>}
+            <Link style={linkStyle} to="/">
+              <Button>Rejestracja</Button>
+            </Link>
+            <Link style={linkStyle} to="/prize">
+              <Button>Losowanie nagrody</Button>
+            </Link>
+            <Link style={linkStyle} to="/results">
+              <Button>Wyniki</Button>
+            </Link>
+            <Link style={linkStyle} to="/statistics">
+              <Button>Statystyki</Button>
+            </Link>
+            <Link style={linkStyle} to="/check-participants">
+              <Button>Sprawdź uczestników</Button>
+            </Link>
+            {props.canManageUsers && (
+              <Link style={linkStyle} to="/manage-users">
+                <Button>Użytkownicy</Button>
+              </Link>
+            )}
           </ButtonGroup>
         </Col>
       </Row>

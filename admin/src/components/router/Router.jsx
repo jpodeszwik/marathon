@@ -6,6 +6,7 @@ import RegistrationPage from '../registration/RegistrationPage';
 import Results from '../results/Results';
 import CheckParticipants from '../checkParticipants/CheckParticipants';
 import ManageUsers from '../manageUsers/ManageUsers';
+import Statistics from '../statistics/Statistics';
 import PropTypes from 'prop-types';
 
 const Router = props => {
@@ -17,6 +18,7 @@ const Router = props => {
         <Route path="/prize" component={DrawPrize} />
         <Route path="/results" component={Results} />
         <Route path="/check-participants" component={CheckParticipants} />
+        <Route path="/statistics" component={Statistics} />
         {props.canManageUsers && <Route path="/manage-users" component={ManageUsers} />}
       </center>
     </BrowserRouter>

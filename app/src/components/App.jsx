@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Alert } from 'reactstrap';
 import { FadeLoader } from 'react-spinners';
 import './App.css';
@@ -7,78 +7,58 @@ import UserInfo from './UserInfo.jsx';
 import { checkPermissionToRegisterFights, onUserChange } from '../services/firebase';
 import AppView from './AppView.jsx';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.round = new Date();
-    this.state = {
-      user: null,
-      hasPermissionToRegisterFights: false,
-      alerts: [],
-      loading: false,
-    };
+const App = () => {
+  const [user, setUser] = useState(null);
+  const [hasPermissionToRegisterFights, setHasPermissionToRegisterFights] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [alerts, setAlerts] = useState([]);
 
-    this.displayAlert = this.displayAlert.bind(this);
-    onUserChange(user => {
-      this.setState({ user, hasPermissionToRegisterFights: false });
-      if (user !== null) {
-        this.setState({ loading: true });
-        checkPermissionToRegisterFights(user)
-          .then(hasPermissionToRegisterFights => {
-            this.setState({ hasPermissionToRegisterFights });
-          })
-          .finally(() => {
-            this.setState({ loading: false });
-          });
+  useEffect(() => {
+    return onUserChange(user => {
+      setUser(user);
+      setHasPermissionToRegisterFights(false);
+      if (user === null) {
+        return;
       }
+
+      setLoading(true);
+      checkPermissionToRegisterFights(user)
+        .then(setHasPermissionToRegisterFights)
+        .finally(() => setLoading(false));
     });
-  }
+  }, []);
 
-  displayAlert(alert) {
-    this.setState(prevState => {
-      const newAlerts = prevState.alerts.slice();
-      newAlerts.unshift(alert);
-      return {
-        alerts: newAlerts,
-      };
-    });
+  const displayAlert = alert => {
+    const newAlerts = alerts.slice();
+    newAlerts.unshift(alert);
+    setAlerts(newAlerts);
 
-    setTimeout(
-      () =>
-        this.setState(prevState => {
-          const newAlerts = prevState.alerts.slice();
-          newAlerts.splice(0, 1);
-          return {
-            alerts: newAlerts,
-          };
-        }),
-      3000,
-    );
-  }
+    setTimeout(() => {
+      setAlerts([]);
+    }, 3000);
+  };
 
-  render() {
-    return (
-      <div className="App">
-        <Container>
-          <AppHeader />
-          {this.state.alerts.map((alert, key) => (
-            <Alert key={key} color="danger">
-              {alert}
-            </Alert>
-          ))}
-          <UserInfo user={this.state.user} />
-          <div style={{ width: '50px', margin: 'auto' }}>
-            <FadeLoader loading={this.state.loading} />
-          </div>
+  return (
+    <div className="App">
+      <Container>
+        <AppHeader/>
+        {alerts.map((alert, key) => (
+          <Alert key={key} color="danger">
+            {alert}
+          </Alert>
+        ))}
+        <UserInfo user={user}/>
+        <div style={{ width: '50px', margin: 'auto' }}>
+          <FadeLoader loading={loading}/>
+        </div>
 
-          {this.state.user && this.state.hasPermissionToRegisterFights && <AppView displayAlert={this.displayAlert} />}
-          {this.state.user && !this.state.hasPermissionToRegisterFights && !this.state.loading && (
-            <span style={{ color: 'red' }}>Brak uprawnień. Skontaktuj się z administratorem.</span>
-          )}
-        </Container>
-      </div>
-    );
-  }
-}
+        {user && hasPermissionToRegisterFights && <AppView displayAlert={displayAlert}/>}
+        {user && !hasPermissionToRegisterFights && !loading && (
+          <span style={{ color: 'red' }}>Brak uprawnień. Skontaktuj się z administratorem.</span>
+        )}
+      </Container>
+    </div>
+  );
+};
 
 export default App;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { subscribeForParticipants, unsubscribeForParticipants } from '../../services/participantRepository';
+import GrouppedStatistic from './GrouppedStatistic';
 
 const Statictics = () => {
   const [participants, setParticipants] = useState([]);
@@ -9,34 +10,13 @@ const Statictics = () => {
     return () => unsubscribeForParticipants(listener);
   }, []);
 
-  const belts = participants
-    .map(p => p.bjjGrade)
-    .reduce((acc, grade) => {
-      acc[grade] = acc[grade] ? acc[grade] + 1 : 1;
-      return acc;
-    }, {});
-
   return (
-    <div className="container">
-      <table border="true" className="table">
-        <thead>
-          <tr>
-            <th>Pas</th>
-            <th>Ilość</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Object.entries(belts).map(entry => {
-            const [belt, count] = entry;
-            return (
-              <tr key={belt}>
-                <td>{belt}</td>
-                <td>{count}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+    <div>
+      <GrouppedStatistic participants={participants} extractor={p => p.bjjGrade} header={'Pas'} />
+      <GrouppedStatistic participants={participants} extractor={p => p.sex} header={'Płeć'} />
+      <GrouppedStatistic participants={participants} extractor={p => p.adult} header={'Pełnoletni'} />
+      <GrouppedStatistic participants={participants} extractor={p => p.homeClub} header={'Klub'} />
+      <GrouppedStatistic participants={participants} extractor={p => p.city} header={'Miasto'} />
     </div>
   );
 };

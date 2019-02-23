@@ -1,6 +1,5 @@
 import firebase from 'marathon-lib/src/firebase';
-import moment from 'moment';
-import 'firebase/database';
+import { listAllParticipantsInRound } from 'marathon-lib/src/fights';
 import { getParticipant } from './participantRepository';
 
 export const registerParticipant = (userData) => {
@@ -93,16 +92,4 @@ export function unsubscribeForParticipantsResults(listener) {
   firebase.database().ref('ranking').off('value', listener);
 }
 
-const format = date => moment(date).format('DD MMM HH:mm');
-
-export const listFighters = round =>
-  firebase.database().ref('fights').once('value').then((snapshot) => {
-    const roundKey = format(round);
-    const val = snapshot.val();
-    if (val === null) {
-      return [];
-    }
-
-    return Object.keys(val)
-      .filter(key => val[key][roundKey] === true);
-  });
+export const listFighters = listAllParticipantsInRound;

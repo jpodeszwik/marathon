@@ -1,5 +1,5 @@
 import { openDb } from 'idb';
-import { changeFight, listFights } from "marathon-lib/src/fights";
+import { changeFight, listParticipantsAddedByCurrentUserInRound } from "marathon-lib/src/fights";
 
 const dbPromise = openDb('marathon-app-db', 1, db => {
   if (!db.objectStoreNames.contains('fight-commands')) {
@@ -7,7 +7,7 @@ const dbPromise = openDb('marathon-app-db', 1, db => {
   }
 });
 
-const pushFight = async (round, personId) => {
+export const pushFight = async (round, personId) => {
   const db = await dbPromise;
   const tx = db.transaction('fight-commands', 'readwrite');
   return tx.objectStore('fight-commands').put({
@@ -17,7 +17,7 @@ const pushFight = async (round, personId) => {
   });
 };
 
-const removeFight = async (round, personId) => {
+export const removeFight = async (round, personId) => {
   const db = await dbPromise;
   const tx = db.transaction('fight-commands', 'readwrite');
   tx.objectStore('fight-commands').put({
@@ -37,7 +37,7 @@ const getFirstUnprocessedRecord = async () => {
   return cursor ? { primaryKey: cursor.primaryKey, ...cursor.value } : null;
 };
 
-const getUnprocessedCount = async () => {
+export const getUnprocessedCount = async () => {
   const db = await dbPromise;
   const tx = db.transaction('fight-commands', 'readwrite');
   return tx.objectStore('fight-commands').count();
@@ -57,4 +57,4 @@ const persistFights = async () => {
 
 setInterval(persistFights, 1000);
 
-export { pushFight, removeFight, listFights, getUnprocessedCount };
+export const listFights = listParticipantsAddedByCurrentUserInRound;

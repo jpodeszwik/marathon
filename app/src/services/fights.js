@@ -31,20 +31,25 @@ const removeFight = async (round, personId) => {
   return tx.complete;
 };
 
-const listFights = round =>
-  firebase
-    .database()
-    .ref('fights')
-    .once('value')
-    .then(snapshot => {
-      const roundKey = format(round);
-      const val = snapshot.val();
-      if (val === null) {
-        return [];
-      }
+const containsFightRegisteredByUser = (round, uid) => round && round[uid];
 
-      return Object.keys(val).filter(key => val[key][roundKey] === true);
-    });
+const listFights = round => {
+  const uid = firebase.auth().currentUser.uid;
+
+  return firebase
+      .database()
+      .ref(`fights`)
+      .once('value')
+      .then(snapshot => {
+        const roundKey = format(round);
+        const val = snapshot.val();
+        if (val === null) {
+          return [];
+        }
+
+        return Object.keys(val).filter(key => containsFightRegisteredByUser(val[key][roundKey], uid));
+      });
+};
 
 const getFirstUnprocessedRecord = async () => {
   const db = await dbPromise;

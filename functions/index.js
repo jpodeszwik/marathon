@@ -16,19 +16,19 @@ exports.processSignUp = functions.auth.user().onCreate(user => {
 
 exports.sumPersonsFight = functions.database.ref('/fights/{participantId}').onWrite((change, context) => {
   const participantId = context.params.participantId;
-  const fights = change.after.val() || {};
+  const rounds = change.after.val() || {};
 
   return admin.database().ref('/metadata/boundaries').once('value')
       .then(snapshot => snapshot.val())
       .then(boundaries => {
         const {start, end } = boundaries;
-        const totalFights = Object.keys(fights)
-            .filter(fight => fights[fight] === true)
-            .filter(fight => fight.localeCompare(start) >= 0)
-            .filter(fight => fight.localeCompare(end) < 0)
+        const totalFights = Object.keys(rounds)
+            .filter(round => Object.keys(rounds[round]).map(user => rounds[round][user]).includes(true))
+            .filter(round => round.localeCompare(start) >= 0)
+            .filter(round => round.localeCompare(end) < 0)
             .length;
 
-        console.log(`seting persons: ${participantId} fights to: ${totalFights}`);
+        console.log(`setting persons: ${participantId} fights to: ${totalFights}`);
         return admin.database().ref(`/ranking/${participantId}/totalFights`).set(totalFights);
       });
 });
@@ -82,5 +82,5 @@ exports.changeFights = functions.database.ref('/commands/changeFight/{userId}/{c
 
   console.log(`registering participant: ${participantId} round: ${round} operation: ${operation}, created by user: ${userId}`);
 
-  return admin.database().ref(`/fights/${participantId}/${round}`).set(operation === 'add');
+  return admin.database().ref(`/fights/${participantId}/${round}/${userId}`).set(operation === 'add');
 });

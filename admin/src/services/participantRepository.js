@@ -1,4 +1,4 @@
-import firebase from './firebase';
+import firebase from 'marathon-lib/src/firebase';
 
 const participants = {};
 const sortedParticipantsRef = firebase.database().ref('participants').orderByChild('id');

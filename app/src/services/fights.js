@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { openDb } from 'idb';
-import firebase from './firebase';
+import firebase from 'marathon-lib/src/firebase';
 
 const dbPromise = openDb('marathon-app-db', 1, db => {
   if (!db.objectStoreNames.contains('fight-commands')) {

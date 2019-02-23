@@ -1,4 +1,4 @@
-import firebase from './firebase';
+import firebase from 'marathon-lib/src/firebase';
 import moment from 'moment';
 import 'firebase/database';
 import { getParticipant } from './participantRepository';

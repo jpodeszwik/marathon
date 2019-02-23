@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import LogIn from './components/auth/LogIn';
 import UserInfo from './components/auth/UserInfo';
-import { onUserChange } from './services/firebase';
+import { onUserChange } from 'marathon-lib/src/firebase';
 import { getLoggedInUserPermissions } from './services/users';
 import Router from './components/router/Router';
 import { Alert } from 'reactstrap';

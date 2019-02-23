@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "firebase": "^5.7.0",
+    "marathon-lib": "../lib",
     "moment": "^2.23.0",
     "prop-types": "^15.6.2",
     "react": "^16.8.1",

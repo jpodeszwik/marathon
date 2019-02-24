@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { subscribeForParticipants, unsubscribeForParticipants } from '../../services/participantRepository';
+import { subscribeForParticipants } from 'marathon-lib/src/participants';
 import GrouppedStatistic from './GrouppedStatistic';
 
 const Statictics = () => {
   const [participants, setParticipants] = useState([]);
 
-  useEffect(() => {
-    const listener = subscribeForParticipants(setParticipants);
-    return () => unsubscribeForParticipants(listener);
-  }, []);
+  useEffect(() => subscribeForParticipants(setParticipants), []);
 
   return (
     <div>

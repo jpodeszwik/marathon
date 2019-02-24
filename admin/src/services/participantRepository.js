@@ -1,19 +1,6 @@
-import firebase from 'marathon-lib/src/firebase';
+import { subscribeForParticipants } from 'marathon-lib/src/participants';
 
 const participants = {};
-const sortedParticipantsRef = firebase.database().ref('participants').orderByChild('id');
-
-export const subscribeForParticipants = callback =>
-  sortedParticipantsRef.on('value', function (snapshot) {
-    const val = snapshot.val() || {};
-    const users = Object.keys(val)
-      .map(key => val[key]);
-
-    callback(users.reverse());
-  });
-
-export const unsubscribeForParticipants = listener =>
-  sortedParticipantsRef.off('value', listener);
 
 subscribeForParticipants(newParticipants => {
   newParticipants

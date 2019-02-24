@@ -2,23 +2,6 @@ import firebase from 'marathon-lib/src/firebase';
 import { listAllParticipantsInRound } from 'marathon-lib/src/fights';
 import { getParticipant } from './participantRepository';
 
-export const registerParticipant = (userData) => {
-  const uid = firebase.auth().currentUser.uid;
-  const registrationRef = firebase.database().ref(`commands/register/${uid}`);
-  const key = registrationRef.push(userData).key;
-  const participantRef = firebase.database().ref(`participants/${key}/id`);
-  return new Promise(resolve => {
-    participantRef.on('value', function (snapshot) {
-      if (!snapshot.exists()) {
-        return;
-      }
-
-      resolve(snapshot.val());
-      participantRef.off('value', this);
-    });
-  });
-};
-
 const calculateResults = (participants) => {
   const copyParticipants = participants.slice();
   copyParticipants.sort((a, b) => b.fights - a.fights);

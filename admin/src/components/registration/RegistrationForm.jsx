@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Alert, Container, Row, Col, Button, FormGroup, Input, Label } from 'reactstrap';
-import { registerParticipant } from '../../services/users';
+import { registerParticipant } from 'marathon-lib/src/participants';
 import { BarLoader } from 'react-spinners';
 
 const disabledStyle = {

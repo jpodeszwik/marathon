@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { logOut } from 'marathon-lib/src/firebase';
+import { logOut } from 'marathon-lib/src/auth';
 
 function UserInfo(props) {
   const userName = props.user.isAnonymous ? 'anonymous' : props.user.email;

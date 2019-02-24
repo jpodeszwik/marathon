@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Row } from 'reactstrap';
-import { logIn } from 'marathon-lib/src/firebase';
+import { logIn } from 'marathon-lib/src/auth';
 
 function LogIn() {
   return (

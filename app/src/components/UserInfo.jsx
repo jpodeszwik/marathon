@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Container, Row } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { logIn, logOut } from 'marathon-lib/src/firebase';
+import { logIn, logOut } from 'marathon-lib/src/auth';
 
 function UserInfo(props) {
   return (

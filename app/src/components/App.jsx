@@ -4,7 +4,7 @@ import { FadeLoader } from 'react-spinners';
 import './App.css';
 import AppHeader from './AppHeader.jsx';
 import UserInfo from './UserInfo.jsx';
-import { checkPermissionToRegisterFights, onUserChange } from 'marathon-lib/src/firebase';
+import { checkPermissionToRegisterFights, onUserChange } from 'marathon-lib/src/auth';
 import AppView from './AppView.jsx';
 
 const App = () => {

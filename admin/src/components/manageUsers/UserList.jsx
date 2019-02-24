@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import YesNoButton from './YesNoButton';
-import { setRegisterFights, setRegisterParticipants, setManageUsers } from '../../services/users';
+import { toggleRegisterParticipants, toggleRegisterFights, toggleManageUsers } from 'marathon-lib/src/auth';
 
 const setUserValueCb = (user, fn) => {
   return val => fn(user.id, val);
@@ -23,13 +23,13 @@ const UserList = props => {
           <tr key={user.id}>
             <td>{user.email}</td>
             <td>
-              <YesNoButton selected={user.registerFights} onSelect={setUserValueCb(user, setRegisterFights)} />
+              <YesNoButton selected={user.registerFights} onSelect={setUserValueCb(user, toggleRegisterFights)} />
             </td>
             <td>
-              <YesNoButton selected={user.registerParticipants} onSelect={setUserValueCb(user, setRegisterParticipants)} />
+              <YesNoButton selected={user.registerParticipants} onSelect={setUserValueCb(user, toggleRegisterParticipants)} />
             </td>
             <td>
-              <YesNoButton selected={user.manageUsers} onSelect={setUserValueCb(user, setManageUsers)} />
+              <YesNoButton selected={user.manageUsers} onSelect={setUserValueCb(user, toggleManageUsers)} />
             </td>
           </tr>
         ))}

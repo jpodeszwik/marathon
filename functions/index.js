@@ -63,7 +63,7 @@ exports.registerParticipant = functions.https.onCall((participant, context) => {
         .then(snapshot => snapshot.val())
         .then(canRegister => {
             if (!canRegister) {
-                throw new functions.https.HttpsError('failed-precondition', 'User must have permission to register participant');
+                throw new functions.https.HttpsError('permission-denied', 'User must have permission to register participant');
             }
             return null;
         })

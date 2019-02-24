@@ -19,19 +19,6 @@ export const registerParticipant = (userData) => {
   });
 };
 
-export const subscribeForListUsers = callback => {
-  return firebase.database().ref('users').on('value', snapshot => {
-    const val = snapshot.val();
-    const keys = Object.keys(val);
-    const userList = keys.map(key => ({ id: key, ...val[key] }));
-    callback(userList);
-  });
-};
-
-export const unsubscribeFromListUsers = listener => {
-  return firebase.database().ref('users').off('value', listener);
-};
-
 const calculateResults = (participants) => {
   const copyParticipants = participants.slice();
   copyParticipants.sort((a, b) => b.fights - a.fights);

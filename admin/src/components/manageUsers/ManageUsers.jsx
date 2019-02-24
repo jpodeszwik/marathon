@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Container } from 'reactstrap';
-import { subscribeForListUsers, unsubscribeFromListUsers } from '../../services/users';
+import { subscribeForListUsers } from 'marathon-lib/src/auth';
 
 import UserList from './UserList';
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    const listener = subscribeForListUsers(setUsers);
-    return () => {
-      unsubscribeFromListUsers(listener);
-    };
-  }, []);
+  useEffect(() => subscribeForListUsers(setUsers), []);
 
   return (
     <Container>

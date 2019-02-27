@@ -1,6 +1,7 @@
 .keyboard-container {
-    grid-template-columns: repeat(3, 33%);
-    grid-template-rows: repeat(5, 80px);
-    grid-gap: 15px;
+    grid-template-columns: repeat(3, 30%);
+    grid-template-rows: repeat(5, 60px);
+    grid-column-gap: 5%;
+    grid-row-gap: 20px;
     display: grid;
 }

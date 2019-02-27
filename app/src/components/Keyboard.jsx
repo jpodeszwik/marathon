@@ -1,114 +1,77 @@
-import React, { useState } from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
+import React, {useState} from 'react';
+import {Button} from 'reactstrap';
 import PropTypes from 'prop-types';
-
-const colStyle = {
-  padding: '1px',
-};
+import './Keyboard.css';
 
 const Keyboard = props => {
-  const [number, setNumber] = useState('');
+    const [number, setNumber] = useState('');
 
-  const buttonClicked = num => {
-    setNumber(number.concat(num));
-  };
+    const buttonClicked = num => {
+        setNumber(number.concat(num));
+    };
 
-  const addClicked = () => {
-    if (number === '') {
-      return;
-    }
+    const addClicked = () => {
+        if (number === '') {
+            return;
+        }
 
-    props.onSave(number);
-    setNumber('');
-  };
+        props.onSave(number);
+        setNumber('');
+    };
 
-  const deleteClicked = () => {
-    setNumber(number.slice(0, -1));
-  };
+    const deleteClicked = () => {
+        setNumber(number.slice(0, -1));
+    };
 
-  return (
-    <Container>
-      <Row>
-        <Col />
-        <Col>
-          <h1 className="text-center">{number || '-'}</h1>
-        </Col>
-        <Col>
-          <Button block={true} color="danger" onClick={deleteClicked}>
-            Popraw
-          </Button>
-        </Col>
-      </Row>
-      <Row>
-        <Col style={colStyle}>
-          <Button block={true} onClick={() => buttonClicked(1)}>
-            1
-          </Button>
-        </Col>
-        <Col style={colStyle}>
-          <Button block={true} onClick={() => buttonClicked(2)}>
-            2
-          </Button>
-        </Col>
-        <Col style={colStyle}>
-          <Button block={true} onClick={() => buttonClicked(3)}>
-            3
-          </Button>
-        </Col>
-      </Row>
-      <Row>
-        <Col style={colStyle}>
-          <Button block={true} onClick={() => buttonClicked(4)}>
-            4
-          </Button>
-        </Col>
-        <Col style={colStyle}>
-          <Button block={true} onClick={() => buttonClicked(5)}>
-            5
-          </Button>
-        </Col>
-        <Col style={colStyle}>
-          <Button block={true} onClick={() => buttonClicked(6)}>
-            6
-          </Button>
-        </Col>
-      </Row>
-      <Row>
-        <Col style={colStyle}>
-          <Button block={true} onClick={() => buttonClicked(7)}>
-            7
-          </Button>
-        </Col>
-        <Col style={colStyle}>
-          <Button block={true} onClick={() => buttonClicked(8)}>
-            8
-          </Button>
-        </Col>
-        <Col style={colStyle}>
-          <Button block={true} onClick={() => buttonClicked(9)}>
-            9
-          </Button>
-        </Col>
-      </Row>
-      <Row>
-        <Col style={colStyle} />
-        <Col style={colStyle}>
-          <Button block={true} onClick={() => buttonClicked(0)}>
-            0
-          </Button>
-        </Col>
-        <Col style={colStyle}>
-          <Button block={true} color="success" onClick={addClicked}>
-            Dodaj
-          </Button>
-        </Col>
-      </Row>
-    </Container>
-  );
+    return (
+        <div style={{display: 'block'}}>
+            <div className={'keyboard-container'}>
+                <span/>
+                <h1 className="text-center">{number || '-'}</h1>
+                <Button color="danger" onClick={deleteClicked}>
+                    Popraw
+                </Button>
+                <Button onClick={() => buttonClicked(1)}>
+                    1
+                </Button>
+                <Button onClick={() => buttonClicked(2)}>
+                    2
+                </Button>
+                <Button onClick={() => buttonClicked(3)}>
+                    3
+                </Button>
+                <Button onClick={() => buttonClicked(4)}>
+                    4
+                </Button>
+                <Button onClick={() => buttonClicked(5)}>
+                    5
+                </Button>
+                <Button onClick={() => buttonClicked(6)}>
+                    6
+                </Button>
+                <Button onClick={() => buttonClicked(7)}>
+                    7
+                </Button>
+                <Button onClick={() => buttonClicked(8)}>
+                    8
+                </Button>
+                <Button onClick={() => buttonClicked(9)}>
+                    9
+                </Button>
+                <span/>
+                <Button onClick={() => buttonClicked(0)}>
+                    0
+                </Button>
+                <Button color="success" onClick={addClicked}>
+                    Dodaj
+                </Button>
+            </div>
+        </div>
+    );
 };
 
 Keyboard.propTypes = {
-  onSave: PropTypes.func,
+    onSave: PropTypes.func,
 };
 
 export default Keyboard;

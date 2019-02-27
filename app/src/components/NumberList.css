@@ -1,0 +1,13 @@
+.number-list {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.number-list > div
+{
+    border:1px lightgray solid;
+    margin:5px;
+    padding: 5px;
+    font-size: 25px;
+}

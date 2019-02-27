@@ -1,27 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ListGroup, ListGroupItem, Button } from 'reactstrap';
+import {Button} from 'reactstrap';
+import './NumberList.css'
 
 function NumberList(props) {
-  const { numbers, onRemoveNumber } = props;
+    const {numbers, onRemoveNumber} = props;
 
-  return (
-    <ListGroup style={{ paddingTop: '20px' }}>
-      {numbers.map((number, key) => (
-        <ListGroupItem key={key}>
-          <span style={{ fontSize: '25px' }}>{number}</span>
-          <Button style={{ float: 'right' }} onClick={() => onRemoveNumber(number)} color="danger">
-            X
-          </Button>
-        </ListGroupItem>
-      ))}
-    </ListGroup>
-  );
+    return (
+        <div className={'number-list'}>
+            {numbers.map((number, key) => (
+                <div key={key}>
+                    <span>{number}</span>
+                    <Button style={{float: 'right'}} onClick={() => onRemoveNumber(number)} color="danger">
+                        X
+                    </Button>
+                </div>
+            ))}
+        </div>
+    );
 }
 
 NumberList.propTypes = {
-  numbers: PropTypes.arrayOf(PropTypes.string),
-  onRemoveNumber: PropTypes.func,
+    numbers: PropTypes.arrayOf(PropTypes.string),
+    onRemoveNumber: PropTypes.func,
 };
 
 export default NumberList;

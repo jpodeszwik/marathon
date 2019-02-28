@@ -52,9 +52,14 @@ const RoundPicker = props => {
             <Button onClick={previousRound}>
                 <FaAngleLeft/>
             </Button>
-            <div>
-                <Moment format="DD MMM">{roundStart}</Moment> <Moment format="HH:mm">{roundStart}</Moment> - <Moment
-                format="HH:mm">{roundEnd}</Moment>
+            <div className={'round-container'}>
+                <div>
+                    <Moment format="DD MMM">{roundStart}</Moment>
+                    <span> </span>
+                    <Moment format="HH:mm">{roundStart}</Moment>
+                    <span> - </span>
+                    <Moment format="HH:mm">{roundEnd}</Moment>
+                </div>
             </div>
             <Button onClick={nextRound}>
                 <FaAngleRight/>

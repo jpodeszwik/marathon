@@ -6,3 +6,8 @@
     width: 20em;
     justify-content: space-between;
 }
+
+.round-container {
+    display: flex;
+    align-items: center;
+}

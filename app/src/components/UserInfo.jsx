@@ -1,33 +1,20 @@
 import React from 'react';
-import { Button, Container, Row } from 'reactstrap';
+import {Button} from 'reactstrap';
 import PropTypes from 'prop-types';
-import { logIn, logOut } from 'marathon-lib/src/auth';
+import {logIn, logOut} from 'marathon-lib/src/auth';
+import './UserInfo.css';
 
 function UserInfo(props) {
-  return (
-    <Row style={{ marginTop: '2px' }}>
-      <Container>
-        {props.user ? (
-          <div>
-            <span style={{ float: 'left' }}>
-              Zalogowany jako <b>{props.user.email}</b>
-            </span>
-            <Button style={{ float: 'right' }} color="primary" onClick={logOut}>
-              Wyloguj
-            </Button>
-          </div>
-        ) : (
-          <Button color="primary" onClick={logIn}>
-            Zaloguj
-          </Button>
-        )}
-      </Container>
-    </Row>
-  );
+    return props.user ? (
+        <div className={'user-info-container'}>
+            <div className={'vertical-justify'}><span>Zalogowany jako <b>{props.user.email}</b></span></div>
+            <Button color="primary" onClick={logOut}>Wyloguj</Button>
+        </div>
+    ) : (<Button color="primary" onClick={logIn}>Zaloguj</Button>);
 }
 
 UserInfo.propTypes = {
-  user: PropTypes.object,
+    user: PropTypes.object,
 };
 
 export default UserInfo;

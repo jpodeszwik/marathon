@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import './App.css';
+import './AppView.css';
 import Keyboard from './Keyboard.jsx';
 import RoundPicker from './RoundPicker.jsx';
 import NumberList from './NumberList.jsx';
@@ -50,7 +50,7 @@ const AppView = props => {
   }, []);
 
   return (
-    <div>
+    <div className="app-view-container">
       <UnprocessedRecordsCount />
       <RoundPicker onRoundSelected={roundSelected} />
       <Keyboard onSave={numberSent} />

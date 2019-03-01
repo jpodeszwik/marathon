@@ -52,7 +52,7 @@ const RoundPicker = props => {
             <Button onClick={previousRound}>
                 <FaAngleLeft/>
             </Button>
-            <div className={'round-container'}>
+            <div className={'vertical-justify'}>
                 <div>
                     <Moment format="DD MMM">{roundStart}</Moment>
                     <span> </span>

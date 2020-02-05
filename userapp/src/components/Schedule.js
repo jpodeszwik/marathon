@@ -4,6 +4,31 @@ import './general.css';
 import './Schedule.css';
 import { Table } from 'react-bootstrap';
 
+
+const parseLine = line => {
+    const parts = line.split(' - ');
+
+    const time = parts.slice(0, -1).join(' - ');
+    const event = parts[parts.length - 1];
+
+    return  <tr>
+        <td className="gold">{time}</td><td>{event}</td>
+    </tr>
+};
+
+const staturday = `9:00 - Start rejestracji
+10:00 - Rozpoczęcie maratonu
+10:30 - 11:30 - Trening dla dzieci BJJ i JUDO Sekcja Sport
+11:00 - 19:00 - Wizyta Fizjolab
+20:00 - 21:00 - Seminarium Bartek "Silnoręki" Łukaszewicz`.split('\n')
+    .map(parseLine);
+
+const sunday = `8:00 - 8:45 - Poranna joga z Mają
+10:00 - Zakończenie maratonu
+10:15 - Podsumowanie i ogłoszenie wyników`.split('\n')
+    .map(parseLine);
+
+
 const Schedule =()=>{
     
     
@@ -14,50 +39,16 @@ const Schedule =()=>{
             <div className="logo-general"></div>
             <h3 className="general-header">HARMONOGRAM</h3>
 
-            <h3 className="gold head">2.02.2019 SOBOTA</h3>
+            <h3 className="gold head">8.02.2020 SOBOTA</h3>
             <Table>
-
                 <tbody>
-                    <tr>
-                        <td className="gold">9:00</td><td>Start rejestracji</td>
-                    </tr>
-                    <tr>
-                        <td className="gold">10:00</td><td>Start Maratonu</td>
-                    </tr>
-                    <tr>
-                        <td className="gold">12:00 - 15:00</td><td>Fizjolab - fizjoterapia</td>
-                    </tr>
-                    <tr>
-                        <td className="gold">12:00 - 12:45</td><td>Judo i BJJ, dzieci w wieku 4-6 lat</td>
-                    </tr>
-                    <tr>
-                        <td className="gold">12:45 - 13:30</td><td>Judo i BJJ dzieci w wieku 7 lat +</td>
-                    </tr>
-                    <tr>
-                        <td className="gold">14:00</td><td>Wizyta RedBull, rozdanie napojów</td>
-                    </tr>
-                    <tr>
-                        <td className="gold">16:00</td><td> Trening Animal Flow</td>
-                    </tr>
-                    
-                    <tr>
-                        <td className="gold">19:00</td><td>Seminarium No-gi z Mateuszem Szczecińskim</td>
-                    </tr>
+                    {staturday}
                 </tbody>
             </Table>
-            <h3 className="gold head">3.02.2019 NIEDZIELA</h3>
+            <h3 className="gold head">9.02.2020 NIEDZIELA</h3>
             <Table>
-              
                 <tbody>
-                    <tr>
-                        <td className="gold">8:00</td><td>Poranna joga z Martą Szulc</td>
-                    </tr>
-                    <tr>
-                        <td className="gold">10:00</td><td>Zakończenie maratonu</td>
-                    </tr>
-                    <tr>
-                        <td className="gold head">10:15</td><td>Podsumowanie i wyniki</td>
-                    </tr>
+                    {sunday}
                 </tbody>
             </Table>
         </div>

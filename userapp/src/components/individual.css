@@ -1,0 +1,102 @@
+.ind-box{
+    height: 100vh;
+    position: relative;
+    font-family: 'Bahnschrift';
+}
+
+#ind-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+h4{
+    color: white;
+    text-align: center;
+    /* margin-bottom: 80px; */
+}
+
+h5{
+    color: white;
+    text-align: center;
+    margin: 15px 0;
+    z-index: 100;
+    
+}
+
+.user-data{
+    color: #fcee21;
+}
+
+button{
+    border: none;
+}
+
+button:focus{
+    outline: none;
+}
+
+
+
+.App-logo-ind {
+    background-image: url('../img/MobileLogo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 25vh;
+    width: 25vh;
+    margin: 50px auto;
+
+  }
+  
+  .score{
+      width: 30%;
+      min-width: 160px;
+      height: 50px;
+      background: #212121;
+      position: relative;
+      padding-top: 5px;
+      display: flex;
+      justify-content: center;
+      
+  }
+
+  .score::before, .score::after{
+    position: absolute;
+    top:0;
+    content: "";
+    background: #212121;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    
+
+  }
+
+  .score::before{
+      left: -25px;
+  }
+
+  .score::after{
+    right: -25px;
+}
+
+.score input{
+    background: #212121;
+    border: none;
+    color: white;
+    text-align: center;
+    width: 80%;
+}
+
+.score input:focus{
+    outline: none;
+}
+
+.hidden{
+    visibility: hidden; 
+}
+
+#score-board, #fights-count{
+    margin: 30px auto; 
+}

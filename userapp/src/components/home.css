@@ -1,0 +1,84 @@
+.home-box{
+    height: 100vh;
+}
+
+#home-container{
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: stretch;
+    justify-content: space-between;
+}
+
+.home-anchor{
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.6em;
+    font-weight: 200;
+    min-width: 150px;
+    width: 80%;
+    height: 50px;
+    background: #212121;
+    margin: 5px 0;
+    color: #d8d8d8;
+    text-align: center;
+    padding-top: 15px;
+    position: relative;
+}
+
+.home-anchor:hover{
+  text-decoration: none;
+}
+
+.home-anchor::before, .home-anchor::after{
+  position: absolute;
+  top:0;
+  content: "";
+  background: #212121;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  
+
+}
+
+.home-anchor::before{
+    left: -25px;
+}
+
+.home-anchor::after{
+  right: -25px;
+}
+.home-anchor:visited{
+  text-decoration: none;
+  color: #f4f4f4;
+  text-underline-position: unset;
+}
+
+.App-logo {
+    background-image: url('../img/MobileLogo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: App-logo-spin infinite 50s linear;
+    height: 25vh;
+    width: 25vh;
+    margin: 25px auto;
+  }
+  
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media only screen and (min-width: 600px) {
+    .home-anchor{
+      width: 40%;
+      padding-top: 5px;
+    }
+  }

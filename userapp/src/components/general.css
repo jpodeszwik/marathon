@@ -1,0 +1,48 @@
+.general-container{
+    height: 100vh;
+}
+
+.logo-general{
+    background-image: url('../img/MobileLogo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 10vh;
+    width: 10vh;
+    margin: 15px 0 0 15px;
+}
+
+.general-header{
+    margin: 40px auto ;
+    color: white;
+    text-align: center;
+}
+
+th{
+    text-align: center;
+    color: #fcee21;
+}
+
+td{
+    text-align: center;
+    color: white;
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th {
+  border-bottom: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  outline: none;
+}
+
+.table > tbody > tr:nth-child(2n+1) > td {
+    background: #212121;
+  }
+
+  @media only screen and (min-width: 600px) {
+    .table{
+      width: 40%;
+      margin: 0 auto;
+    }
+  }

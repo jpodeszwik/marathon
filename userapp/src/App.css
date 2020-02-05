@@ -1,0 +1,49 @@
+html{
+  background: #111111;
+}
+
+body{
+  background: #111111;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 200;
+  margin: 0;
+  padding: 0;
+  font-size: 1.2em;
+  color: #d8d8d8;
+}
+
+.container{
+  background: #111111;
+  height: 100vh;
+  background-image: url('../src/img/Background.png');
+  background-size: contain;
+  
+  
+}
+
+
+
+
+/* 
+@font-face{
+  font-family: Bahnschrift;
+  src: url('../src/fonts/bahnschrift.ttf');
+} */
+
+@media only screen and (min-width: 600px) {
+  body{
+    font-size: 1.8em;
+    font-weight: 100;
+  }
+
+  .container{
+    background-size: cover;
+    background-position: center;
+    background-position-y: 50%;
+    
+  }
+
+ 
+}
+
+

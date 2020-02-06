@@ -4,16 +4,16 @@ import { subscribeForResults, unsubscribeFromResults } from './resultsApi';
 import ParticipantsTable from '../ParticipantsTable';
 
 const Results = () => {
-  const [top5, setTop5] = useState([]);
-  const [top3women, setTop3Women] = useState([]);
+  const [top3men, setTop3men] = useState([]);
+  const [top3women, setTop3women] = useState([]);
   const [totalFights, setTotalFights] = useState(0);
   const [totalParticipants, setTotalParticipants] = useState(0);
 
   useEffect(() => {
     const listener = subscribeForResults(topResults => {
-      const { top5, top3women, totalFights, totalParticipants } = topResults;
-      setTop5(top5);
-      setTop3Women(top3women);
+      const { top3men, top3women, totalFights, totalParticipants } = topResults;
+      setTop3men(top3men);
+      setTop3women(top3women);
       setTotalFights(totalFights);
       setTotalParticipants(totalParticipants);
     });
@@ -26,8 +26,8 @@ const Results = () => {
   return (
     <Container>
       <center>
-        <h1>top 5</h1>
-        <ParticipantsTable participants={top5} />
+        <h1>top 3 mężczyzn</h1>
+        <ParticipantsTable participants={top3men} />
         <h1>top 3 kobiet</h1>
         <ParticipantsTable participants={top3women} />
         <h1>Liczba walk</h1>

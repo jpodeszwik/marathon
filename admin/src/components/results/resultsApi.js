@@ -15,13 +15,14 @@ const calculateTotalFights = participants => {
 
 export const subscribeForResults = callback => {
   return subscribeForParticipantsResults(function (participants) {
-    const top5 = topn(participants, 5);
+    const men = participants.filter(participant => participant.data.sex === 'Mężczyzna')
+    const top3men = topn(men, 3);
     const women = participants.filter(participant => participant.data.sex === 'Kobieta');
     const top3women = topn(women, 3);
     const totalFights = calculateTotalFights(participants);
     const totalParticipants = participants.length;
 
-    callback({ top5, top3women, totalFights, totalParticipants });
+    callback({ top3men, top3women, totalFights, totalParticipants });
   });
 };
 

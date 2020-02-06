@@ -7,10 +7,9 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './components/home';
 import Individual from './components/Individual';
 import General from './components/General';
-import TopFive from './components/TopFive';
-import TopWoman from './components/TopWoman';
 import Schedule from './components/Schedule';
 import Info from './components/Info';
+import TopThree from './components/TopThree';
 
 
 class App extends Component {
@@ -98,14 +97,16 @@ class App extends Component {
              rank={this.state.rank.slice()}
           />}/>
 
-          <Route path ="/topfive" render={(props) => <TopFive
+          <Route path ="/topmen" render={(props) => <TopThree
              {...props}
              rank={this.state.rank.slice()}
+             filter = {item => item.content.sex === "Mężczyzna"}
           />}/>
 
-          <Route path ="/topwoman" render={(props) => <TopWoman
+          <Route path ="/topwomen" render={(props) => <TopThree
              {...props}
              rank={this.state.rank.slice()}
+             filter = {item => item.content.sex === "Kobieta"}
           />}/>
 
           <Route path ="/schedule" component={Schedule}/> 

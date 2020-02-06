@@ -10,8 +10,8 @@ const Home =()=>{
         <div id="home-container" >
         
             <a href="/general" className="home-anchor">Ranking ogólny</a>
-            <a href="/topfive" className="home-anchor">Top 5 uczestników</a>
-            <a href="/topwoman" className="home-anchor">Top 3 kobiety</a>
+            <a href="/topmen" className="home-anchor">Top 3 mężczyzn</a>
+            <a href="/topwomen" className="home-anchor">Top 3 kobiety</a>
             <a href="/individual" className="home-anchor">Sprawdź swój wynik</a>
             <a href="/schedule" className="home-anchor">Harmonogram</a>
             <a href="/info" className="home-anchor">Regulamin</a>       

@@ -20,6 +20,7 @@ const staturday = `9:00 - Start rejestracji
 10:00 - Rozpoczęcie maratonu
 10:30 - 11:30 - Trening dla dzieci BJJ i JUDO Sekcja Sport
 11:00 - 19:00 - Wizyta Fizjolab
+14:00 - 16:00 - Analiza składu masy ciała Fit Klub Trójmiasto
 20:00 - 21:00 - Seminarium Bartek "Silnoręki" Łukaszewicz`.split('\n')
     .map(parseLine);
 
@@ -29,8 +30,7 @@ const sunday = `8:00 - 8:45 - Poranna joga z Mają
     .map(parseLine);
 
 
-const Schedule =()=>{
-    
+const Schedule = () =>{
     
     return(
         <div className="general-container">
@@ -43,6 +43,7 @@ const Schedule =()=>{
             <Table>
                 <tbody>
                     {staturday}
+                    <tr><td colSpan={2}>Przez cały czas trwania maratonu dostępny będzie catering Wilczy Głód</td></tr>
                 </tbody>
             </Table>
             <h3 className="gold head">9.02.2020 NIEDZIELA</h3>
